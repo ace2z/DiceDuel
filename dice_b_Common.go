@@ -1,0 +1,229 @@
+package main
+
+import (
+	// = = = = = Native Libraries
+
+	//. "local/CORE"
+
+	//. "local/INGEST_ENGINE"
+
+	"bufio"
+	"os"
+	"strings"
+
+	. "github.com/ace2z/GOGO/Gadgets"
+	"github.com/fatih/color"
+	//"github.com/rivo/tview" // https://github.com/rivo/tview/tree/master
+	// "strings"
+	// "time"
+	//"github.com/Delta456/box-cli-maker/v2"
+	//"github.com/fatih/color"
+)
+
+var HISTORY []DLOGIC_OBJ
+
+func SHOW_DICE_Item(DL DLOGIC_OBJ, red_win bool, blue_win bool, tie bool) {
+
+	M.Print(DL.RED_A)
+	W.Print(" -> ")
+	M.Print(DL.RED_B)
+	W.Print(" , ")
+	C.Print(DL.BLUE_A)
+	W.Print(" -> ")
+	C.Print(DL.BLUE_B)
+	W.Print(": ")
+	//show_Winner(red_win, blue_win, tie)
+
+	W.Println("")
+	M.Print("   ")
+	if DL.RED_INC {
+		M.Print(" RED_INC")
+		W.Print(" |")
+	} else if DL.RED_DROP {
+		M.Print(" RED_DROP")
+		W.Print(" |")
+	}
+
+	if DL.HAVE_RED_6 {
+		M.Print(" RED_6")
+		W.Print(" | ")
+	} else if DL.HAVE_RED_1 {
+		M.Print(" RED_1")
+		W.Print(" | ")
+	}
+
+	W.Print(" ")
+	if DL.RED_by_1 {
+		//WB.Print(" BLU*by*ONE ")
+		WM.Print(" RED*by*ONE ")
+	}
+	W.Println("")
+
+	// = = =
+	//2. for BLU
+	M.Print("   ")
+	if DL.BLUE_INC {
+		C.Print(" BLUE_INC")
+		W.Print(" |")
+	} else if DL.BLUE_DROP {
+		C.Print(" BLUE_DROP")
+		W.Print(" |")
+	}
+
+	if DL.HAVE_BLUE_6 {
+		C.Print(" BLUE_6")
+		W.Print(" | ")
+	} else if DL.HAVE_BLUE_1 {
+		C.Print(" BLUE_1")
+		W.Print(" | ")
+	}
+
+	if DL.BLUE_by_1 {
+		WB.Print(" BLU*by*ONE ")
+	}
+	W.Println("")
+
+	M.Println("")
+
+}
+
+func Process_Dice_Value_INPUT(red_dice string, blue_dice string) {
+
+	// 1. Extract the first and second numbers from red_dice...and blue dice
+	red_b := red_dice[0:1]
+	red_a := red_dice[1:2]
+
+	blue_b := blue_dice[0:1]
+	blue_a := blue_dice[1:2]
+
+	// Convert to integers
+	red_a_int := STRING_to_INT(red_a)
+	red_b_int := STRING_to_INT(red_b)
+	blue_a_int := STRING_to_INT(blue_a)
+	blue_b_int := STRING_to_INT(blue_b)
+
+	/*
+		M.Print("     ***  RED: ")
+		W.Print("a:")
+		M.Print(red_a_int)
+		W.Print(" --> ")
+		W.Print("b:")
+		M.Println(red_b_int)
+	*/
+
+	C.Print("     *** BLUE: ")
+	W.Print("a:")
+	C.Print(blue_a_int)
+	W.Print(" --> ")
+	W.Print("b:")
+	C.Println(blue_b_int)
+	W.Println("")
+
+	// W.Println("   Red  A Int: ", red_a_int)
+	// W.Println("   Red  B Int: ", red_b_int)
+	// W.Println("   Blue A Int: ", blue_a_int)
+	// W.Println("   Blue B Int: ", blue_b_int)
+	// W.Println("")
+
+	//3. Perform dice-logic
+	var DL DLOGIC_OBJ
+	DL.RED_A = red_a_int
+	DL.RED_B = red_b_int
+	DL.BLUE_A = blue_a_int
+	DL.BLUE_B = blue_b_int
+	main_Dice_Logic(red_b_int, red_a_int, "RED", &DL)
+	main_Dice_Logic(blue_b_int, blue_a_int, "BLUE", &DL)
+
+	HISTORY = append(HISTORY, DL)
+	//SHOW_STRUCT(DL)
+
+	//M.Println("")
+}
+
+func Read_User_Input(ALL_PARAMS ...interface{}) string {
+
+	var showtyped = false
+	var useColor = WHITE
+
+	for _, param := range ALL_PARAMS {
+		string_val, is_string := param.(string)
+		color_val, isCOLOR := param.(*color.Color)
+		//int_val, is_int := param.(int)
+
+		if is_string {
+			if string_val == "-showtyped" {
+				showtyped = true
+			}
+			continue
+		}
+
+		if isCOLOR {
+			useColor = color_val
+			continue
+		}
+	} //end
+
+	if useColor == nil {
+		useColor = WHITE
+		tmp := "dummy"
+		if strings.Contains(tmp, "RED") {
+		}
+	}
+
+	reader := bufio.NewReader(os.Stdin)
+	userTEMP, _ := reader.ReadString('\n')
+	//userTEMP = strings.TrimSuffix(userTEMP, "\n")
+
+	if showtyped {
+		//useColor.Print(userTEMP)
+	}
+
+	return userTEMP
+
+} //end of
+
+func Dice_Engine_INIT(INPUT_RED_DICE string, INPUT_BLUE_DICE string) {
+
+	// PROMPT("Welcome to the Dice Duel Game!")
+	// PROMPT("The game is simple: You and the computer each roll a die. The highest number wins.")
+
+	var red_dice = ""
+	var blue_dice = ""
+	if INPUT_RED_DICE != "" {
+		red_dice = INPUT_RED_DICE
+	}
+	if INPUT_BLUE_DICE != "" {
+		blue_dice = INPUT_BLUE_DICE
+	}
+	Y.Println("")
+	Y.Print(" Enter ")
+	W.Print("last 2 Dice Games ")
+	Y.Println("RED first ")
+	M.Print("   RED DICE: ")
+
+	if red_dice == "" {
+		red_dice = Read_User_Input()
+
+		// if user typed e or d or something, we remove last item and start over again
+		if Need_to_FIX_PREVIOUS(red_dice) {
+			return
+		}
+	}
+	//M.Print(red_dice)
+
+	C.Print("  BLUE DICE: ")
+	if blue_dice == "" {
+		//blue_dice = GET_USER_INPUT()
+		blue_dice = Read_User_Input()
+		// if user typed e or d or something, we remove last item and start over again
+		if Need_to_FIX_PREVIOUS(blue_dice) {
+			return
+		}
+	}
+	W.Println("")
+	//C.Println(blue_dice)
+
+	//2. Perform the dice logic
+	Process_Dice_Value_INPUT(red_dice, blue_dice)
+
+} // end of main

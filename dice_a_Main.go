@@ -34,7 +34,7 @@ func main() {
 
 	// otherwise go into a loop
 	for {
-		Show_Dice_History()
+		ShowDice_HISTORY()
 		Dice_Engine_INIT("", "")
 	}
 

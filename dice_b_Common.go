@@ -22,70 +22,6 @@ import (
 
 var HISTORY []DLOGIC_OBJ
 
-func SHOW_DICE_Item(DL DLOGIC_OBJ, red_win bool, blue_win bool, tie bool) {
-
-	M.Print(DL.RED_A)
-	W.Print(" -> ")
-	M.Print(DL.RED_B)
-	W.Print(" , ")
-	C.Print(DL.BLUE_A)
-	W.Print(" -> ")
-	C.Print(DL.BLUE_B)
-	W.Print(": ")
-	//show_Winner(red_win, blue_win, tie)
-
-	W.Println("")
-	M.Print("   ")
-	if DL.RED_INC {
-		M.Print(" RED_INC")
-		W.Print(" |")
-	} else if DL.RED_DROP {
-		M.Print(" RED_DROP")
-		W.Print(" |")
-	}
-
-	if DL.HAVE_RED_6 {
-		M.Print(" RED_6")
-		W.Print(" | ")
-	} else if DL.HAVE_RED_1 {
-		M.Print(" RED_1")
-		W.Print(" | ")
-	}
-
-	W.Print(" ")
-	if DL.RED_by_1 {
-		//WB.Print(" BLU*by*ONE ")
-		WM.Print(" RED*by*ONE ")
-	}
-	W.Println("")
-
-	// = = =
-	//2. for BLU
-	M.Print("   ")
-	if DL.BLUE_INC {
-		C.Print(" BLUE_INC")
-		W.Print(" |")
-	} else if DL.BLUE_DROP {
-		C.Print(" BLUE_DROP")
-		W.Print(" |")
-	}
-
-	if DL.HAVE_BLUE_6 {
-		C.Print(" BLUE_6")
-		W.Print(" | ")
-	} else if DL.HAVE_BLUE_1 {
-		C.Print(" BLUE_1")
-		W.Print(" | ")
-	}
-
-	if DL.BLUE_by_1 {
-		WB.Print(" BLU*by*ONE ")
-	}
-	W.Println("")
-
-	M.Println("")
-
-}
 
 func Process_Dice_Value_INPUT(red_dice string, blue_dice string) {
 
@@ -109,21 +45,17 @@ func Process_Dice_Value_INPUT(red_dice string, blue_dice string) {
 		W.Print(" --> ")
 		W.Print("b:")
 		M.Println(red_b_int)
+
+
+		C.Print("     *** BLUE: ")
+		W.Print("a:")
+		C.Print(blue_a_int)
+		W.Print(" --> ")
+		W.Print("b:")
+		C.Println(blue_b_int)
+		W.Println("")
+
 	*/
-
-	C.Print("     *** BLUE: ")
-	W.Print("a:")
-	C.Print(blue_a_int)
-	W.Print(" --> ")
-	W.Print("b:")
-	C.Println(blue_b_int)
-	W.Println("")
-
-	// W.Println("   Red  A Int: ", red_a_int)
-	// W.Println("   Red  B Int: ", red_b_int)
-	// W.Println("   Blue A Int: ", blue_a_int)
-	// W.Println("   Blue B Int: ", blue_b_int)
-	// W.Println("")
 
 	//3. Perform dice-logic
 	var DL DLOGIC_OBJ
@@ -133,6 +65,10 @@ func Process_Dice_Value_INPUT(red_dice string, blue_dice string) {
 	DL.BLUE_B = blue_b_int
 	main_Dice_Logic(red_b_int, red_a_int, "RED", &DL)
 	main_Dice_Logic(blue_b_int, blue_a_int, "BLUE", &DL)
+
+	//4. Get the Diff betwen Red and Blue
+	var dv_diff = INT_GetDiff(red_b_int, blue_b_int)
+	DL.RB_DIFF = dv_diff
 
 	HISTORY = append(HISTORY, DL)
 	//SHOW_STRUCT(DL)

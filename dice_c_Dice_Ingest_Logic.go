@@ -30,6 +30,8 @@ type DLOGIC_OBJ struct {
 	HAVE_BLUE_1 bool
 	BLUE_by_1   bool
 
+	RB_DIFF int
+
 	RED_B  int
 	RED_A  int
 	BLUE_B int
@@ -69,7 +71,6 @@ func main_Dice_Logic(diceval_b_int int, diceval_a_int int, dice_color string, DL
 	// }
 
 	if diceval_b_int > diceval_a_int {
-		//UC.Print(vcap + " INCREASE | ")
 
 		if is_BLUE {
 			DL.BLUE_INC = true
@@ -78,7 +79,6 @@ func main_Dice_Logic(diceval_b_int int, diceval_a_int int, dice_color string, DL
 		}
 
 	} else if diceval_b_int < diceval_a_int {
-		//UC.Print(vcap + " DROP | ")
 
 		if is_BLUE {
 			DL.BLUE_DROP = true
@@ -89,7 +89,6 @@ func main_Dice_Logic(diceval_b_int int, diceval_a_int int, dice_color string, DL
 
 	//vupper := strings.ToUpper(vcap)
 	if diceval_b_int == 6 {
-		//UC.Print(vupper + "_6 | ")
 
 		if is_BLUE {
 			DL.HAVE_BLUE_6 = true
@@ -98,7 +97,6 @@ func main_Dice_Logic(diceval_b_int int, diceval_a_int int, dice_color string, DL
 		}
 
 	} else if diceval_b_int == 1 {
-		//UC.Print(vupper + "_1 | ")
 
 		if is_BLUE {
 			DL.HAVE_BLUE_1 = true
@@ -117,5 +115,4 @@ func main_Dice_Logic(diceval_b_int int, diceval_a_int int, dice_color string, DL
 			DL.RED_by_1 = true
 		}
 	}
-
 }

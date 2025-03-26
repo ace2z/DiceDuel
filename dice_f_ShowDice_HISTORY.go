@@ -33,7 +33,9 @@ func show_Winner(red_win bool, blue_win bool, tie bool) {
 		W.Print(" ")
 	}
 }
-func Show_Dice_History() {
+
+// Shows dice history with the Winner of each (based on the NEXT that posts up)
+func ShowDice_HISTORY() {
 	// Show the last 10 items in the history
 	hlen := len(HISTORY)
 
@@ -46,6 +48,7 @@ func Show_Dice_History() {
 		start_at = 0
 	}
 	for x := start_at; x < hlen; x++ {
+		tmp := HISTORY[x]
 
 		// We need the next item to determine "which side won this item"
 		// basically dont show the first item you save from the history
@@ -72,6 +75,7 @@ func Show_Dice_History() {
 		Y.Print("(", x, ") ")
 		show_Winner(red_win, blue_win, tie)
 
-		SHOW_DICE_Item(HISTORY[x], red_win, blue_win, tie)
+		Show_Record(tmp, red_win, blue_win, tie)
+
 	}
 }

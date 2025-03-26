@@ -17,27 +17,6 @@ import (
 	//"github.com/fatih/color"
 )
 
-type DLOGIC_OBJ struct {
-	RED_INC    bool
-	RED_DROP   bool
-	HAVE_RED_6 bool
-	HAVE_RED_1 bool
-	RED_by_1   bool
-
-	BLUE_INC    bool
-	BLUE_DROP   bool
-	HAVE_BLUE_6 bool
-	HAVE_BLUE_1 bool
-	BLUE_by_1   bool
-
-	RB_DIFF int
-
-	RED_B  int
-	RED_A  int
-	BLUE_B int
-	BLUE_A int
-}
-
 func INT_GetDiff(first int, sec int) int {
 
 	var result = 0
@@ -54,21 +33,10 @@ func INT_GetDiff(first int, sec int) int {
 func main_Dice_Logic(diceval_b_int int, diceval_a_int int, dice_color string, DL *DLOGIC_OBJ) {
 	PLACEHOLDER()
 
-	//preflet := "R"
-	//vcap := "RED"
-
-	//UC := MAGENTA
-
 	var is_BLUE = false
 	if dice_color == "BLUE" {
-		//preflet = "B"
-		//vcap = "BLUE"
-		//UC = CYAN
 		is_BLUE = true
 	}
-	// if preflet != "" {
-
-	// }
 
 	if diceval_b_int > diceval_a_int {
 
@@ -87,7 +55,6 @@ func main_Dice_Logic(diceval_b_int int, diceval_a_int int, dice_color string, DL
 		}
 	}
 
-	//vupper := strings.ToUpper(vcap)
 	if diceval_b_int == 6 {
 
 		if is_BLUE {

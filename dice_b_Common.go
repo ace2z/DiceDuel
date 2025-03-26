@@ -13,15 +13,37 @@ import (
 
 	. "github.com/ace2z/GOGO/Gadgets"
 	"github.com/fatih/color"
-	//"github.com/rivo/tview" // https://github.com/rivo/tview/tree/master
-	// "strings"
-	// "time"
-	//"github.com/Delta456/box-cli-maker/v2"
-	//"github.com/fatih/color"
 )
 
-var HISTORY []DLOGIC_OBJ
+type DLOGIC_OBJ struct {
+	RED_INC    bool
+	RED_DROP   bool
+	HAVE_RED_6 bool
+	HAVE_RED_1 bool
+	RED_by_1   bool
 
+	BLUE_INC    bool
+	BLUE_DROP   bool
+	HAVE_BLUE_6 bool
+	HAVE_BLUE_1 bool
+	BLUE_by_1   bool
+
+	RED_B  int
+	RED_A  int
+	BLUE_B int
+	BLUE_A int
+
+	B_DIFF int
+	A_DIFF int
+
+	EVEN int
+	ODD  int
+
+	WINNER    string
+	WIN_COLOR *color.Color
+}
+
+var HISTORY []DLOGIC_OBJ
 
 func Process_Dice_Value_INPUT(red_dice string, blue_dice string) {
 
@@ -66,14 +88,38 @@ func Process_Dice_Value_INPUT(red_dice string, blue_dice string) {
 	main_Dice_Logic(red_b_int, red_a_int, "RED", &DL)
 	main_Dice_Logic(blue_b_int, blue_a_int, "BLUE", &DL)
 
-	//4. Get the Diff betwen Red and Blue
-	var dv_diff = INT_GetDiff(red_b_int, blue_b_int)
-	DL.RB_DIFF = dv_diff
+	//4. Get the Diff betwen Red and Blue for last two games
+	DL.B_DIFF = INT_GetDiff(red_b_int, blue_b_int)
+	DL.A_DIFF = INT_GetDiff(red_a_int, blue_a_int)
+
+	//5. Now determine the ODD vs EVEN
+	odd := 0
+	even := 0
+	if IS_EVEN(red_a_int) {
+		even++
+	} else {
+		odd++
+	}
+	if IS_EVEN(red_b_int) {
+		even++
+	} else {
+		odd++
+	}
+
+	if IS_EVEN(blue_a_int) {
+		even++
+	} else {
+		odd++
+	}
+	if IS_EVEN(blue_b_int) {
+		even++
+	} else {
+		odd++
+	}
+	DL.EVEN = even
+	DL.ODD = odd
 
 	HISTORY = append(HISTORY, DL)
-	//SHOW_STRUCT(DL)
-
-	//M.Println("")
 }
 
 func Read_User_Input(ALL_PARAMS ...interface{}) string {

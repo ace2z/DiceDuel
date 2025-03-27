@@ -30,7 +30,7 @@ func INT_GetDiff(first int, sec int) int {
 	return result
 }
 
-func main_Dice_Logic(diceval_b_int int, diceval_a_int int, dice_color string, DL *DLOGIC_OBJ) {
+func main_Dice_Rules_Logic(diceval_b_int int, diceval_a_int int, dice_color string, DL *DLOGIC_OBJ) {
 	PLACEHOLDER()
 
 	var is_BLUE = false
@@ -38,6 +38,7 @@ func main_Dice_Logic(diceval_b_int int, diceval_a_int int, dice_color string, DL
 		is_BLUE = true
 	}
 
+	//1. If the dice face value increases from the previous game/roll
 	if diceval_b_int > diceval_a_int {
 
 		if is_BLUE {
@@ -55,6 +56,11 @@ func main_Dice_Logic(diceval_b_int int, diceval_a_int int, dice_color string, DL
 		}
 	}
 
+	//2. If we roll a 6 or 1
+	/*
+		6 - High Probability next roll will be less than 6
+		1 - High Probability next roll will be greater than 1
+	*/
 	if diceval_b_int == 6 {
 
 		if is_BLUE {
@@ -72,6 +78,7 @@ func main_Dice_Logic(diceval_b_int int, diceval_a_int int, dice_color string, DL
 		}
 	}
 
+	// 3. If the dice face value changes by only 1 ==== HIGH PROBABILTy IT next roll will change by GREATER than that
 	var dv_diff = INT_GetDiff(diceval_a_int, diceval_b_int)
 	if dv_diff == 1 {
 		if is_BLUE {

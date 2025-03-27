@@ -5,14 +5,20 @@ import (
 
 	//. "local/CORE"
 
-	//. "local/INGEST_ENGINE"
+	//. "local/DLOGIC"
 
-	"bufio"
+	//	"bufio"
+	"fmt"
 	"os"
-	"strings"
+	"unicode"
+	//"strings"
+	"os/exec"
 
 	. "github.com/ace2z/GOGO/Gadgets"
 	"github.com/fatih/color"
+	"golang.org/x/term"
+	//"github.com/inancgumus/screen"
+	//tea "github.com/charmbracelet/bubbletea"
 )
 
 type DLOGIC_OBJ struct {
@@ -33,11 +39,10 @@ type DLOGIC_OBJ struct {
 	BLUE_B int
 	BLUE_A int
 
-	B_DIFF int
-	A_DIFF int
+	RB_DIFF int
 
-	EVEN int
-	ODD  int
+	ALL_EVEN bool // if both red and blue dice are EVEN
+	ALL_ODD  bool // if both red and blue dice are ODD
 
 	WINNER    string
 	WIN_COLOR *color.Color
@@ -85,84 +90,161 @@ func Process_Dice_Value_INPUT(red_dice string, blue_dice string) {
 	DL.RED_B = red_b_int
 	DL.BLUE_A = blue_a_int
 	DL.BLUE_B = blue_b_int
-	main_Dice_Logic(red_b_int, red_a_int, "RED", &DL)
-	main_Dice_Logic(blue_b_int, blue_a_int, "BLUE", &DL)
+	main_Dice_Rules_Logic(red_b_int, red_a_int, "RED", &DL)
+	main_Dice_Rules_Logic(blue_b_int, blue_a_int, "BLUE", &DL)
 
 	//4. Get the Diff betwen Red and Blue for last two games
-	DL.B_DIFF = INT_GetDiff(red_b_int, blue_b_int)
-	DL.A_DIFF = INT_GetDiff(red_a_int, blue_a_int)
+	DL.RB_DIFF = INT_GetDiff(red_b_int, blue_b_int)
 
 	//5. Now determine the ODD vs EVEN
-	odd := 0
-	even := 0
-	if IS_EVEN(red_a_int) {
-		even++
-	} else {
-		odd++
-	}
-	if IS_EVEN(red_b_int) {
-		even++
-	} else {
-		odd++
-	}
+	if IS_EVEN(red_b_int) && IS_EVEN(blue_b_int) {
+		DL.ALL_EVEN = true
 
-	if IS_EVEN(blue_a_int) {
-		even++
-	} else {
-		odd++
+	} else if IS_ODD(red_b_int) && IS_ODD(blue_b_int) {
+		DL.ALL_ODD = true
 	}
-	if IS_EVEN(blue_b_int) {
-		even++
-	} else {
-		odd++
-	}
-	DL.EVEN = even
-	DL.ODD = odd
 
 	HISTORY = append(HISTORY, DL)
 }
 
-func Read_User_Input(ALL_PARAMS ...interface{}) string {
+// func Read_User_Input(ALL_PARAMS ...interface{}) string {
 
-	var showtyped = false
-	var useColor = WHITE
+// 	var showtyped = false
+// 	var useColor = WHITE
 
-	for _, param := range ALL_PARAMS {
-		string_val, is_string := param.(string)
-		color_val, isCOLOR := param.(*color.Color)
-		//int_val, is_int := param.(int)
+// 	for _, param := range ALL_PARAMS {
+// 		string_val, is_string := param.(string)
+// 		color_val, isCOLOR := param.(*color.Color)
+// 		//int_val, is_int := param.(int)
 
-		if is_string {
-			if string_val == "-showtyped" {
-				showtyped = true
-			}
+// 		if is_string {
+// 			if string_val == "-showtyped" {
+// 				showtyped = true
+// 			}
+// 			continue
+// 		}
+
+// 		if isCOLOR {
+// 			useColor = color_val
+// 			continue
+// 		}
+// 	} //end
+
+// 	if useColor == nil {
+// 		useColor = WHITE
+// 		tmp := "dummy"
+// 		if strings.Contains(tmp, "RED") {
+// 		}
+// 	}
+
+// 	reader := bufio.NewReader(os.Stdin)
+// 	userTEMP, _ := reader.ReadString('\n')
+// 	//userTEMP = strings.TrimSuffix(userTEMP, "\n")
+
+// 	if showtyped {
+// 		//useColor.Print(userTEMP)
+// 	}
+
+// 	return userTEMP
+
+// } //end of
+
+func allowed_Char(b []byte) bool {
+
+	return true
+}
+
+var BACKSPACE = 127
+var DELETE = 126
+var ENTER = 13
+var D_char = 100
+var E_char = 101
+var F_char = 102
+var CTRL_C = 3
+
+func Char_IS_Allowed(input []byte) bool {
+
+	var firstCHAR = input[0]
+
+	isDigit := unicode.IsDigit(rune(firstCHAR))
+	if isDigit {
+		return true
+	}
+
+	// if b == byte(BACKSPACE) || b == byte(ENTER) {
+	// 	return true
+	// }
+	return false
+}
+
+// func showCursor() {
+// 	if term.IsTerminal(int(os.Stdout.Fd())) {
+// 		fmt.Print("\033[?25h")
+// 	}
+// }
+
+func Read_USER_INPUT_RealTime() {
+	// Switch stdin to raw mode to read characters without pressing Enter
+	oldState, err := term.MakeRaw(int(os.Stdin.Fd()))
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	defer term.Restore(int(os.Stdin.Fd()), oldState)
+
+	Y.Print("Enter text (press Ctrl+C to exit): ")
+
+	var full_string = ""
+	for {
+		// Read a single byte (character) from stdin
+		b := make([]byte, 1)
+		_, err := os.Stdin.Read(b)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		var charNUM = b[0]
+		var strVAL = string(b[0])
+
+		//1. If CTRL_C, exit the program
+		if charNUM == byte(CTRL_C) {
+
+			rawModeOff := exec.Command("/bin/stty", "-raw", "echo")
+			rawModeOff.Stdin = os.Stdin
+			_ = rawModeOff.Run()
+			rawModeOff.Wait()
+
+			os.Exit(0)
+			//DO_EXIT("-silent")
+		}
+
+		//2. If they press BACKSPACE
+		if charNUM == byte(BACKSPACE) || charNUM == byte(DELETE) {
+			// Removes the last character from the string
+			full_string = full_string[:len(full_string)-1]
+
+			// This is the backspace character
+			os.Stdout.Write([]byte{'\b', ' ', '\b'})
 			continue
 		}
 
-		if isCOLOR {
-			useColor = color_val
-			continue
+		//3. If they press ENTER
+		if charNUM == byte(ENTER) {
+			break
 		}
-	} //end
 
-	if useColor == nil {
-		useColor = WHITE
-		tmp := "dummy"
-		if strings.Contains(tmp, "RED") {
-		}
-	}
+		full_string = full_string + strVAL
+		lastCHAR := full_string[len(full_string)-1:]
+		C.Print(lastCHAR)
 
-	reader := bufio.NewReader(os.Stdin)
-	userTEMP, _ := reader.ReadString('\n')
-	//userTEMP = strings.TrimSuffix(userTEMP, "\n")
+		// Print the character read
+		//fmt.Printf("You entered: %q\n", string(b))
+	} //end of for
 
-	if showtyped {
-		//useColor.Print(userTEMP)
-	}
-
-	return userTEMP
-
-} //end of
+	W.Println("")
+	W.Print("You Entered: ")
+	G.Println(full_string)
+}
 
 func Dice_Engine_INIT(INPUT_RED_DICE string, INPUT_BLUE_DICE string) {
 
@@ -184,26 +266,24 @@ func Dice_Engine_INIT(INPUT_RED_DICE string, INPUT_BLUE_DICE string) {
 	M.Print("   RED DICE: ")
 
 	if red_dice == "" {
-		red_dice = Read_User_Input()
+		red_dice = "" //Read_User_Input()
 
 		// if user typed e or d or something, we remove last item and start over again
 		if Need_to_FIX_PREVIOUS(red_dice) {
 			return
 		}
 	}
-	//M.Print(red_dice)
 
 	C.Print("  BLUE DICE: ")
 	if blue_dice == "" {
-		//blue_dice = GET_USER_INPUT()
-		blue_dice = Read_User_Input()
+
+		blue_dice = "" //Read_User_Input()
 		// if user typed e or d or something, we remove last item and start over again
 		if Need_to_FIX_PREVIOUS(blue_dice) {
 			return
 		}
 	}
 	W.Println("")
-	//C.Println(blue_dice)
 
 	//2. Perform the dice logic
 	Process_Dice_Value_INPUT(red_dice, blue_dice)

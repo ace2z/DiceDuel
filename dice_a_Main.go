@@ -32,6 +32,9 @@ func main() {
 		DO_EXIT("-silent")
 	}
 
+	Read_USER_INPUT_RealTime()
+
+	DO_EXIT()
 	// otherwise go into a loop
 	for {
 		ShowDice_HISTORY()

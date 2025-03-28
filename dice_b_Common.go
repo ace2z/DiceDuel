@@ -8,15 +8,15 @@ import (
 	//. "local/DLOGIC"
 
 	//	"bufio"
-	"fmt"
-	"os"
+	//"fmt"
+	//"os"
 	"unicode"
 	//"strings"
-	"os/exec"
+	//"os/exec"
 
 	. "github.com/ace2z/GOGO/Gadgets"
 	"github.com/fatih/color"
-	"golang.org/x/term"
+	//"golang.org/x/term"
 	//"github.com/inancgumus/screen"
 	//tea "github.com/charmbracelet/bubbletea"
 )
@@ -154,14 +154,6 @@ func allowed_Char(b []byte) bool {
 	return true
 }
 
-var BACKSPACE = 127
-var DELETE = 126
-var ENTER = 13
-var D_char = 100
-var E_char = 101
-var F_char = 102
-var CTRL_C = 3
-
 func Char_IS_Allowed(input []byte) bool {
 
 	var firstCHAR = input[0]
@@ -175,75 +167,6 @@ func Char_IS_Allowed(input []byte) bool {
 	// 	return true
 	// }
 	return false
-}
-
-// func showCursor() {
-// 	if term.IsTerminal(int(os.Stdout.Fd())) {
-// 		fmt.Print("\033[?25h")
-// 	}
-// }
-
-func Read_USER_INPUT_RealTime() {
-	// Switch stdin to raw mode to read characters without pressing Enter
-	oldState, err := term.MakeRaw(int(os.Stdin.Fd()))
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	defer term.Restore(int(os.Stdin.Fd()), oldState)
-
-	Y.Print("Enter text (press Ctrl+C to exit): ")
-
-	var full_string = ""
-	for {
-		// Read a single byte (character) from stdin
-		b := make([]byte, 1)
-		_, err := os.Stdin.Read(b)
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-		var charNUM = b[0]
-		var strVAL = string(b[0])
-
-		//1. If CTRL_C, exit the program
-		if charNUM == byte(CTRL_C) {
-
-			rawModeOff := exec.Command("/bin/stty", "-raw", "echo")
-			rawModeOff.Stdin = os.Stdin
-			_ = rawModeOff.Run()
-			rawModeOff.Wait()
-
-			os.Exit(0)
-			//DO_EXIT("-silent")
-		}
-
-		//2. If they press BACKSPACE
-		if charNUM == byte(BACKSPACE) || charNUM == byte(DELETE) {
-			// Removes the last character from the string
-			full_string = full_string[:len(full_string)-1]
-
-			// This is the backspace character
-			os.Stdout.Write([]byte{'\b', ' ', '\b'})
-			continue
-		}
-
-		//3. If they press ENTER
-		if charNUM == byte(ENTER) {
-			break
-		}
-
-		full_string = full_string + strVAL
-		lastCHAR := full_string[len(full_string)-1:]
-		C.Print(lastCHAR)
-
-		// Print the character read
-		//fmt.Printf("You entered: %q\n", string(b))
-	} //end of for
-
-	W.Println("")
-	W.Print("You Entered: ")
-	G.Println(full_string)
 }
 
 func Dice_Engine_INIT(INPUT_RED_DICE string, INPUT_BLUE_DICE string) {

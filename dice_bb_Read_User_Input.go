@@ -3,19 +3,34 @@ package main
 import (
 	// = = = = = Native Libraries
 
-	"fmt"
+	//"fmt"
 	"os"
 	//"strings"
-	"os/exec"
+	//"os/exec"
 
 	. "github.com/ace2z/GOGO/Gadgets"
 	"github.com/fatih/color"
 	"golang.org/x/term"
 )
 
-func Read_User_Input(ALL_PARAMS ...interface{}) {
+var BACKSPACE = 127
+var DELETE = 126
+var ENTER = 13
+var D_char = 100
+var E_char = 101
+var F_char = 102
+var CTRL_C = 3
+
+// color.New(color.FgMagenta, color.Bold)
+
+func Read_User_Input(ALL_PARAMS ...interface{}) string {
+	RESET_TERMINAL()
 	var MESSAGE = " Please provide input: "
+
 	var COLOR = WHITE
+	var USER_TEXT_COLOR = BOLD_YELLOW
+
+	var first_set = false
 
 	for _, param := range ALL_PARAMS {
 		string_val, isString := param.(string)
@@ -32,8 +47,16 @@ func Read_User_Input(ALL_PARAMS ...interface{}) {
 			continue
 		}
 
+		// If the param is a color
+		// FIRST color passed will be the color of the message
+		// SECOND time color is passed will be the color of the USERS text when they typed
 		if isCOLOR {
-			COLOR = color_val
+			if first_set == false {
+				COLOR = color_val
+				first_set = true
+			} else {
+				USER_TEXT_COLOR = color_val
+			}
 			continue
 		}
 	} //end of for
@@ -42,7 +65,7 @@ func Read_User_Input(ALL_PARAMS ...interface{}) {
 	oldState, err := term.MakeRaw(int(os.Stdin.Fd()))
 	if err != nil {
 		M.Println("Error:", err)
-		return
+		return ""
 	}
 	defer term.Restore(int(os.Stdin.Fd()), oldState)
 
@@ -59,7 +82,7 @@ func Read_User_Input(ALL_PARAMS ...interface{}) {
 		_, err := os.Stdin.Read(b)
 		if err != nil {
 			M.Println(err)
-			return
+			return ""
 		}
 		var charNUM = b[0]
 		var strVAL = string(b[0])
@@ -68,12 +91,7 @@ func Read_User_Input(ALL_PARAMS ...interface{}) {
 		if charNUM == byte(CTRL_C) {
 
 			RESET_TERMINAL()
-			// rawModeOff := exec.Command("/bin/stty", "-raw", "echo")
-			// rawModeOff.Stdin = os.Stdin
-			// _ = rawModeOff.Run()
-			// rawModeOff.Wait()
 
-			//os.Exit(0)
 			DO_EXIT("-silent")
 		}
 
@@ -94,11 +112,12 @@ func Read_User_Input(ALL_PARAMS ...interface{}) {
 
 		final_STRING = final_STRING + strVAL
 		lastCHAR := final_STRING[len(final_STRING)-1:]
-		C.Print(lastCHAR)
+		USER_TEXT_COLOR.Print(lastCHAR)
 
 	} //end of for
 
-	// W.Println("")
-	// W.Print("You Entered: ")
-	// G.Println(full_string)
+	RESET_CONSOLE()
+	WHITE.Println("")
+
+	return final_STRING
 }

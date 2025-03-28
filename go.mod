@@ -3,7 +3,7 @@ module local
 go 1.24.1
 
 require (
-	github.com/ace2z/GOGO/Gadgets v0.0.0-20250325175925-47e1048a11f2
+	github.com/ace2z/GOGO/Gadgets v0.0.0-20250328020250-1cc657e78ac7
 	github.com/fatih/color v1.18.0
 	golang.org/x/term v0.30.0
 )

@@ -32,7 +32,13 @@ func main() {
 		DO_EXIT("-silent")
 	}
 
-	Read_USER_INPUT_RealTime()
+	input := Read_User_Input("Yo whats your name? ", BOLD_CYAN, BOLD_MAGENTA)
+
+	C.Print("You Typed: **")
+	M.Print(input)
+	C.Println("** ")
+
+	PressAny()
 
 	DO_EXIT()
 	// otherwise go into a loop

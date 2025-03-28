@@ -26,24 +26,21 @@ func main() {
 	MASTER_INIT("DiceDuel", VERSION_NUM)
 
 	//2. Main Dice Engine
-	if INPUT_RED_DICE != "" || INPUT_BLUE_DICE != "" {
+	if INPUT_RED_DICE != "" && INPUT_BLUE_DICE != "" {
 		Dice_Engine_INIT(INPUT_RED_DICE, INPUT_BLUE_DICE)
 
 		DO_EXIT("-silent")
 	}
 
-	allowed := []string{"d", "e"}
+	// input := Read_User_Input("Yo whats your name? ", BOLD_CYAN, BOLD_MAGENTA, 2, allowed, "-digits")
+	// //input := Read_User_Input("Yo whats your name? ", BOLD_CYAN, BOLD_MAGENTA, "-pass")
 
-	input := Read_User_Input("Yo whats your name? ", BOLD_CYAN, BOLD_MAGENTA, 2, allowed, "-digits")
-	//input := Read_User_Input("Yo whats your name? ", BOLD_CYAN, BOLD_MAGENTA, "-pass")
+	// C.Print("You Typed: **")
+	// M.Print(input)
+	// C.Println("** ")
 
-	C.Print("You Typed: **")
-	M.Print(input)
-	C.Println("** ")
+	// PressAny()
 
-	PressAny()
-
-	DO_EXIT()
 	// otherwise go into a loop
 	for {
 		ShowDice_HISTORY()

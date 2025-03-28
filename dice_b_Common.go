@@ -5,50 +5,23 @@ import (
 
 	//. "local/CORE"
 
-	//. "local/DLOGIC"
+	. "local/DLOGIC"
 
 	//	"bufio"
 	//"fmt"
 	//"os"
-	"unicode"
+	//"unicode"
 	//"strings"
 	//"os/exec"
 
 	. "github.com/ace2z/GOGO/Gadgets"
-	"github.com/fatih/color"
+	//"github.com/fatih/color"
 	//"golang.org/x/term"
 	//"github.com/inancgumus/screen"
 	//tea "github.com/charmbracelet/bubbletea"
 )
 
-type DLOGIC_OBJ struct {
-	RED_INC    bool
-	RED_DROP   bool
-	HAVE_RED_6 bool
-	HAVE_RED_1 bool
-	RED_by_1   bool
-
-	BLUE_INC    bool
-	BLUE_DROP   bool
-	HAVE_BLUE_6 bool
-	HAVE_BLUE_1 bool
-	BLUE_by_1   bool
-
-	RED_B  int
-	RED_A  int
-	BLUE_B int
-	BLUE_A int
-
-	RB_DIFF int
-
-	ALL_EVEN bool // if both red and blue dice are EVEN
-	ALL_ODD  bool // if both red and blue dice are ODD
-
-	WINNER    string
-	WIN_COLOR *color.Color
-}
-
-var HISTORY []DLOGIC_OBJ
+var HISTORY []GAME_OBJ
 
 func Process_Dice_Value_INPUT(red_dice string, blue_dice string) {
 
@@ -65,150 +38,80 @@ func Process_Dice_Value_INPUT(red_dice string, blue_dice string) {
 	blue_a_int := STRING_to_INT(blue_a)
 	blue_b_int := STRING_to_INT(blue_b)
 
-	/*
-		M.Print("     ***  RED: ")
-		W.Print("a:")
-		M.Print(red_a_int)
-		W.Print(" --> ")
-		W.Print("b:")
-		M.Println(red_b_int)
+	/*  //*** DEBUG
+	M.Print("     ***  RED: ")
+	W.Print("a:")
+	M.Print(red_a_int)
+	W.Print(" --> ")
+	W.Print("b:")
+	M.Println(red_b_int)
 
 
-		C.Print("     *** BLUE: ")
-		W.Print("a:")
-		C.Print(blue_a_int)
-		W.Print(" --> ")
-		W.Print("b:")
-		C.Println(blue_b_int)
-		W.Println("")
+	C.Print("     *** BLUE: ")
+	W.Print("a:")
+	C.Print(blue_a_int)
+	W.Print(" --> ")
+	W.Print("b:")
+	C.Println(blue_b_int)
+	W.Println("")
 
 	*/
 
-	//3. Perform dice-logic
-	var DL DLOGIC_OBJ
-	DL.RED_A = red_a_int
-	DL.RED_B = red_b_int
-	DL.BLUE_A = blue_a_int
-	DL.BLUE_B = blue_b_int
-	main_Dice_Rules_Logic(red_b_int, red_a_int, "RED", &DL)
-	main_Dice_Rules_Logic(blue_b_int, blue_a_int, "BLUE", &DL)
+	//3. Create a new GAME_OBJ
+	var GM GAME_OBJ
+	GM.RED_A = red_a_int
+	GM.RED_B = red_b_int
+	GM.BLUE_A = blue_a_int
+	GM.BLUE_B = blue_b_int
 
-	//4. Get the Diff betwen Red and Blue for last two games
-	DL.RB_DIFF = INT_GetDiff(red_b_int, blue_b_int)
+	// = = = =
+	//4. Process the Dice Logic EVENTS (that are enabled) based on the dice values we got
+	//GM = DL_Events_Engine(GM)
+	DL_Events_Engine(&GM)
 
-	//5. Now determine the ODD vs EVEN
-	if IS_EVEN(red_b_int) && IS_EVEN(blue_b_int) {
-		DL.ALL_EVEN = true
-
-	} else if IS_ODD(red_b_int) && IS_ODD(blue_b_int) {
-		DL.ALL_ODD = true
-	}
-
-	HISTORY = append(HISTORY, DL)
+	//5. finally add the GAME (with all the events that were detected) ...to the history
+	HISTORY = append(HISTORY, GM)
 }
 
-// func Read_User_Input(ALL_PARAMS ...interface{}) string {
-
-// 	var showtyped = false
-// 	var useColor = WHITE
-
-// 	for _, param := range ALL_PARAMS {
-// 		string_val, is_string := param.(string)
-// 		color_val, isCOLOR := param.(*color.Color)
-// 		//int_val, is_int := param.(int)
-
-// 		if is_string {
-// 			if string_val == "-showtyped" {
-// 				showtyped = true
-// 			}
-// 			continue
-// 		}
-
-// 		if isCOLOR {
-// 			useColor = color_val
-// 			continue
-// 		}
-// 	} //end
-
-// 	if useColor == nil {
-// 		useColor = WHITE
-// 		tmp := "dummy"
-// 		if strings.Contains(tmp, "RED") {
-// 		}
-// 	}
-
-// 	reader := bufio.NewReader(os.Stdin)
-// 	userTEMP, _ := reader.ReadString('\n')
-// 	//userTEMP = strings.TrimSuffix(userTEMP, "\n")
-
-// 	if showtyped {
-// 		//useColor.Print(userTEMP)
-// 	}
-
-// 	return userTEMP
-
-// } //end of
-
-func allowed_Char(b []byte) bool {
-
-	return true
-}
-
-func Char_IS_Allowed(input []byte) bool {
-
-	var firstCHAR = input[0]
-
-	isDigit := unicode.IsDigit(rune(firstCHAR))
-	if isDigit {
-		return true
-	}
-
-	// if b == byte(BACKSPACE) || b == byte(ENTER) {
-	// 	return true
-	// }
-	return false
-}
+var also_allowed = []string{"d", "e"}
 
 func Dice_Engine_INIT(INPUT_RED_DICE string, INPUT_BLUE_DICE string) {
 
-	// PROMPT("Welcome to the Dice Duel Game!")
-	// PROMPT("The game is simple: You and the computer each roll a die. The highest number wins.")
+	var red_dice = INPUT_RED_DICE
+	var blue_dice = INPUT_BLUE_DICE
 
-	var red_dice = ""
-	var blue_dice = ""
-	if INPUT_RED_DICE != "" {
-		red_dice = INPUT_RED_DICE
+	var prompt_user = false
+
+	if red_dice == "" || blue_dice == "" {
+		prompt_user = true
 	}
-	if INPUT_BLUE_DICE != "" {
-		blue_dice = INPUT_BLUE_DICE
-	}
-	Y.Println("")
-	Y.Print(" Enter ")
-	W.Print("last 2 Dice Games ")
-	Y.Println("RED first ")
-	M.Print("   RED DICE: ")
 
-	if red_dice == "" {
-		red_dice = "" //Read_User_Input()
+	if prompt_user {
 
-		// if user typed e or d or something, we remove last item and start over again
-		if Need_to_FIX_PREVIOUS(red_dice) {
+		// If we were NOT provided values, then we need to prompt the user
+		Y.Println("")
+		Y.Print(" Enter numeric dice values")
+		W.Print(" for LAST 2 Games ")
+		Y.Println("...do RED first ")
+
+		tmp_red := Read_User_Input("      RED DICE: ", BOLD_MAGENTA, BOLD_YELLOW, 2, also_allowed, "-digits", NOEOL)
+		if tmp_red == "" || Need_to_FIX_PREVIOUS(tmp_red) {
+
 			return
 		}
-	}
-
-	C.Print("  BLUE DICE: ")
-	if blue_dice == "" {
-
-		blue_dice = "" //Read_User_Input()
-		// if user typed e or d or something, we remove last item and start over again
-		if Need_to_FIX_PREVIOUS(blue_dice) {
+		tmp_blue := Read_User_Input("     BLUE DICE: ", BOLD_CYAN, BOLD_WHITE, 2, also_allowed, "-digits")
+		if tmp_blue == "" || Need_to_FIX_PREVIOUS(tmp_blue) {
 			return
 		}
-	}
-	W.Println("")
 
-	//2. Perform the dice logic
+		W.Println("")
+
+		red_dice = tmp_red
+		blue_dice = tmp_blue
+
+	}
+
+	//5. Process the Dice Input
 	Process_Dice_Value_INPUT(red_dice, blue_dice)
 
 } // end of main

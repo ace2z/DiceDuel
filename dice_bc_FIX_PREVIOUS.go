@@ -38,6 +38,7 @@ func Need_to_FIX_PREVIOUS(input string) bool {
 		HISTORY = HISTORY[:len(HISTORY)-1]
 	}
 	Y.Println("")
+	Y.Println("")
 	MW.Print(" *** LAST ITEM REMOVED ***")
 	Y.Println("")
 	Y.Println("")

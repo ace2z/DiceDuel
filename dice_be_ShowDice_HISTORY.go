@@ -21,33 +21,6 @@ import (
 
 var MAX_HIST_BACK = 10
 
-// func show_Winne_and_SAVE(red_win bool, blue_win bool, tie bool, IND int) {
-// 	/// Show and save the winner to history
-// 	if red_win {
-// 		WR.Print(" R ")
-// 		W.Print(" ")
-
-// 		HISTORY[IND].WINNER = " R "
-// 		HISTORY[IND].WIN_COLOR = WR
-// 	} else if blue_win {
-// 		WB.Print(" B ")
-// 		W.Print(" ")
-
-// 		HISTORY[IND].WINNER = " B "
-// 		HISTORY[IND].WIN_COLOR = WB
-
-// 		// else its a TIE
-// 	} else if tie {
-// 		BG.Print(" TIE ")
-// 		W.Print(" ")
-
-// 		HISTORY[IND].WINNER = " TIE "
-// 		HISTORY[IND].WIN_COLOR = WG
-// 	}
-
-// 	// Save the
-// }
-
 func save_WINNER(red_win bool, blue_win bool, tie bool, IND int) {
 	/// Show and save the winner to history
 	if red_win {

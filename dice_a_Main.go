@@ -32,7 +32,10 @@ func main() {
 		DO_EXIT("-silent")
 	}
 
-	input := Read_User_Input("Yo whats your name? ", BOLD_CYAN, BOLD_MAGENTA)
+	allowed := []string{"d", "e"}
+
+	input := Read_User_Input("Yo whats your name? ", BOLD_CYAN, BOLD_MAGENTA, 2, allowed, "-digits")
+	//input := Read_User_Input("Yo whats your name? ", BOLD_CYAN, BOLD_MAGENTA, "-pass")
 
 	C.Print("You Typed: **")
 	M.Print(input)

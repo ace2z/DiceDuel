@@ -43,7 +43,7 @@ func save_WINNER(red_win bool, blue_win bool, tie bool, IND int) {
 }
 
 // Shows dice history with the Winner of each (based on the NEXT that posts up)
-func ShowDice_HISTORY() {
+func ShowDice_HISTORY(show_all bool) {
 	// Show the last 10 items in the history
 	hlen := len(HISTORY)
 
@@ -52,7 +52,9 @@ func ShowDice_HISTORY() {
 	}
 
 	start_at := len(HISTORY) - MAX_HIST_BACK
-	if start_at < 0 {
+	if start_at < 0 || show_all {
+		// If we are showing all, then start at 0
+		// otherwise, start at the last 10 items
 		start_at = 0
 	}
 

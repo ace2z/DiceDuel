@@ -43,7 +43,7 @@ func main() {
 
 	// otherwise go into a loop
 	for {
-		ShowDice_HISTORY()
+		ShowDice_HISTORY(false) // shows last 10 history items / dice rolls
 		//Predict_Engine() // Call this after history
 
 		Dice_Engine_INIT("", "")

@@ -27,9 +27,9 @@ var just_BLUE_1 = color.New(color.FgBlue, color.BgCyan)
 var just_RED_1 = color.New(color.FgHiRed, color.BgYellow)
 
 var EVENT_LIST = []EVENT_OBJ{
-	{"RED_INC", true, BOLD_MAGENTA, 1, detect_INC_DROP},
+	{"RED_INC++", true, BOLD_MAGENTA, 1, detect_INC_DROP},
 	{"RED_DROP", true, BOLD_MAGENTA, 1, detect_INC_DROP},
-	{"BLUE_INC", true, BOLD_CYAN, 1, detect_INC_DROP},
+	{"BLUE_INC++", true, BOLD_CYAN, 1, detect_INC_DROP},
 	{"BLUE_DROP", true, BOLD_CYAN, 1, detect_INC_DROP},
 	{"RED*by*ONE", true, red_by_ONE_color, 2, detect_by_ONE},
 	{"BLUE*by*ONE", true, blu_by_ONE_color, 2, detect_by_ONE},

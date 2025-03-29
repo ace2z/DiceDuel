@@ -24,6 +24,12 @@ import (
 var HISTORY []GAME_OBJ
 
 func Process_Dice_Value_INPUT(red_dice string, blue_dice string) {
+	// Error handling. make sure both red and blue_dice have 2 digits
+	if len(red_dice) != 2 || len(blue_dice) != 2 {
+		Y.Println("")
+		Y.Println("  *** ERROR: Not enough Dice values specified! ***")
+		return
+	}
 
 	// 1. Extract the first and second numbers from red_dice...and blue dice
 	red_b := red_dice[0:1]
@@ -73,7 +79,7 @@ func Process_Dice_Value_INPUT(red_dice string, blue_dice string) {
 	HISTORY = append(HISTORY, GM)
 }
 
-var also_allowed = []string{"d", "e"}
+var also_allowed = []string{"e", "r", "d", "v", "h", "s", "l"}
 
 func Dice_Engine_INIT(INPUT_RED_DICE string, INPUT_BLUE_DICE string) {
 
@@ -95,12 +101,12 @@ func Dice_Engine_INIT(INPUT_RED_DICE string, INPUT_BLUE_DICE string) {
 		Y.Println("...do RED first ")
 
 		tmp_red := Read_User_Input("      RED DICE: ", BOLD_MAGENTA, BOLD_YELLOW, 2, also_allowed, "-digits", NOEOL)
-		if tmp_red == "" || Need_to_FIX_PREVIOUS(tmp_red) {
+		if tmp_red == "" || Extra_KEYS_Handle_Engine(tmp_red) {
 
 			return
 		}
 		tmp_blue := Read_User_Input("     BLUE DICE: ", BOLD_CYAN, BOLD_WHITE, 2, also_allowed, "-digits")
-		if tmp_blue == "" || Need_to_FIX_PREVIOUS(tmp_blue) {
+		if tmp_blue == "" || Extra_KEYS_Handle_Engine(tmp_blue) {
 			return
 		}
 

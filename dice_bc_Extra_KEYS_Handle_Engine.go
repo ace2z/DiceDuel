@@ -57,8 +57,9 @@ func Extra_KEYS_Handle_Engine(input string) bool {
 			Y.Println("")
 
 			return true
-
 		}
+
+		// othberwise, show a message
 		Y.Println("")
 		Y.Println("")
 		M.Print(" *** Nothing In History!! ***")
@@ -68,9 +69,10 @@ func Extra_KEYS_Handle_Engine(input string) bool {
 		return true
 	}
 
-	// Shows the history
+	// Shows the FULL history from the first roll of the game
 	if flg_show_history {
 		ShowDice_HISTORY(true)
+		DONT_SHOW_HIST = true // a little override hack to prevent showing history twice (due to the way the for loop works)
 		return true
 	}
 
@@ -83,7 +85,7 @@ func Extra_KEYS_Handle_Engine(input string) bool {
 		} else {
 			Y.Println("")
 			Y.Println("")
-			M.Print(" *** Nothing In History!! ***")
+			MW.Print(" *** Nothing In History!! ***")
 			Y.Println("")
 			Y.Println("")
 

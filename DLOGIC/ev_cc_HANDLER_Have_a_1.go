@@ -7,7 +7,7 @@ import (
 	. "github.com/ace2z/GOGO/Gadgets"
 )
 
-func detect_HAVE_1(GM *GAME_OBJ, event EVENT_OBJ) bool {
+func detect_HAVE_1(GM *GAME_OBJ, event EVENT_OBJ, GHIST *[]GAME_OBJ) bool {
 	PLACEHOLDER()
 	var name = event.NAME
 

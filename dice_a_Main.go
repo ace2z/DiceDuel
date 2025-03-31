@@ -13,6 +13,7 @@ import (
 	// "time"
 	//"github.com/Delta456/box-cli-maker/v2"
 	//"github.com/fatih/color"
+	//"os"
 )
 
 var VERSION_NUM = ""
@@ -24,6 +25,22 @@ func main() {
 	//1. Init the program (and the command line parameters)
 	CLI_PARAM_INIT()
 	MASTER_INIT("DiceDuel", VERSION_NUM)
+
+	// DO_EXIT("Test for Error:", NOEXIT)
+	// PressAny()
+
+	// path_err := os.MkdirAll("/dervishDUMMY", 0777)
+	// PREFIX("Basic Prefix")
+	// lines := []string{
+	// 	"You cant do that",
+	// 	"For Some Reaosn",
+	// 	"If you are still having trouble",
+	// 	"Please contact support",
+	// }
+
+	// DO_EXIT("Cant fight this feeling...within my bones: ", lines, path_err, NOEXIT)
+
+	// DO_EXIT()
 
 	//2. Main Dice Engine
 	if INPUT_RED_DICE != "" && INPUT_BLUE_DICE != "" {

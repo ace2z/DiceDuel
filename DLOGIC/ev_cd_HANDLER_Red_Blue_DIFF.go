@@ -8,7 +8,7 @@ import (
 )
 
 // This is simple. Just calculate the Red Blue diff... no events.. this is for a property of the game
-func detect_RED_Blue_DIFF(GM *GAME_OBJ, event EVENT_OBJ) bool {
+func detect_RED_Blue_DIFF(GM *GAME_OBJ, event EVENT_OBJ, GHIST *[]GAME_OBJ) bool {
 	PLACEHOLDER()
 	//var name = event.NAME
 

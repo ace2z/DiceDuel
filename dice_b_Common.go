@@ -14,8 +14,9 @@ import (
 	//"strings"
 	//"os/exec"
 
+	//"crypto/md5"
 	. "github.com/ace2z/GOGO/Gadgets"
-	//"github.com/fatih/color"
+	//CLR "github.com/fatih/color"
 	//"golang.org/x/term"
 	//"github.com/inancgumus/screen"
 	//tea "github.com/charmbracelet/bubbletea"
@@ -23,12 +24,12 @@ import (
 
 var HISTORY []GAME_OBJ
 
-func Process_Dice_Value_INPUT(red_dice string, blue_dice string) {
+func Process_Dice_Value_INPUT(red_dice string, blue_dice string) GAME_OBJ {
 	// Error handling. make sure both red and blue_dice have 2 digits
 	if len(red_dice) != 2 || len(blue_dice) != 2 {
 		Y.Println("")
 		Y.Println("  *** ERROR: Not enough Dice values specified! ***")
-		return
+		return GAME_OBJ{}
 	}
 
 	// 1. Extract the first and second numbers from red_dice...and blue dice
@@ -70,13 +71,7 @@ func Process_Dice_Value_INPUT(red_dice string, blue_dice string) {
 	GM.BLUE_A = blue_a_int
 	GM.BLUE_B = blue_b_int
 
-	// = = = =
-	//4. Process the Dice Logic EVENTS (that are enabled) based on the dice values we got
-	//GM = DL_Events_Engine(GM)
-	DL_Events_Engine(&GM)
-
-	//5. finally add the GAME (with all the events that were detected) ...to the history
-	HISTORY = append(HISTORY, GM)
+	return GM
 }
 
 var also_allowed = []string{"e", "r", "d", "v", "h", "s", "l"}
@@ -102,11 +97,12 @@ func Dice_Engine_INIT(INPUT_RED_DICE string, INPUT_BLUE_DICE string) {
 
 		tmp_red := Read_User_Input("      RED DICE: ", BOLD_MAGENTA, BOLD_YELLOW, 2, also_allowed, "-digits", NOEOL)
 		if tmp_red == "" || Extra_KEYS_Handle_Engine(tmp_red) {
-
+			W.Println("")
 			return
 		}
 		tmp_blue := Read_User_Input("     BLUE DICE: ", BOLD_CYAN, BOLD_WHITE, 2, also_allowed, "-digits")
 		if tmp_blue == "" || Extra_KEYS_Handle_Engine(tmp_blue) {
+			W.Println("")
 			return
 		}
 
@@ -117,7 +113,25 @@ func Dice_Engine_INIT(INPUT_RED_DICE string, INPUT_BLUE_DICE string) {
 
 	}
 
-	//5. Process the Dice Input
-	Process_Dice_Value_INPUT(red_dice, blue_dice)
+	//5. Process the Dice Input. Get the Hand/GAME OBJECT
+	var GM = Process_Dice_Value_INPUT(red_dice, blue_dice)
+
+	// 6. = = = = Evaluate this Hand/Game.. based on dice Values
+	// We have a seriues of custom EVENTS that we want to check for
+	DL_Events_Engine(&GM, &HISTORY)
+
+	//7. Now that we have all EVENTS... save game to HISTORY
+	HISTORY = append(HISTORY, GM)
+
+	//8. ALSO!!! Update the "FUTURE_WININER" of the PREVIOUS hand in history
+	hlen := len(HISTORY)
+	if hlen >= 2 {
+		pind := hlen - 2 // PREVIOUS item... before last one we just added
+		prev := HISTORY[pind]
+
+		// Update this hands FUTURE_WINNER ... this is based on whoever won the most recent hand we JUST hadded
+		prev.FUTURE_WINNER = GM.WINNER
+		HISTORY[pind] = prev
+	}
 
 } // end of main

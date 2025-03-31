@@ -8,19 +8,20 @@ import (
 	. "local/DLOGIC"
 
 	//"strings"
-	. "github.com/ace2z/GOGO/Gadgets"
-	. "github.com/ace2z/GOGO/Gadgets/FileOPS"
 	"path/filepath"
 	"time"
-	//"github.com/rivo/tview" // https://github.com/rivo/tview/tree/master
-	// "strings"
-	// "time"
-	//"github.com/Delta456/box-cli-maker/v2"
-	//"github.com/fatih/color"
+
+	// "encoding/gob"
+	// "fmt"
+	// "os"
+
+	. "github.com/ace2z/GOGO/Gadgets"
+	. "github.com/ace2z/GOGO/Gadgets/FileOPS"
 )
 
 var FILE_PREFIX = "SAVEGAME_"
-var FILE_EXT = ".dat"
+var FILE_EXT = ".json"
+var DEST_PATH = "SAVES/"
 
 var SG_filename string
 
@@ -43,6 +44,8 @@ func Save_Game_ToFile() bool {
 		SG_filename = FILE_PREFIX + year + "_" + month + "_" + day + "_" + weekd + "--" + hour + "_" + minute + FILE_EXT
 	}
 
+	SG_filename = DEST_PATH + SG_filename
+
 	// Check if the file already exists
 	if FILE_EXISTS(SG_filename) {
 		// If file exists, we always overwrite it
@@ -51,9 +54,8 @@ func Save_Game_ToFile() bool {
 
 	W.Println("")
 	W.Println("")
-	G.Print(" *** SAVING game ***")
+	YELLOW_BLUE.Println(" *** SAVING game ***")
 	SAVE_Struct_2_DISK(SG_filename, HISTORY)
-
 	W.Println("")
 	W.Println("")
 
@@ -69,13 +71,18 @@ type LOADFILE_OBJ struct {
 }
 
 func Load_Game_FromFile() {
+	var SGDIR = DEST_PATH + FILE_PREFIX + "*" + FILE_EXT
+
 	W.Println("")
 	W.Println("")
-	G.Println("Load from Saved Games: ")
+	G.Print("Load from Saved Games: ")
+	C.Println(SGDIR)
 	W.Println("")
 
+	C.Println("")
+
 	// Find all the files with SAVEGAME_ prefix
-	files, err := filepath.Glob(FILE_PREFIX + "*" + FILE_EXT)
+	files, err := filepath.Glob(SGDIR)
 
 	// Iterate over the files and print their names
 	if err != nil {
@@ -106,29 +113,26 @@ func Load_Game_FromFile() {
 
 	// Now Load the selection they specified
 	for _, x := range ALL_FILES {
+
+		// If file is FOUND
 		if x.NUM == mnum {
 			// Load the game from the selected file
 			// This function should deserialize the game object from a file
 			// and return it
-			// Y.Print("Loading from: ")
-			// G.Println(x.FULLPATH)
+
 			HISTORY = []GAME_OBJ{} // Clear the current history
-			W.Println("")
 			W.Println("")
 
 			err := LOAD_Struct_from_FILE(x.FULLPATH, &HISTORY, false)
 			if err != nil {
 				M.Println(err)
 			}
-			W.Println("")
-			W.Println("")
-			//ShowDice_HISTORY(true)
+
 			return
 		}
 	}
 
 	//3. Ifw e get this far, means we DIDNT find the users selection
-	M.Println("")
 	M.Println("")
 	MW.Println("ERROR: Invalid Selection")
 	M.Println("")

@@ -6,20 +6,30 @@ import (
 	. "github.com/ace2z/GOGO/Gadgets"
 )
 
-func detect_INC_DROP(GM *GAME_OBJ, event EVENT_OBJ) bool {
+func detect_INC_DROP(GM *GAME_OBJ, event EVENT_OBJ, GHIST *[]GAME_OBJ) bool {
 	PLACEHOLDER()
 
 	var name = event.NAME
 	//var save_event = false
 
-	have_RED_INC := CONTAINS(name, "RED_INC") && GM.RED_B > GM.RED_A
-	have_RED_DROP := CONTAINS(name, "RED_DROP") && GM.RED_B < GM.RED_A
-	have_BLUE_INC := CONTAINS(name, "BLUE_INC") && GM.BLUE_B > GM.BLUE_A
-	have_BLUE_DROP := CONTAINS(name, "BLUE_DROP") && GM.BLUE_B < GM.BLUE_A
+	red_nozero := GM.RED_B > 0 && GM.RED_A > 0
+	blue_nozero := GM.BLUE_B > 0 && GM.BLUE_A > 0
 
-	if have_RED_INC || have_RED_DROP || have_BLUE_INC || have_BLUE_DROP {
-		return true
+	//C.Println(red_nozero, blue_nozero)
+
+	if CONTAINS(name, "RED_INC") {
+		if GM.RED_B > GM.RED_A && red_nozero {
+			return true
+		}
 	}
+	if CONTAINS(name, "BLUE_INC") {
+		if GM.BLUE_B > GM.BLUE_A && blue_nozero {
+			return true
+		}
+	}
+
+	//have_BLUE_DROP := CONTAINS(name, "BLUE_DROP") && GM.BLUE_B < GM.BLUE_A && blue_nozero
+	//have_RED_DROP := CONTAINS(name, "RED_DROP") && GM.RED_B < GM.RED_A && red_nozero
 
 	return false
 }

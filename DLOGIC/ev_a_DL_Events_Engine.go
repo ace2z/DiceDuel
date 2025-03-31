@@ -27,11 +27,11 @@ var just_BLUE_1 = CLR.New(CLR.FgBlue, CLR.BgCyan)
 var just_RED_1 = CLR.New(CLR.FgHiRed, CLR.BgYellow)
 
 var EVENT_LIST = []EVENT_OBJ{
-	{"3x_RED++", true, BOLD_MAGENTA, 1, detect_3x_and_2x},
-	{"3x_BLUE++", true, BOLD_CYAN, 1, detect_3x_and_2x},
+	{" 3x_RED++ ", true, GREEN_MAGENTA, 1, detect_3x_and_2x},
+	{" 3x_BLUE++ ", true, YELLOW_BLUE, 1, detect_3x_and_2x},
 
-	{"2x_RED++", true, BOLD_MAGENTA, 1, detect_3x_and_2x},
-	{"2x_BLUE++", true, BOLD_CYAN, 1, detect_3x_and_2x},
+	{" 2x_RED++ ", true, GREEN_MAGENTA, 1, detect_3x_and_2x},
+	{" 2x_BLUE++ ", true, YELLOW_BLUE, 1, detect_3x_and_2x},
 
 	{"RED_INC++", true, BOLD_MAGENTA, 1, detect_INC_DROP},
 

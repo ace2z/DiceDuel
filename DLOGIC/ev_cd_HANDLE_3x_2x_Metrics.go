@@ -59,7 +59,7 @@ func detect_3x_and_2x(GM *GAME_OBJ, event EVENT_OBJ, GHIST *[]GAME_OBJ) bool {
 	var hand_c GAME_OBJ
 
 	have_3rd := false
-	if hlen >= 3 {
+	if hlen > 1 {
 
 		hand_c = (*GHIST)[hlen-2]
 		c_winner = hand_c.WINNER
@@ -82,8 +82,16 @@ func detect_3x_and_2x(GM *GAME_OBJ, event EVENT_OBJ, GHIST *[]GAME_OBJ) bool {
 	blue_high_3x := hand_a.BLUE_B >= HI_NUM && hand_a.BLUE_A >= HI_NUM && hand_b.BLUE_B >= HI_NUM
 	blue_high2x := hand_a.BLUE_B >= HI_NUM && hand_a.BLUE_A >= HI_NUM
 
-	//red_already_have_3x := find_event_helper("3x_RED", hand_a.EVENTS)
-	//blue_already_have_3x := find_event_helper("3x_BLUE", hand_a.EVENTS)
+	/*
+		C.Println(" win_3x: ", win_3x)
+		C.Println(" win2x: ", win2x)
+		C.Println(" No Empty: ", no_empty)
+		C.Println(" red_high_3x: ", red_high_3x)
+		C.Println(" red_high2x: ", red_high2x)
+		C.Println(" blue_high_3x: ", blue_high_3x)
+		C.Println(" blue_high2x: ", blue_high2x)
+		W.Println("")
+	*/
 
 	// Now make decisions
 	if CONTAINS(name, "3x_RED") && win_3x && red_high_3x {

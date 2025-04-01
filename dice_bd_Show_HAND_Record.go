@@ -71,13 +71,20 @@ func show_winner(win_tmp string, use_arrows bool) {
 
 var arrow_char = "➤"
 
+var even_COLOR = color.New(color.FgHiRed, color.BgHiYellow)
+var odd_COLOR = color.New(color.FgHiBlack, color.BgHiWhite, color.Bold)
+
 func Show_HAND(IND int, ACCENT_COLOR *color.Color) {
 
 	var DL = HISTORY[IND]
 
 	pretty_IND := IND + 1
 
-	ACCENT_COLOR.Print("(", pretty_IND, ")")
+	if pretty_IND < 10 {
+		ACCENT_COLOR.Print("( ", pretty_IND, ")")
+	} else {
+		ACCENT_COLOR.Print("(", pretty_IND, ")")
+	}
 
 	// First show the ACTUAL winner of the hand
 	W.Print(" ")
@@ -85,14 +92,24 @@ func Show_HAND(IND int, ACCENT_COLOR *color.Color) {
 
 	//2. Show the DIf between Red Blue for last two games
 	W.Print(" ")
-	BLUE_YELLOW.Print(" ", DL.RB_DIFF, " ")
+	if IS_EVEN(DL.RB_DIFF) || DL.RB_DIFF == 0 {
+		even_COLOR.Print(" ", DL.RB_DIFF, " ")
+	} else {
+		odd_COLOR.Print(" ", DL.RB_DIFF, " ")
+	}
+	W.Print(" ")
+	if IS_EVEN(DL.PREV_RBDIFF) || DL.PREV_RBDIFF == 0 {
+		even_COLOR.Print(" ", DL.PREV_RBDIFF, " ")
+	} else {
+		odd_COLOR.Print(" ", DL.PREV_RBDIFF, " ")
+	}
 
 	//3. Now determine if there is a FUTURE hand winner
 
 	// This shows FUTURE WINNER (of the hand following this one ..if it is avaiable)
-	if DL.FUTURE_WINNER != "" {
+	if DL.NEXT_WINNER != "" {
 		//W.Print(" " + arrow_char + arrow_char)
-		show_winner(DL.FUTURE_WINNER, true)
+		show_winner(DL.NEXT_WINNER, true)
 	} else {
 		W.Print("       ")
 	}

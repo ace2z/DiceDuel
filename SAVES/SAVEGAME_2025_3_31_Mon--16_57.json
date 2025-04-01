@@ -1,0 +1,1645 @@
+[
+	{
+		"RED_B": 1,
+		"RED_A": 6,
+		"BLUE_B": 2,
+		"BLUE_A": 5,
+		"RB_DIFF": 1,
+		"EVENTS": [
+			{
+				"NAME": " RED_1 ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 3
+			}
+		],
+		"WINNER": " B ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " R "
+	},
+	{
+		"RED_B": 6,
+		"RED_A": 1,
+		"BLUE_B": 2,
+		"BLUE_A": 2,
+		"RB_DIFF": 4,
+		"EVENTS": [
+			{
+				"NAME": "RED_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " RED_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " R ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " T "
+	},
+	{
+		"RED_B": 1,
+		"RED_A": 6,
+		"BLUE_B": 1,
+		"BLUE_A": 2,
+		"RB_DIFF": 0,
+		"EVENTS": [
+			{
+				"NAME": " BLUE*by*ONE ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 2
+			},
+			{
+				"NAME": " RED_1 ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 3
+			},
+			{
+				"NAME": " BLUE_1 ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 3
+			}
+		],
+		"WINNER": " T ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " B "
+	},
+	{
+		"RED_B": 1,
+		"RED_A": 1,
+		"BLUE_B": 3,
+		"BLUE_A": 1,
+		"RB_DIFF": 2,
+		"EVENTS": [
+			{
+				"NAME": "BLUE_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " RED_1 ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 3
+			}
+		],
+		"WINNER": " B ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " B "
+	},
+	{
+		"RED_B": 1,
+		"RED_A": 1,
+		"BLUE_B": 3,
+		"BLUE_A": 3,
+		"RB_DIFF": 2,
+		"EVENTS": [
+			{
+				"NAME": " 2x_BLUE++ ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " RED_1 ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 3
+			}
+		],
+		"WINNER": " B ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " R "
+	},
+	{
+		"RED_B": 5,
+		"RED_A": 1,
+		"BLUE_B": 3,
+		"BLUE_A": 3,
+		"RB_DIFF": 2,
+		"EVENTS": [
+			{
+				"NAME": "RED_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " RED_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " R ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " T "
+	},
+	{
+		"RED_B": 5,
+		"RED_A": 5,
+		"BLUE_B": 5,
+		"BLUE_A": 3,
+		"RB_DIFF": 0,
+		"EVENTS": [
+			{
+				"NAME": "BLUE_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " RED_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " BLUE_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " T ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " R "
+	},
+	{
+		"RED_B": 2,
+		"RED_A": 5,
+		"BLUE_B": 1,
+		"BLUE_A": 5,
+		"RB_DIFF": 1,
+		"EVENTS": [
+			{
+				"NAME": " BLUE_1 ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 3
+			}
+		],
+		"WINNER": " R ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " B "
+	},
+	{
+		"RED_B": 2,
+		"RED_A": 2,
+		"BLUE_B": 6,
+		"BLUE_A": 1,
+		"RB_DIFF": 4,
+		"EVENTS": [
+			{
+				"NAME": "BLUE_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " BLUE_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " B ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " B "
+	},
+	{
+		"RED_B": 3,
+		"RED_A": 2,
+		"BLUE_B": 6,
+		"BLUE_A": 6,
+		"RB_DIFF": 3,
+		"EVENTS": [
+			{
+				"NAME": " 2x_BLUE++ ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": "RED_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " RED*by*ONE ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 2
+			},
+			{
+				"NAME": " BLUE_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " B ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " B "
+	},
+	{
+		"RED_B": 4,
+		"RED_A": 3,
+		"BLUE_B": 6,
+		"BLUE_A": 6,
+		"RB_DIFF": 2,
+		"EVENTS": [
+			{
+				"NAME": " 3x_BLUE++ ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " 2x_BLUE++ ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": "RED_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " RED*by*ONE ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 2
+			},
+			{
+				"NAME": " RED_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " BLUE_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " B ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " T "
+	},
+	{
+		"RED_B": 6,
+		"RED_A": 4,
+		"BLUE_B": 6,
+		"BLUE_A": 6,
+		"RB_DIFF": 0,
+		"EVENTS": [
+			{
+				"NAME": "RED_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " RED_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " BLUE_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " T ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " T "
+	},
+	{
+		"RED_B": 4,
+		"RED_A": 6,
+		"BLUE_B": 4,
+		"BLUE_A": 6,
+		"RB_DIFF": 0,
+		"EVENTS": [
+			{
+				"NAME": " RED_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " BLUE_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " T ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " T "
+	},
+	{
+		"RED_B": 6,
+		"RED_A": 4,
+		"BLUE_B": 6,
+		"BLUE_A": 4,
+		"RB_DIFF": 0,
+		"EVENTS": [
+			{
+				"NAME": "RED_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": "BLUE_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " RED_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " BLUE_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " T ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " R "
+	},
+	{
+		"RED_B": 2,
+		"RED_A": 6,
+		"BLUE_B": 1,
+		"BLUE_A": 6,
+		"RB_DIFF": 1,
+		"EVENTS": [
+			{
+				"NAME": " BLUE_1 ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 3
+			}
+		],
+		"WINNER": " R ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " B "
+	},
+	{
+		"RED_B": 1,
+		"RED_A": 2,
+		"BLUE_B": 3,
+		"BLUE_A": 1,
+		"RB_DIFF": 2,
+		"EVENTS": [
+			{
+				"NAME": "BLUE_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " RED*by*ONE ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 2
+			},
+			{
+				"NAME": " RED_1 ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 3
+			}
+		],
+		"WINNER": " B ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " B "
+	},
+	{
+		"RED_B": 2,
+		"RED_A": 1,
+		"BLUE_B": 3,
+		"BLUE_A": 3,
+		"RB_DIFF": 1,
+		"EVENTS": [
+			{
+				"NAME": " 2x_BLUE++ ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": "RED_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " RED*by*ONE ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 2
+			}
+		],
+		"WINNER": " B ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " B "
+	},
+	{
+		"RED_B": 5,
+		"RED_A": 2,
+		"BLUE_B": 6,
+		"BLUE_A": 3,
+		"RB_DIFF": 1,
+		"EVENTS": [
+			{
+				"NAME": " 3x_BLUE++ ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " 2x_BLUE++ ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": "RED_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": "BLUE_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " RED_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " BLUE_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " B ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " B "
+	},
+	{
+		"RED_B": 1,
+		"RED_A": 5,
+		"BLUE_B": 4,
+		"BLUE_A": 6,
+		"RB_DIFF": 3,
+		"EVENTS": [
+			{
+				"NAME": " 3x_BLUE++ ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " 2x_BLUE++ ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " RED_1 ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 3
+			},
+			{
+				"NAME": " BLUE_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " B ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " B "
+	},
+	{
+		"RED_B": 3,
+		"RED_A": 1,
+		"BLUE_B": 5,
+		"BLUE_A": 4,
+		"RB_DIFF": 2,
+		"EVENTS": [
+			{
+				"NAME": " 3x_BLUE++ ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " 2x_BLUE++ ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": "RED_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": "BLUE_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " BLUE*by*ONE ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 2
+			},
+			{
+				"NAME": " BLUE_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " B ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " R "
+	},
+	{
+		"RED_B": 5,
+		"RED_A": 3,
+		"BLUE_B": 3,
+		"BLUE_A": 5,
+		"RB_DIFF": 2,
+		"EVENTS": [
+			{
+				"NAME": "RED_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " RED_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " R ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " T "
+	},
+	{
+		"RED_B": 2,
+		"RED_A": 5,
+		"BLUE_B": 2,
+		"BLUE_A": 3,
+		"RB_DIFF": 0,
+		"EVENTS": [
+			{
+				"NAME": " BLUE*by*ONE ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 2
+			}
+		],
+		"WINNER": " T ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " R "
+	},
+	{
+		"RED_B": 4,
+		"RED_A": 2,
+		"BLUE_B": 3,
+		"BLUE_A": 2,
+		"RB_DIFF": 1,
+		"EVENTS": [
+			{
+				"NAME": "RED_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": "BLUE_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " BLUE*by*ONE ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 2
+			},
+			{
+				"NAME": " RED_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " R ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " B "
+	},
+	{
+		"RED_B": 1,
+		"RED_A": 4,
+		"BLUE_B": 6,
+		"BLUE_A": 3,
+		"RB_DIFF": 5,
+		"EVENTS": [
+			{
+				"NAME": "BLUE_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " RED_1 ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 3
+			},
+			{
+				"NAME": " BLUE_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " B ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " B "
+	},
+	{
+		"RED_B": 3,
+		"RED_A": 1,
+		"BLUE_B": 4,
+		"BLUE_A": 6,
+		"RB_DIFF": 1,
+		"EVENTS": [
+			{
+				"NAME": " 2x_BLUE++ ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": "RED_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " BLUE_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " B ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " R "
+	},
+	{
+		"RED_B": 3,
+		"RED_A": 3,
+		"BLUE_B": 1,
+		"BLUE_A": 4,
+		"RB_DIFF": 2,
+		"EVENTS": [
+			{
+				"NAME": " BLUE_1 ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 3
+			}
+		],
+		"WINNER": " R ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " B "
+	},
+	{
+		"RED_B": 1,
+		"RED_A": 3,
+		"BLUE_B": 2,
+		"BLUE_A": 1,
+		"RB_DIFF": 1,
+		"EVENTS": [
+			{
+				"NAME": "BLUE_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " BLUE*by*ONE ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 2
+			},
+			{
+				"NAME": " RED_1 ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 3
+			}
+		],
+		"WINNER": " B ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " R "
+	},
+	{
+		"RED_B": 5,
+		"RED_A": 1,
+		"BLUE_B": 3,
+		"BLUE_A": 2,
+		"RB_DIFF": 2,
+		"EVENTS": [
+			{
+				"NAME": "RED_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": "BLUE_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " BLUE*by*ONE ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 2
+			},
+			{
+				"NAME": " RED_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " R ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " B "
+	},
+	{
+		"RED_B": 2,
+		"RED_A": 5,
+		"BLUE_B": 3,
+		"BLUE_A": 3,
+		"RB_DIFF": 1,
+		"EVENTS": null,
+		"WINNER": " B ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " T "
+	},
+	{
+		"RED_B": 2,
+		"RED_A": 2,
+		"BLUE_B": 2,
+		"BLUE_A": 3,
+		"RB_DIFF": 0,
+		"EVENTS": [
+			{
+				"NAME": " BLUE*by*ONE ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 2
+			}
+		],
+		"WINNER": " T ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " T "
+	},
+	{
+		"RED_B": 5,
+		"RED_A": 2,
+		"BLUE_B": 5,
+		"BLUE_A": 2,
+		"RB_DIFF": 0,
+		"EVENTS": [
+			{
+				"NAME": "RED_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": "BLUE_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " RED_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " BLUE_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " T ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " R "
+	},
+	{
+		"RED_B": 5,
+		"RED_A": 5,
+		"BLUE_B": 4,
+		"BLUE_A": 5,
+		"RB_DIFF": 1,
+		"EVENTS": [
+			{
+				"NAME": " BLUE*by*ONE ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 2
+			},
+			{
+				"NAME": " RED_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " BLUE_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " R ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " R "
+	},
+	{
+		"RED_B": 4,
+		"RED_A": 5,
+		"BLUE_B": 2,
+		"BLUE_A": 4,
+		"RB_DIFF": 2,
+		"EVENTS": [
+			{
+				"NAME": " 2x_RED++ ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " RED*by*ONE ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 2
+			},
+			{
+				"NAME": " RED_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " R ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " B "
+	},
+	{
+		"RED_B": 1,
+		"RED_A": 4,
+		"BLUE_B": 4,
+		"BLUE_A": 2,
+		"RB_DIFF": 3,
+		"EVENTS": [
+			{
+				"NAME": "BLUE_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " RED_1 ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 3
+			},
+			{
+				"NAME": " BLUE_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " B ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " R "
+	},
+	{
+		"RED_B": 5,
+		"RED_A": 1,
+		"BLUE_B": 3,
+		"BLUE_A": 4,
+		"RB_DIFF": 2,
+		"EVENTS": [
+			{
+				"NAME": "RED_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " BLUE*by*ONE ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 2
+			},
+			{
+				"NAME": " RED_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " R ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " R "
+	},
+	{
+		"RED_B": 3,
+		"RED_A": 5,
+		"BLUE_B": 2,
+		"BLUE_A": 3,
+		"RB_DIFF": 1,
+		"EVENTS": [
+			{
+				"NAME": " 2x_RED++ ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " BLUE*by*ONE ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 2
+			}
+		],
+		"WINNER": " R ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " B "
+	},
+	{
+		"RED_B": 1,
+		"RED_A": 3,
+		"BLUE_B": 2,
+		"BLUE_A": 2,
+		"RB_DIFF": 1,
+		"EVENTS": [
+			{
+				"NAME": " RED_1 ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 3
+			}
+		],
+		"WINNER": " B ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " R "
+	},
+	{
+		"RED_B": 3,
+		"RED_A": 1,
+		"BLUE_B": 2,
+		"BLUE_A": 2,
+		"RB_DIFF": 1,
+		"EVENTS": [
+			{
+				"NAME": "RED_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " R ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " T "
+	},
+	{
+		"RED_B": 4,
+		"RED_A": 3,
+		"BLUE_B": 4,
+		"BLUE_A": 2,
+		"RB_DIFF": 0,
+		"EVENTS": [
+			{
+				"NAME": "RED_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": "BLUE_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " RED*by*ONE ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 2
+			},
+			{
+				"NAME": " RED_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " BLUE_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " T ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " B "
+	},
+	{
+		"RED_B": 2,
+		"RED_A": 4,
+		"BLUE_B": 4,
+		"BLUE_A": 4,
+		"RB_DIFF": 2,
+		"EVENTS": [
+			{
+				"NAME": " BLUE_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " B ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " B "
+	},
+	{
+		"RED_B": 1,
+		"RED_A": 2,
+		"BLUE_B": 4,
+		"BLUE_A": 4,
+		"RB_DIFF": 3,
+		"EVENTS": [
+			{
+				"NAME": " 2x_BLUE++ ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " RED*by*ONE ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 2
+			},
+			{
+				"NAME": " RED_1 ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 3
+			},
+			{
+				"NAME": " BLUE_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " B ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " R "
+	},
+	{
+		"RED_B": 2,
+		"RED_A": 1,
+		"BLUE_B": 1,
+		"BLUE_A": 4,
+		"RB_DIFF": 1,
+		"EVENTS": [
+			{
+				"NAME": "RED_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " RED*by*ONE ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 2
+			},
+			{
+				"NAME": " BLUE_1 ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 3
+			}
+		],
+		"WINNER": " R ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " T "
+	},
+	{
+		"RED_B": 1,
+		"RED_A": 2,
+		"BLUE_B": 1,
+		"BLUE_A": 1,
+		"RB_DIFF": 0,
+		"EVENTS": [
+			{
+				"NAME": " RED*by*ONE ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 2
+			},
+			{
+				"NAME": " RED_1 ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 3
+			},
+			{
+				"NAME": " BLUE_1 ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 3
+			}
+		],
+		"WINNER": " T ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " B "
+	},
+	{
+		"RED_B": 1,
+		"RED_A": 1,
+		"BLUE_B": 3,
+		"BLUE_A": 1,
+		"RB_DIFF": 2,
+		"EVENTS": [
+			{
+				"NAME": "BLUE_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " RED_1 ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 3
+			}
+		],
+		"WINNER": " B ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " T "
+	},
+	{
+		"RED_B": 4,
+		"RED_A": 1,
+		"BLUE_B": 4,
+		"BLUE_A": 3,
+		"RB_DIFF": 0,
+		"EVENTS": [
+			{
+				"NAME": "RED_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": "BLUE_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " BLUE*by*ONE ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 2
+			},
+			{
+				"NAME": " RED_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " BLUE_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " T ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " R "
+	},
+	{
+		"RED_B": 5,
+		"RED_A": 4,
+		"BLUE_B": 3,
+		"BLUE_A": 4,
+		"RB_DIFF": 2,
+		"EVENTS": [
+			{
+				"NAME": "RED_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " RED*by*ONE ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 2
+			},
+			{
+				"NAME": " BLUE*by*ONE ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 2
+			},
+			{
+				"NAME": " RED_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " R ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " T "
+	},
+	{
+		"RED_B": 1,
+		"RED_A": 5,
+		"BLUE_B": 1,
+		"BLUE_A": 3,
+		"RB_DIFF": 0,
+		"EVENTS": [
+			{
+				"NAME": " RED_1 ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 3
+			},
+			{
+				"NAME": " BLUE_1 ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 3
+			}
+		],
+		"WINNER": " T ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " R "
+	},
+	{
+		"RED_B": 3,
+		"RED_A": 1,
+		"BLUE_B": 1,
+		"BLUE_A": 1,
+		"RB_DIFF": 2,
+		"EVENTS": [
+			{
+				"NAME": "RED_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " BLUE_1 ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 3
+			}
+		],
+		"WINNER": " R ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " B "
+	},
+	{
+		"RED_B": 3,
+		"RED_A": 3,
+		"BLUE_B": 5,
+		"BLUE_A": 1,
+		"RB_DIFF": 2,
+		"EVENTS": [
+			{
+				"NAME": "BLUE_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " BLUE_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " B ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " B "
+	},
+	{
+		"RED_B": 4,
+		"RED_A": 3,
+		"BLUE_B": 5,
+		"BLUE_A": 5,
+		"RB_DIFF": 1,
+		"EVENTS": [
+			{
+				"NAME": " 2x_BLUE++ ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": "RED_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " RED*by*ONE ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 2
+			},
+			{
+				"NAME": " RED_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " BLUE_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " B ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " T "
+	},
+	{
+		"RED_B": 4,
+		"RED_A": 4,
+		"BLUE_B": 4,
+		"BLUE_A": 5,
+		"RB_DIFF": 0,
+		"EVENTS": [
+			{
+				"NAME": " BLUE*by*ONE ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 2
+			},
+			{
+				"NAME": " RED_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " BLUE_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " T ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " B "
+	},
+	{
+		"RED_B": 3,
+		"RED_A": 4,
+		"BLUE_B": 5,
+		"BLUE_A": 4,
+		"RB_DIFF": 2,
+		"EVENTS": [
+			{
+				"NAME": "BLUE_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " RED*by*ONE ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 2
+			},
+			{
+				"NAME": " BLUE*by*ONE ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 2
+			},
+			{
+				"NAME": " BLUE_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " B ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " B "
+	},
+	{
+		"RED_B": 1,
+		"RED_A": 3,
+		"BLUE_B": 3,
+		"BLUE_A": 5,
+		"RB_DIFF": 2,
+		"EVENTS": [
+			{
+				"NAME": " 2x_BLUE++ ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " RED_1 ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 3
+			}
+		],
+		"WINNER": " B ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " B "
+	},
+	{
+		"RED_B": 4,
+		"RED_A": 1,
+		"BLUE_B": 5,
+		"BLUE_A": 3,
+		"RB_DIFF": 1,
+		"EVENTS": [
+			{
+				"NAME": " 3x_BLUE++ ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " 2x_BLUE++ ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": "RED_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": "BLUE_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " RED_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " BLUE_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " B ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " B "
+	},
+	{
+		"RED_B": 3,
+		"RED_A": 4,
+		"BLUE_B": 5,
+		"BLUE_A": 5,
+		"RB_DIFF": 2,
+		"EVENTS": [
+			{
+				"NAME": " 3x_BLUE++ ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " 2x_BLUE++ ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " RED*by*ONE ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 2
+			},
+			{
+				"NAME": " BLUE_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " B ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": " R "
+	},
+	{
+		"RED_B": 4,
+		"RED_A": 3,
+		"BLUE_B": 2,
+		"BLUE_A": 5,
+		"RB_DIFF": 2,
+		"EVENTS": [
+			{
+				"NAME": "RED_INC++",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			},
+			{
+				"NAME": " RED*by*ONE ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 2
+			},
+			{
+				"NAME": " RED_HINUM ",
+				"ENABLED": true,
+				"COLOR": {},
+				"LEVEL": 1
+			}
+		],
+		"WINNER": " R ",
+		"WIN_COLOR": {},
+		"FUTURE_WINNER": ""
+	}
+]

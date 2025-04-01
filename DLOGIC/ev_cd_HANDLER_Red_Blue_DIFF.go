@@ -8,12 +8,12 @@ import (
 )
 
 // This is simple. Just calculate the Red Blue diff... no events.. this is for a property of the game
-func detect_RED_Blue_DIFF(GM *GAME_OBJ, event EVENT_OBJ, GHIST *[]GAME_OBJ) bool {
+func save_RED_Blue_DIFF(GM *HAND_OBJ, event EVENT_OBJ, GHIST *[]HAND_OBJ) bool {
 	PLACEHOLDER()
 	//var name = event.NAME
 
-	diff := INT_GetDiff(GM.RED_B, GM.BLUE_B)
-	GM.RB_DIFF = diff
+	GM.RB_DIFF = INT_GetDiff(GM.RED_B, GM.BLUE_B)
+	GM.PREV_RBDIFF = INT_GetDiff(GM.RED_A, GM.BLUE_A)
 
 	return false
 

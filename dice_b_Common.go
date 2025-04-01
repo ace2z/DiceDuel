@@ -22,14 +22,14 @@ import (
 	//tea "github.com/charmbracelet/bubbletea"
 )
 
-var HISTORY []GAME_OBJ
+var HISTORY []HAND_OBJ
 
-func Process_Dice_Value_INPUT(red_dice string, blue_dice string) GAME_OBJ {
+func Process_Dice_Value_INPUT(red_dice string, blue_dice string) HAND_OBJ {
 	// Error handling. make sure both red and blue_dice have 2 digits
 	if len(red_dice) != 2 || len(blue_dice) != 2 {
 		Y.Println("")
 		Y.Println("  *** ERROR: Not enough Dice values specified! ***")
-		return GAME_OBJ{}
+		return HAND_OBJ{}
 	}
 
 	// 1. Extract the first and second numbers from red_dice...and blue dice
@@ -65,16 +65,22 @@ func Process_Dice_Value_INPUT(red_dice string, blue_dice string) GAME_OBJ {
 	*/
 
 	//3. Create a new GAME_OBJ
-	var GM GAME_OBJ
+	var GM HAND_OBJ
 	GM.RED_A = red_a_int
 	GM.RED_B = red_b_int
 	GM.BLUE_A = blue_a_int
 	GM.BLUE_B = blue_b_int
+	GM.ID = "pending"
 
 	return GM
 }
 
 var also_allowed = []string{"e", "r", "d", "v", "h", "s", "l"}
+
+// Eevery game Session will have a unique ID
+// if you for some reason need to save the games to a database
+// You can use this to ensure each Game and HANDS within it...are unique
+var TMP_GAME_SESS = "8675309"
 
 func Dice_Engine_INIT(INPUT_RED_DICE string, INPUT_BLUE_DICE string) {
 
@@ -113,8 +119,15 @@ func Dice_Engine_INIT(INPUT_RED_DICE string, INPUT_BLUE_DICE string) {
 
 	}
 
-	//5. Process the Dice Input. Get the Hand/GAME OBJECT
-	var GM = Process_Dice_Value_INPUT(red_dice, blue_dice)
+	//5. Process the Dice Input. Get the Hand OBJECT
+	var HND = Process_Dice_Value_INPUT(red_dice, blue_dice)
+	// error handling.. If they didnt enture enough digits
+	if HND.ID != "pending" {
+		return
+	}
+	HND.GAME_SESSION = TMP_GAME_SESS // This is the ID of the game session
+
+	//5b Generate a unique ID for this hand
 
 	// 6. = = = = Evaluate this Hand/Game.. based on dice Values
 	// We have a seriues of custom EVENTS that we want to check for

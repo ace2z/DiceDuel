@@ -9,8 +9,8 @@ import (
 
 	//"strings"
 	"path/filepath"
+	"sort"
 	"time"
-
 	// "encoding/gob"
 	// "fmt"
 	// "os"
@@ -95,8 +95,19 @@ func Load_Game_FromFile() {
 	}
 	var ALL_FILES []LOADFILE_OBJ
 
+	var tmp_files []string
+	for _, file := range files {
+		// Add the file to the list
+		tmp_files = append(tmp_files, file)
+	}
+
+	// Sort files alphabetically
+	sort.Strings(tmp_files)
+
 	// Print the list of files
-	for i, file := range files {
+	for k, file := range tmp_files {
+		i := k + 1
+
 		W.Print(i, ": ")
 		Y.Println(file)
 

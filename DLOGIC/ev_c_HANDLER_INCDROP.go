@@ -6,7 +6,7 @@ import (
 	. "github.com/ace2z/GOGO/Gadgets"
 )
 
-func detect_INC_DROP(GM *GAME_OBJ, event EVENT_OBJ, GHIST *[]GAME_OBJ) bool {
+func detect_INC_DROP(GM *HAND_OBJ, event EVENT_OBJ, GHIST *[]HAND_OBJ) bool {
 	PLACEHOLDER()
 
 	var name = event.NAME
@@ -27,9 +27,6 @@ func detect_INC_DROP(GM *GAME_OBJ, event EVENT_OBJ, GHIST *[]GAME_OBJ) bool {
 			return true
 		}
 	}
-
-	//have_BLUE_DROP := CONTAINS(name, "BLUE_DROP") && GM.BLUE_B < GM.BLUE_A && blue_nozero
-	//have_RED_DROP := CONTAINS(name, "RED_DROP") && GM.RED_B < GM.RED_A && red_nozero
 
 	return false
 }

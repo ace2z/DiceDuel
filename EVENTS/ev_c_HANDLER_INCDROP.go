@@ -1,9 +1,9 @@
-package DLOGIC
+package EVENTS
 
 import (
 	// "flag"
-
 	. "github.com/ace2z/GOGO/Gadgets"
+	. "local/CORE"
 )
 
 func detect_INC_DROP(GM *HAND_OBJ, event EVENT_OBJ, GHIST *[]HAND_OBJ) bool {

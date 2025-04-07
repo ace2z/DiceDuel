@@ -1,7 +1,8 @@
-package DLOGIC
+package EVENTS
 
 import (
 	// "flag"
+	. "local/CORE"
 	// . "local/_API_MBOUM"
 	// . "github.com/ace2z/HP_COMMON"
 	. "github.com/ace2z/GOGO/Gadgets"

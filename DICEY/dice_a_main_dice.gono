@@ -1,11 +1,9 @@
-package main
+package DICEY
 
 import (
 	// = = = = = Native Libraries
 
-	//. "local/CORE"
-
-	. "local/DLOGIC"
+	. "local/CORE"
 
 	//	"bufio"
 	//"fmt"
@@ -65,14 +63,14 @@ func Process_Dice_Value_INPUT(red_dice string, blue_dice string) HAND_OBJ {
 	*/
 
 	//3. Create a new GAME_OBJ
-	var GM HAND_OBJ
-	GM.RED_A = red_a_int
-	GM.RED_B = red_b_int
-	GM.BLUE_A = blue_a_int
-	GM.BLUE_B = blue_b_int
-	GM.ID = "pending"
+	var HND HAND_OBJ
+	HND.RED_A = red_a_int
+	HND.RED_B = red_b_int
+	HND.BLUE_A = blue_a_int
+	HND.BLUE_B = blue_b_int
+	HND.HID = "pending"
 
-	return GM
+	return HND
 }
 
 var also_allowed = []string{"e", "r", "d", "v", "h", "s", "l"}
@@ -112,29 +110,33 @@ func Dice_Engine_INIT(INPUT_RED_DICE string, INPUT_BLUE_DICE string) {
 			return
 		}
 
-		W.Println("")
-
 		red_dice = tmp_red
 		blue_dice = tmp_blue
 
+		W.Println("")
 	}
 
 	//5. Process the Dice Input. Get the Hand OBJECT
 	var HND = Process_Dice_Value_INPUT(red_dice, blue_dice)
 	// error handling.. If they didnt enture enough digits
-	if HND.ID != "pending" {
+	if HND.HID != "pending" {
 		return
 	}
-	HND.GAME_SESSION = TMP_GAME_SESS // This is the ID of the game session
+	HND.GAME_SESSION = TMP_GAME_SESS // This is the ISESSION ID
+	hand_num := len(HISTORY) + 1
 
-	//5b Generate a unique ID for this hand
+	//5b Generate a unique ID for this hand (within this Game Session ID)
+	tmpid := INT_to_STRING(hand_num) + "_Ra:" + INT_to_STRING(HND.RED_A) + "-Rb:" + INT_to_STRING(HND.RED_B)
+	tmpid += "_Ba:" + INT_to_STRING(HND.BLUE_A) + "-Bb:" + INT_to_STRING(HND.BLUE_B)
+	tmpid += "_SESS:" + TMP_GAME_SESS
+	HND.HID = tmpid
 
 	// 6. = = = = Evaluate this Hand/Game.. based on dice Values
 	// We have a seriues of custom EVENTS that we want to check for
-	DL_Events_Engine(&GM, &HISTORY)
+	DL_Events_Engine(&HND, &HISTORY)
 
 	//7. Now that we have all EVENTS... save game to HISTORY
-	HISTORY = append(HISTORY, GM)
+	HISTORY = append(HISTORY, HND)
 
 	//8. ALSO!!! Update the "FUTURE_WININER" of the PREVIOUS hand in history
 	hlen := len(HISTORY)
@@ -142,9 +144,12 @@ func Dice_Engine_INIT(INPUT_RED_DICE string, INPUT_BLUE_DICE string) {
 		pind := hlen - 2 // PREVIOUS item... before last one we just added
 		prev := HISTORY[pind]
 
-		// Update this hands FUTURE_WINNER ... this is based on whoever won the most recent hand we JUST hadded
-		prev.FUTURE_WINNER = GM.WINNER
+		// Update this hands NEXT_WINNER ... this is based on whoever won the most recent hand we JUST hadded
+		prev.NEXT_WINNER = HND.WINNER
 		HISTORY[pind] = prev
 	}
 
-} // end of main
+	SHOW_STRUCT(HISTORY)
+	PressAny()
+
+} // end of DICEY

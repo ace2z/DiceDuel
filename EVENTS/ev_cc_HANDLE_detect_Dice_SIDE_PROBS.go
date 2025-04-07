@@ -1,8 +1,8 @@
-package DLOGIC
+package EVENTS
 
 import (
 	// "flag"
-	// . "local/_API_MBOUM"
+	. "local/CORE"
 	// . "github.com/ace2z/HP_COMMON"
 	. "github.com/ace2z/GOGO/Gadgets"
 )
@@ -19,24 +19,28 @@ type DSIDE_OBJ struct {
 	FULL_FLIP int
 }
 
-var SIDE_MATRIX []DSIDE_OBJ
-
-func init() {
+var SIDE_MATRIX = []DSIDE_OBJ{
 	// This is the number of the side of the dice when facing UP
-	var d1 = DSIDE_OBJ{1, []int{2, 3, 4, 5}, 6}
-	var d2 = DSIDE_OBJ{2, []int{1, 3, 4, 6}, 5}
-	var d3 = DSIDE_OBJ{3, []int{1, 2, 5, 6}, 4}
-	var d4 = DSIDE_OBJ{4, []int{1, 2, 5, 6}, 3}
-	var d5 = DSIDE_OBJ{5, []int{1, 3, 4, 6}, 2}
-	var d6 = DSIDE_OBJ{6, []int{2, 3, 4, 5}, 1}
-
-	SIDE_MATRIX = append(SIDE_MATRIX[:], d1)
-	SIDE_MATRIX = append(SIDE_MATRIX[:], d2)
-	SIDE_MATRIX = append(SIDE_MATRIX[:], d3)
-	SIDE_MATRIX = append(SIDE_MATRIX[:], d4)
-	SIDE_MATRIX = append(SIDE_MATRIX[:], d5)
-	SIDE_MATRIX = append(SIDE_MATRIX[:], d6)
+	DSIDE_OBJ{1, []int{2, 3, 4, 5}, 6},
+	DSIDE_OBJ{2, []int{1, 3, 4, 6}, 5},
+	DSIDE_OBJ{3, []int{1, 2, 5, 6}, 4},
+	DSIDE_OBJ{4, []int{1, 2, 5, 6}, 3},
+	DSIDE_OBJ{5, []int{1, 3, 4, 6}, 2},
+	DSIDE_OBJ{6, []int{2, 3, 4, 5}, 1},
 }
+
+// func init() {
+// 	// This is the number of the side of the dice when facing UP
+// 	var d1 =
+// 	var d2 =
+
+// 	SIDE_MATRIX = append(SIDE_MATRIX[:], d1)
+// 	SIDE_MATRIX = append(SIDE_MATRIX[:], d2)
+// 	SIDE_MATRIX = append(SIDE_MATRIX[:], d3)
+// 	SIDE_MATRIX = append(SIDE_MATRIX[:], d4)
+// 	SIDE_MATRIX = append(SIDE_MATRIX[:], d5)
+// 	SIDE_MATRIX = append(SIDE_MATRIX[:], d6)
+// }
 
 func check_flip_action(val int, preval int, mode string) bool {
 
@@ -67,7 +71,7 @@ func check_flip_action(val int, preval int, mode string) bool {
 }
 
 // looks for Red or Blue winning last 3 in row (by way of 4 or higher values)
-func detect_diceSIDES(GM *HAND_OBJ, event EVENT_OBJ, GHIST *[]HAND_OBJ) bool {
+func Detect_diceSIDE_Probabilities(GM *HAND_OBJ, event EVENT_OBJ, GHIST *[]HAND_OBJ) bool {
 	PLACEHOLDER()
 	var name = event.NAME
 	var for_redby1 = CONTAINS(name, "redB1")

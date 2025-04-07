@@ -1,4 +1,4 @@
-package DLOGIC
+package EVENTS
 
 import (
 	// "flag"

@@ -1,10 +1,9 @@
-package main
+package DICEY
 
 import (
 	// = = = = = Native Libraries
 
-	//. "local/CORE"
-
+	. "local/CORE"
 	//. "local/INGEST_ENGINE"
 
 	// "bufio"
@@ -20,27 +19,6 @@ import (
 )
 
 var MAX_HIST_BACK = 10
-
-// func update_with_WINNER(red_win bool, blue_win bool, tie bool, IND int) {
-// 	/// Show and save the winner to history
-// 	if red_win {
-
-// 		HISTORY[IND].WINNER = " R "
-// 		HISTORY[IND].WIN_COLOR = WR
-// 	} else if blue_win {
-
-// 		HISTORY[IND].WINNER = " B "
-// 		HISTORY[IND].WIN_COLOR = WB
-
-// 		// else its a TIE
-// 	} else if tie {
-
-// 		HISTORY[IND].WINNER = " TIE "
-// 		HISTORY[IND].WIN_COLOR = BG
-// 	}
-
-// 	// Save the
-// }
 
 // Shows dice history with the Winner of each (based on the NEXT that posts up)
 var DONT_SHOW_HIST = false
@@ -82,33 +60,6 @@ func ShowDice_HISTORY(show_all bool) {
 	ACCENT_COLOR.Println("⥢⥢⥢⥢⥢⥢⥢⥢⥢⥢⥢⥢⥢")
 	W.Println("")
 	for x := start_at; x < hlen; x++ {
-
-		// // We need the next item to determine "which side won this item"
-		// // basically dont show the first item you save from the history
-		// var have_next = false
-		// n := x + 1
-		// if n < hlen {
-		// 	have_next = true
-		// }
-
-		// if have_next {
-		// 	next := HISTORY[n]
-
-		// 	var red_win = false
-		// 	var blue_win = false
-		// 	var tie = false
-
-		// 	if next.RED_B > next.BLUE_B {
-		// 		red_win = true
-		// 	} else if next.BLUE_B > next.RED_B {
-		// 		blue_win = true
-		// 	} else {
-		// 		tie = true
-		// 	}
-
-		// 	//3. Since we have a next to look at, we can now save the winner
-		// 	update_with_WINNER(red_win, blue_win, tie, x)
-		// }
 
 		// Show the actual record (and winner if applicable)
 		Show_HAND(x, ACCENT_COLOR)

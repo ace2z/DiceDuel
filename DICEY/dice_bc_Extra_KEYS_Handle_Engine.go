@@ -1,9 +1,9 @@
-package main
+package DICEY
 
 import (
 	// = = = = = Native Libraries
 
-	//. "local/CORE"
+	. "local/CORE"
 
 	//. "local/INGEST_ENGINE"
 

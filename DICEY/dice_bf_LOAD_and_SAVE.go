@@ -1,11 +1,9 @@
-package main
+package DICEY
 
 import (
 	// = = = = = Native Libraries
 
-	//. "local/CORE"
-
-	. "local/DLOGIC"
+	. "local/CORE"
 
 	//"strings"
 	"path/filepath"
@@ -131,7 +129,7 @@ func Load_Game_FromFile() {
 			// This function should deserialize the game object from a file
 			// and return it
 
-			HISTORY = []GAME_OBJ{} // Clear the current history
+			HISTORY = []HAND_OBJ{} // Clear the current history
 			W.Println("")
 
 			err := LOAD_Struct_from_FILE(x.FULLPATH, &HISTORY, false)

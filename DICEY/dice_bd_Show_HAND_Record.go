@@ -1,11 +1,11 @@
-package main
+package DICEY
 
 import (
 	// = = = = = Native Libraries
 
-	//. "local/CORE"
+	. "local/CORE"
 
-	. "local/DLOGIC"
+	. "local/EVENTS"
 
 	// "bufio"
 	// "os"
@@ -36,6 +36,38 @@ arrows:
 ➜
 ➤
 */
+
+// Gets the color associated with Event. Searches the master EVENTS LIST and
+// the COLOR_MATRIX (if applicable)
+func find_EVENT_ColorStyle_and_PRINT(evt EVENT_OBJ) *color.Color {
+	for _, me := range EVENT_LIST {
+
+		// Skip if not match
+		if CONTAINS(evt.NAME, me.NAME) == false {
+			continue
+		}
+
+		// Otherwise we have a match. Exit when done
+
+		return me.COLOR
+
+	}
+
+	// If we get this far.. means we did NOT find a color define din the EVENT_LIST
+	// So now we need to search the COLOR_MATRIX
+	for _, cm := range EVT_COLOR_MATRIX {
+		// Skip if not match
+		if CONTAINS(evt.NAME, cm.NAME) == false {
+			continue
+		}
+
+		// Otherwise we have a match. Exit when done
+		return cm.COLOR
+	}
+
+	// If no color is defined, return a default color
+	return color.New(color.FgWhite)
+}
 
 var red_wins_COL = WHITE_RED
 var blue_wins_COL = WHITE_BLUE
@@ -69,6 +101,40 @@ func show_winner(win_tmp string, use_arrows bool) {
 
 }
 
+func show_RedBlue_DIFF(HND HAND_OBJ) {
+
+	// Search through the events for the RB_DIFF
+	var rbdiff = NULLV
+	var prev_diff = NULLV
+	for _, evt := range HND.EVENTS {
+		if CONTAINS(evt.NAME, "RB_DIFF") == false {
+			continue
+		}
+
+		// Otherwise we have a match. Exit when done
+		rbdiff = evt.VAL
+		prev_diff = evt.PREVVAL
+		break
+	}
+	//error handling
+	if rbdiff == NULLV {
+		return
+	}
+
+	W.Print(" ")
+	if IS_EVEN(rbdiff) {
+		even_COLOR.Print(" ", rbdiff, " ")
+	} else {
+		odd_COLOR.Print(" ", rbdiff, " ")
+	}
+	W.Print(" ")
+	if IS_EVEN(prev_diff) {
+		even_COLOR.Print(" ", prev_diff, " ")
+	} else {
+		odd_COLOR.Print(" ", prev_diff, " ")
+	}
+}
+
 var arrow_char = "➤"
 
 var even_COLOR = color.New(color.FgHiRed, color.BgHiYellow)
@@ -76,7 +142,7 @@ var odd_COLOR = color.New(color.FgHiBlack, color.BgHiWhite, color.Bold)
 
 func Show_HAND(IND int, ACCENT_COLOR *color.Color) {
 
-	var DL = HISTORY[IND]
+	var HND = HISTORY[IND]
 
 	pretty_IND := IND + 1
 
@@ -88,58 +154,48 @@ func Show_HAND(IND int, ACCENT_COLOR *color.Color) {
 
 	// First show the ACTUAL winner of the hand
 	W.Print(" ")
-	show_winner(DL.WINNER, false)
+	show_winner(HND.WINNER, false)
 
 	//2. Show the DIf between Red Blue for last two games
-	W.Print(" ")
-	if IS_EVEN(DL.RB_DIFF) || DL.RB_DIFF == 0 {
-		even_COLOR.Print(" ", DL.RB_DIFF, " ")
-	} else {
-		odd_COLOR.Print(" ", DL.RB_DIFF, " ")
-	}
-	W.Print(" ")
-	if IS_EVEN(DL.PREV_RBDIFF) || DL.PREV_RBDIFF == 0 {
-		even_COLOR.Print(" ", DL.PREV_RBDIFF, " ")
-	} else {
-		odd_COLOR.Print(" ", DL.PREV_RBDIFF, " ")
-	}
+	show_RedBlue_DIFF(HND)
 
 	//3. Now determine if there is a FUTURE hand winner
-
 	// This shows FUTURE WINNER (of the hand following this one ..if it is avaiable)
-	if DL.NEXT_WINNER != "" {
+	if HND.NEXT_WINNER != "" {
 		//W.Print(" " + arrow_char + arrow_char)
-		show_winner(DL.NEXT_WINNER, true)
+		show_winner(HND.NEXT_WINNER, true)
 	} else {
 		W.Print("       ")
 	}
 
-	M.Print(DL.RED_A)
+	M.Print(HND.RED_A)
 	G.Print(arrow_char)
-	M.Print(DL.RED_B)
+	M.Print(HND.RED_B)
 	W.Print(",")
-	C.Print(DL.BLUE_A)
+	C.Print(HND.BLUE_A)
 	G.Print(arrow_char)
-	C.Print(DL.BLUE_B)
-	W.Print(" | ")
+	C.Print(HND.BLUE_B)
+	W.Print(" |")
 
 	//3. Iterate through the events. Show them with the colors specified
-	for _, evt := range DL.EVENTS {
+	for _, evt := range HND.EVENTS {
+		// Dont display events that are hidden
+		if evt.SHOW_ME == false {
+			continue
+		}
+		// if this evnt name has spaces in it.. Usually means this is a reverse color type event
+		// We need to do an indent
+		if strings.Contains(evt.NAME, " ") {
+			W.Println(" ")
+		}
 
 		// Search through the EVENTS list, and find the one that matches the name
 		// This is a hack we need because of the behavior from LOAD from Disk and SAVE to DISK (via struct as JSON)
 		// We have to do it this way because coolors arent not saved to the struct (color.Color is NOT exportable)
 		// nor does it have a JSON representation
-		// So we have to use the EVENT_LIST to find and print the right color
-
-		for _, k := range EVENT_LIST {
-			if k.NAME == evt.NAME {
-				k.COLOR.Print(evt.NAME)
-
-				BOLD_WHITE.Print(" ")
-				break
-			}
-		}
+		// So we have to use the EVENT_LIST or the EVT_COLOR_MATRIX....to find and print the right color/style
+		find_EVENT_ColorStyle_and_PRINT(evt).Print(evt.NAME)
+		BOLD_WHITE.Print(" ")
 	}
 
 	W.Println("")

@@ -1,0 +1,55 @@
+package main
+
+import (
+	"fmt"
+	"reflect"
+)
+
+// Define source and destination structs
+type Source struct {
+	Name string
+	Age  int
+}
+
+type Destination struct {
+	Name string
+	Age  int
+}
+
+// Function to copy values using reflection
+func CopyStruct(dest interface{}, src interface{}) {
+	destValue := reflect.ValueOf(dest).Elem()
+	srcValue := reflect.ValueOf(src).Elem()
+
+	// Check if the types are valid
+	if destValue.Kind() != reflect.Struct || srcValue.Kind() != reflect.Struct {
+		fmt.Println("Invalid argument: both arguments must be structs")
+		return
+	}
+
+	// Iterate over the fields of the source struct
+	for i := 0; i < srcValue.NumField(); i++ {
+		srcField := srcValue.Field(i)
+		destField := destValue.FieldByName(srcValue.Type().Field(i).Name)
+
+		// Check if the field exists in the destination struct and is settable
+		if destField.IsValid() && destField.CanSet() {
+			// Check if the types of the fields match
+			if destField.Type() == srcField.Type() {
+				destField.Set(srcField.Interface().(reflect.Value))
+			}
+		}
+	}
+}
+
+func main() {
+	// Instantiate source and destination structs
+	source := Source{Name: "John Doe", Age: 30}
+	destination := Destination{}
+
+	// Copy values from source to destination
+	CopyStruct(&destination, &source)
+
+	// Print the destination struct
+	fmt.Printf("Destination: %+v\n", destination)
+}

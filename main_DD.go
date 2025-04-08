@@ -6,6 +6,8 @@ import (
 	. "local/CORE"
 	. "local/DICEY"
 
+	"time"
+
 	//"reflect"
 	//"bytes"
 	//"encoding/binary"
@@ -83,10 +85,12 @@ func SUPER_FREAK_Test(ALL_PARAMS ...interface{}) {
 } //end of
 
 type TOLSTOY struct {
-	Name   string
-	Age    int
-	Sex    string
-	morgan string
+	Name           string
+	Age            int
+	Sex            string
+	unexport_Field string
+
+	hiddenTIME time.Time
 }
 
 // func COPY_Arr(arr []any) []string {
@@ -110,28 +114,23 @@ func main() {
 	var tbool = true
 
 	var asl = TOLSTOY{
-		Name:   "Terry",
-		Age:    55,
-		Sex:    "Non-Binary",
-		morgan: "Morgan Freeman",
+		Name:           "Terry",
+		Age:            55,
+		Sex:            "Non-Binary",
+		unexport_Field: "Morgan Freeman",
 	}
-	//var SEC = COPY_Struct(asl).(TOLSTOY)
 
-	// _, tsec := COPY_DeepCopyEngine(asl)
-
-	//var SEC = COPY_DeepCopyEngine(asl).(TOLSTOY)
-	//var SEC TOLSTOY
 	var SEC = TEST_DeepCopyEngine(asl).(TOLSTOY)
 
 	SEC.Name = "CharlieCox"
 	SEC.Age = 40
 	SEC.Sex = "MALE"
-	SEC.morgan = "La Fay"
+	SEC.unexport_Field = "La Fay"
 	Y.Println("--")
-	SHOW_STRUCT(asl)
-	SHOW_STRUCT(SEC, CYAN)
+	new_SHOW_STRUCT(asl)
+	new_SHOW_STRUCT(SEC, CYAN)
 	Y.Println("--")
-	PressAny()
+	DO_EXIT("-silent")
 
 	var STRLIST = []string{"Daredevil", "Tony Stark", "Thor", "Black Widow"}
 	//var sobj2 = STRLIST
@@ -139,29 +138,29 @@ func main() {
 
 	// err, sFIN := COPY_DeepCopyEngine(STRLIST, &s2).([]string)
 	//var s2 []string
-	sFIN := COPY_DeepCopyEngine(STRLIST)
+	//sFIN := COPY_DeepCopyEngine(STRLIST)
 	// if err != nil {
 	// }
-	var s2 = sFIN.([]string)
+	// var s2 = sFIN.([]string)
 
-	s2[0] = "WorldWar HULK"
+	// s2[0] = "WorldWar HULK"
 
-	SHOW_STRUCT(STRLIST, GREEN)
-	SHOW_STRUCT(s2, CYAN)
+	// SHOW_STRUCT(STRLIST, GREEN)
+	// SHOW_STRUCT(s2, CYAN)
 
-	//SHOW_STRUCT(sFIN, MAGENTA)
+	// //SHOW_STRUCT(sFIN, MAGENTA)
 
-	Y.Println("--")
-	PressAny()
+	// Y.Println("--")
+	// PressAny()
 
-	//destMAP := COPY_Map(myMap)
-	tmpMAP := COPY_DeepCopyEngine(myMap)
-	destMAP := tmpMAP.(MAP_TYPE)
-	destMAP["Updated destMAP"] = "SellTheKid_MarkoMark"
-	destMAP["bodycount"] = 145
+	// //destMAP := COPY_Map(myMap)
+	// //tmpMAP := COPY_DeepCopyEngine(myMap)
+	// destMAP := tmpMAP.(MAP_TYPE)
+	// destMAP["Updated destMAP"] = "SellTheKid_MarkoMark"
+	// destMAP["bodycount"] = 145
 
-	SHOW_STRUCT(myMap)
-	SHOW_STRUCT(destMAP, CYAN)
+	// SHOW_STRUCT(myMap)
+	// SHOW_STRUCT(destMAP, CYAN)
 	PressAny()
 
 	SUPER_FREAK_Test("-sheep", "-maptest", myMap, "--int", 4, "-float", 5.56, "Your String TERRY", "-i64", test64, "-newcolor", BW)

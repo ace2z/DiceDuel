@@ -17,6 +17,7 @@ import (
 	//. "local/INGEST_ENGINE"
 
 	. "github.com/ace2z/GOGO/Gadgets"
+	//"github.com/jinzhu/copier"
 	//"github.com/rivo/tview" // https://github.com/rivo/tview/tree/master
 	// "strings"
 	// "time"
@@ -34,38 +35,51 @@ func SUPER_FREAK_Test(ALL_PARAMS ...interface{}) {
 	pm := Ingest_FUNC_PARAMS(ALL_PARAMS...)
 
 	// Will search the MAP and see if we have a match for -sheep
-	if pm.HAVE_Param("-sheep") {
-		W.Println(" Sheep are SPECTACULAR!!!!")
-	}
+	// if pm.HAVE_Param("-sheep") {
+	// 	W.Println(" Sheep are SPECTACULAR!!!!")
+	// }
 
-	if pm.HAVE_Param("--maptest") {
-		SHOW_STRUCT(pm.MAP)
-	}
-	if pm.HAVE_Param("--int") {
-		W.Println("Int: ", pm.INT)
-	}
-	if pm.HAVE_Param("-float") {
-		W.Println("Float: ", pm.FLOAT)
-	}
+	// if pm.HAVE_Param("--maptest") {
+	// 	SHOW_STRUCT(pm.MAP)
+	// }
+	// if pm.HAVE_Param("--int") {
+	// 	W.Println("Int: ", pm.INT)
+	// }
+	// if pm.HAVE_Param("-float") {
+	// 	W.Println("Float: ", pm.FLOAT)
+	// }
 
-	if pm.HAVE_Param("-i64") {
-		W.Println("Int64: ", pm.INT64)
-	}
+	// if pm.HAVE_Param("-i64") {
+	// 	W.Println("Int64: ", pm.INT64)
+	// }
 
-	if pm.HAVE_Param("-newcolor") {
+	// if pm.HAVE_Param("-newcolor") {
+	// 	pm.COLOR.Println("You asked to print in THIS COLOR")
+	// }
+	if pm.IsColor() {
 		pm.COLOR.Println("You asked to print in THIS COLOR")
 	}
 
-	if pm.IsString(2) {
-		W.Println("String: ", pm.STRING)
+	if pm.HAVE_Param("-testint") {
+		W.Println("Test INT you provided: ", pm.INT)
 	}
-	if pm.IsMAP() {
+
+	// if pm.IsString() {
+	// 	W.Println("String: ", pm.STRING)
+	// }
+	if pm.IsMAP(1) {
 		M.Print("MAP is: ")
 		SHOW_STRUCT(pm.MAP)
 
 		mval_name := pm.MAP["name"].(string)
 		Y.Print("Mval NAME is: ")
 		C.Println(mval_name)
+	}
+
+	if pm.IsARR(1) {
+		W.Println("")
+		W.Println(" []STRING Arr:")
+		Y.Println(pm.ARR)
 	}
 
 	// If there is a GENERIC type structure we need to get, use this fucntion
@@ -78,12 +92,26 @@ func SUPER_FREAK_Test(ALL_PARAMS ...interface{}) {
 
 		//To access the actual VALUE in a particular generic, use assertion like this:
 		Y.Print("ACTUAL - Generic NAME is: ")
-		C.Println(pm.GENERIC.(TOLSTOY).Name)
+		C.Println(pm.GENERIC.(TOLSTOY).unexport_Field)
 		W.Println("")
+	}
+
+	if pm.HAVE_Param("-myfloat") {
+		W.Println("NAMED param float provided is: ")
+		Y.Println(pm.FLOAT)
+	}
+
+	if pm.IsFloat(2) {
+		W.Print("Float provided is: ")
+		Y.Println(pm.FLOAT)
 	}
 
 } //end of
 
+type META_TMP struct {
+	Rname     string
+	unexpName string
+}
 type TOLSTOY struct {
 	Name           string
 	Age            int
@@ -91,22 +119,12 @@ type TOLSTOY struct {
 	unexport_Field string
 
 	hiddenTIME time.Time
+
+	Meta         META_TMP
+	lowStuffMeta META_TMP
 }
 
-// func COPY_Arr(arr []any) []string {
-// 	var newArr []string
-// 	for _, val := range arr {
-// 		newArr = append(newArr, val)
-// 	}
-// 	return newArr
-// }
-
 func main() {
-
-	myMap := NEW_Map()
-	myMap["name"] = "John Doe"
-	myMap["bodycount"] = 30
-	myMap["city"] = "New York"
 
 	var terryINT = 8675309
 	var test64 int64 = 1234567890123457899
@@ -118,53 +136,66 @@ func main() {
 		Age:            55,
 		Sex:            "Non-Binary",
 		unexport_Field: "Morgan Freeman",
+		Meta: META_TMP{
+			Rname:     "Bonnie",
+			unexpName: "HellHole",
+		},
+		lowStuffMeta: META_TMP{
+			Rname:     "Frank",
+			unexpName: "Akimba",
+		},
 	}
 
-	var SEC = TEST_DeepCopyEngine(asl).(TOLSTOY)
+	visit := COPY_DeepCopy(asl).(TOLSTOY)
+	visit.Name = "CharlieCox"
+	visit.Age = 30
+	visit.Sex = "Male"
+	visit.unexport_Field = "La Fay"
 
-	SEC.Name = "CharlieCox"
-	SEC.Age = 40
-	SEC.Sex = "MALE"
-	SEC.unexport_Field = "La Fay"
-	Y.Println("--")
-	new_SHOW_STRUCT(asl)
-	new_SHOW_STRUCT(SEC, CYAN)
-	Y.Println("--")
-	DO_EXIT("-silent")
+	// SHOW_STRUCT(asl)
+	// C.Print("unexport_Field: ")
+	// W.Println(asl.unexport_Field)
 
-	var STRLIST = []string{"Daredevil", "Tony Stark", "Thor", "Black Widow"}
-	//var sobj2 = STRLIST
-	//sobj2[0] = "IronMan"
+	// SHOW_STRUCT(visit, GREEN)
+	// Y.Print("unexport_Field: ")
+	// G.Println(visit.unexport_Field)
 
-	// err, sFIN := COPY_DeepCopyEngine(STRLIST, &s2).([]string)
-	//var s2 []string
-	//sFIN := COPY_DeepCopyEngine(STRLIST)
-	// if err != nil {
-	// }
-	// var s2 = sFIN.([]string)
+	// W.Println("")
+	// W.Println(" MAPS ")
+	myMap := NEW_Map()
+	myMap["name"] = "John Doe"
+	myMap["bodycount"] = 30
+	myMap["city"] = "New York"
 
-	// s2[0] = "WorldWar HULK"
+	var MAP2 = COPY_DeepCopy(myMap, SILENT).(MAP_TYPE)
+	MAP2["Updated destMAP"] = "SellTheKid_MarkoMark"
+	MAP2["name"] = "Bonnie Kriel"
+	MAP2["bodycount"] = 145
+	// SHOW_STRUCT(myMap)
+	// SHOW_STRUCT(MAP2, GREEN)
 
-	// SHOW_STRUCT(STRLIST, GREEN)
-	// SHOW_STRUCT(s2, CYAN)
+	// // Slices
+	// W.Println("")
+	// G.Println(" SLICES")
 
-	// //SHOW_STRUCT(sFIN, MAGENTA)
+	var SLICE = []string{"Spiderman", "IronMan", "Captain America"}
+	var slicey2 = COPY_DeepCopy(SLICE, SILENT).([]string)
+	slicey2[0] = "HULK"
+	slicey2[1] = "Thor"
+	slicey2[2] = "Black Widow"
+
+	SHOW_STRUCT(SLICE)
+	W.Println("")
+	SHOW_STRUCT(slicey2, GREEN)
 
 	// Y.Println("--")
-	// PressAny()
+	// DO_EXIT("-silent")
 
-	// //destMAP := COPY_Map(myMap)
-	// //tmpMAP := COPY_DeepCopyEngine(myMap)
-	// destMAP := tmpMAP.(MAP_TYPE)
-	// destMAP["Updated destMAP"] = "SellTheKid_MarkoMark"
-	// destMAP["bodycount"] = 145
-
-	// SHOW_STRUCT(myMap)
-	// SHOW_STRUCT(destMAP, CYAN)
-	PressAny()
-
-	SUPER_FREAK_Test("-sheep", "-maptest", myMap, "--int", 4, "-float", 5.56, "Your String TERRY", "-i64", test64, "-newcolor", BW)
+	//SUPER_FREAK_Test("-sheep", "-maptest", myMap, "--int", 4, "-float", 5.56, "Your String TERRY", "-i64", test64, "-newcolor", BW, "SECOND String FOUND")
+	//SUPER_FREAK_Test(myMap, "--testint", 4, "-flotest", 1.23, MAP2, SLICE, 5.56, asl, "FirstSTRING passed", 8.67, slicey2, "SECOND string data", visit, MAGENTA_WHITE)
 	//SUPER_FREAK_Test("Your String TERRY", myMap1, "Second Simple STRING", asl, mapTWO, SEC)
+
+	SUPER_FREAK_Test(myMap, "--testint", 4, "-myfloat", 1.23, 5.56, "FirstSTRING passed", 8.67)
 
 	// Error handling
 	if terryINT != 0 {
@@ -179,10 +210,8 @@ func main() {
 	}
 	if myMap != nil {
 	}
-	if len(STRLIST) > 0 {
+	if len(SLICE) > 0 {
 	}
-
-	PressAny()
 
 	DO_EXIT()
 

@@ -3,8 +3,8 @@ module local
 go 1.24.2
 
 require (
-	github.com/ace2z/GOGO/Gadgets v0.0.0-20250409201437-2ddf27f9b652
-	github.com/ace2z/GOGO/Gadgets/FileOPS v0.0.0-20250409201437-2ddf27f9b652
+	github.com/ace2z/GOGO/Gadgets v0.0.0-20250410060837-5de143493433
+	github.com/ace2z/GOGO/Gadgets/FileOPS v0.0.0-20250410060837-5de143493433
 	github.com/fatih/color v1.18.0
 )
 

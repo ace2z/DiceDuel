@@ -56,35 +56,82 @@ func SUPER_FREAK_Test(ALL_PARAMS ...interface{}) {
 	// if pm.HAVE_Param("-newcolor") {
 	// 	pm.COLOR.Println("You asked to print in THIS COLOR")
 	// }
-	if pm.IsColor() {
-		pm.COLOR.Println("You asked to print in THIS COLOR")
+	// if pm.IsColor() {
+	// 	pm.COLOR.Println("You asked to print in THIS COLOR")
+	// }
+
+	// if pm.HAVE_Param("-testint") {
+	// 	W.Println("Test INT you provided: ", pm.INT)
+	// }
+
+	// // if pm.IsString() {
+	// // 	W.Println("String: ", pm.STRING)
+	// // }
+	// if pm.IsMAP(1) {
+	// 	M.Print("MAP is: ")
+	// 	SHOW_STRUCT(pm.MAP)
+
+	// 	mval_name := pm.MAP["name"].(string)
+	// 	Y.Print("Mval NAME is: ")
+	// 	C.Println(mval_name)
+	// }
+
+	// if pm.IsARR(1) {
+	// 	W.Println("")
+	// 	W.Println(" []STRING Arr:")
+	// 	Y.Println(pm.ARR)
+	// }
+
+	// // If there is a GENERIC type structure we need to get, use this fucntion
+	// // If you want have multiples of the same GENERIC, pass an INT (like 2) to get the 2nd one
+	// if Param_GENERIC[TOLSTOY](pm, 2) {
+	// 	W.Println("")
+	// 	W.Println("")
+	// 	W.Println("YO, Here is your GENERIC: ")
+	// 	SHOW_STRUCT(pm.GENERIC)
+
+	// 	//To access the actual VALUE in a particular generic, use assertion like this:
+	// 	Y.Print("ACTUAL - Generic NAME is: ")
+	// 	C.Println(pm.GENERIC.(TOLSTOY).unexport_Field)
+	// 	W.Println("")
+	// }
+
+	// if pm.HAVE_Param("-myfloat") {
+	// 	W.Println("NAMED param float provided is: ")
+	// 	Y.Println(pm.FLOAT)
+	// }
+
+	// if pm.IsFloat(2) {
+	// 	W.Print("Float provided is: ")
+	// 	Y.Println(pm.FLOAT)
+	// }
+
+	if pm.HAVE_Param("-bees") {
+		W.Println("Bees are: ")
+		Y.Println(pm.PIPE)
+		C.Println("2ndVAL in pipe: ", pm.PIPE[2])
 	}
 
 	if pm.HAVE_Param("-testint") {
 		W.Println("Test INT you provided: ", pm.INT)
 	}
 
-	// if pm.IsString() {
-	// 	W.Println("String: ", pm.STRING)
-	// }
-	if pm.IsMAP(1) {
-		M.Print("MAP is: ")
-		SHOW_STRUCT(pm.MAP)
-
-		mval_name := pm.MAP["name"].(string)
-		Y.Print("Mval NAME is: ")
-		C.Println(mval_name)
+	if pm.IsINT() {
+		W.Println("\nFound INT: ", pm.INT)
 	}
 
-	if pm.IsARR(1) {
-		W.Println("")
-		W.Println(" []STRING Arr:")
-		Y.Println(pm.ARR)
+	if pm.IsFloat(2) {
+		W.Println("\nFound FLOAT: ", pm.FLOAT)
 	}
 
-	// If there is a GENERIC type structure we need to get, use this fucntion
-	// If you want have multiples of the same GENERIC, pass an INT (like 2) to get the 2nd one
-	if Param_GENERIC[TOLSTOY](pm, 2) {
+	if pm.IsString() {
+		W.Println("\nSTRING asked for: ", pm.STRING)
+	}
+	if pm.IsString(2) {
+		C.Println("\nSECOND string: ", pm.STRING)
+	}
+
+	if Param_GENERIC[TOLSTOY](pm) {
 		W.Println("")
 		W.Println("")
 		W.Println("YO, Here is your GENERIC: ")
@@ -96,14 +143,10 @@ func SUPER_FREAK_Test(ALL_PARAMS ...interface{}) {
 		W.Println("")
 	}
 
-	if pm.HAVE_Param("-myfloat") {
-		W.Println("NAMED param float provided is: ")
-		Y.Println(pm.FLOAT)
-	}
+	if pm.HAVE_Param("-darcy") {
+		W.Println("Darcy is: ")
+		Y.Println(pm.GENERIC)
 
-	if pm.IsFloat(2) {
-		W.Print("Float provided is: ")
-		Y.Println(pm.FLOAT)
 	}
 
 } //end of
@@ -152,15 +195,6 @@ func main() {
 	visit.Sex = "Male"
 	visit.unexport_Field = "La Fay"
 
-	// SHOW_STRUCT(asl)
-	// C.Print("unexport_Field: ")
-	// W.Println(asl.unexport_Field)
-
-	// SHOW_STRUCT(visit, GREEN)
-	// Y.Print("unexport_Field: ")
-	// G.Println(visit.unexport_Field)
-
-	// W.Println("")
 	// W.Println(" MAPS ")
 	myMap := NEW_Map()
 	myMap["name"] = "John Doe"
@@ -184,9 +218,9 @@ func main() {
 	slicey2[1] = "Thor"
 	slicey2[2] = "Black Widow"
 
-	SHOW_STRUCT(SLICE)
-	W.Println("")
-	SHOW_STRUCT(slicey2, GREEN)
+	// SHOW_STRUCT(SLICE)
+	// W.Println("")
+	// SHOW_STRUCT(slicey2, GREEN)
 
 	// Y.Println("--")
 	// DO_EXIT("-silent")
@@ -195,7 +229,7 @@ func main() {
 	//SUPER_FREAK_Test(myMap, "--testint", 4, "-flotest", 1.23, MAP2, SLICE, 5.56, asl, "FirstSTRING passed", 8.67, slicey2, "SECOND string data", visit, MAGENTA_WHITE)
 	//SUPER_FREAK_Test("Your String TERRY", myMap1, "Second Simple STRING", asl, mapTWO, SEC)
 
-	SUPER_FREAK_Test(myMap, "--testint", 4, "-myfloat", 1.23, 5.56, "FirstSTRING passed", 8.67)
+	SUPER_FREAK_Test(myMap, "--testint", 4, "-myfloat", 1.23, 5.56, MAP2, SLICE, "-darcy", asl, 43, visit, "FirstSTRING passed", 8.67, "-bees|3|50", 69, "SECOND StringStuff", slicey2)
 
 	// Error handling
 	if terryINT != 0 {

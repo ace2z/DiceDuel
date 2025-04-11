@@ -3,6 +3,7 @@ package EVENTS
 import (
 	// "flag"
 	. "local/CORE"
+	//"strings"
 	// . "github.com/ace2z/HP_COMMON"
 	. "github.com/ace2z/GOGO/Gadgets"
 )
@@ -28,19 +29,6 @@ var SIDE_MATRIX = []DSIDE_OBJ{
 	DSIDE_OBJ{5, []int{1, 3, 4, 6}, 2},
 	DSIDE_OBJ{6, []int{2, 3, 4, 5}, 1},
 }
-
-// func init() {
-// 	// This is the number of the side of the dice when facing UP
-// 	var d1 =
-// 	var d2 =
-
-// 	SIDE_MATRIX = append(SIDE_MATRIX[:], d1)
-// 	SIDE_MATRIX = append(SIDE_MATRIX[:], d2)
-// 	SIDE_MATRIX = append(SIDE_MATRIX[:], d3)
-// 	SIDE_MATRIX = append(SIDE_MATRIX[:], d4)
-// 	SIDE_MATRIX = append(SIDE_MATRIX[:], d5)
-// 	SIDE_MATRIX = append(SIDE_MATRIX[:], d6)
-// }
 
 func check_flip_action(val int, preval int, mode string) bool {
 
@@ -74,24 +62,12 @@ func check_flip_action(val int, preval int, mode string) bool {
 func Detect_diceSIDE_Probabilities(GM *HAND_OBJ, event EVENT_OBJ, GHIST *[]HAND_OBJ) bool {
 	PLACEHOLDER()
 	var name = event.NAME
-	var for_redby1 = CONTAINS(name, RED_by_ONE)
+	// when the Die flips by 360 degress (fully)
 	var for_red_full = CONTAINS(name, RED_FULL)
-	var for_blueby1 = CONTAINS(name, BLUE_by_ONE)
 	var for_blue_full = CONTAINS(name, BLUE_FULL)
-
-	red_by_one := for_redby1 && check_flip_action(GM.RED_B, GM.RED_A, "by1")
-	blue_by_one := for_blueby1 && check_flip_action(GM.BLUE_B, GM.BLUE_A, "by1")
 
 	redfull_flip := for_red_full && check_flip_action(GM.RED_B, GM.RED_A, "full")
 	bluefull_flip := for_blue_full && check_flip_action(GM.BLUE_B, GM.BLUE_A, "full")
-
-	// If the most recent flipped BY_1
-	if red_by_one {
-		return true
-	}
-	if blue_by_one {
-		return true
-	}
 
 	// If the most recent flipped FULL
 	if redfull_flip {
@@ -100,6 +76,19 @@ func Detect_diceSIDE_Probabilities(GM *HAND_OBJ, event EVENT_OBJ, GHIST *[]HAND_
 	if bluefull_flip {
 		return true
 	}
+
+	// NOT USING ANYMORE.. these occur too frequently... not that useful
+	// var for_redby1 = CONTAINS(name, RED_by_ONE)
+	// var for_blueby1 = CONTAINS(name, BLUE_by_ONE)
+	// red_by_one := for_redby1 && check_flip_action(GM.RED_B, GM.RED_A, "by1")
+	// blue_by_one := for_blueby1 && check_flip_action(GM.BLUE_B, GM.BLUE_A, "by1")
+	// If the most recent flipped BY_1
+	// if red_by_one {
+	// 	return true
+	// }
+	// if blue_by_one {
+	// 	return true
+	// }
 
 	return false
 

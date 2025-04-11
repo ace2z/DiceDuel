@@ -16,9 +16,11 @@ func detect_HAVE_1(GM *HAND_OBJ, event EVENT_OBJ, GHIST *[]HAND_OBJ) bool {
 	var for_blue = CONTAINS(name, BLUE_1)
 
 	if for_red && GM.RED_B == 1 {
+
 		return true
 	}
 	if for_blue && GM.BLUE_B == 1 {
+
 		return true
 	}
 

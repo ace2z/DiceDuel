@@ -14,15 +14,14 @@ const HI_NUM = 5 // This is the start of the HIGHEST numbers on the dice
 func detect_HI_NUM(GM *HAND_OBJ, event EVENT_OBJ, GHIST *[]HAND_OBJ) bool {
 	PLACEHOLDER()
 	var name = event.NAME
-	//hlen := len(*GHIST)
 
-	if CONTAINS(name, "RED_HINUM") {
+	if CONTAINS(name, RED_HINUM) {
 		if GM.RED_B >= HI_NUM {
 			return true
 		}
 	}
 
-	if CONTAINS(name, "BLUE_HINUM") {
+	if CONTAINS(name, BLUE_HINUM) {
 		if GM.BLUE_B >= HI_NUM {
 			return true
 		}

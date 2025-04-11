@@ -17,15 +17,12 @@ const (
 
 var HISTORY []HAND_OBJ
 
-type EVT_CM_OBJ struct {
-	NAME  string
-	COLOR *color.Color // Color style for displaying the event
+type LG_COL_OBJ struct {
+	ID       string
+	LG_COLOR lipgloss.Style
 }
 
-// Alternate wway to get colors for events
-var EVT_COLOR_MATRIX = []EVT_CM_OBJ{
-	{"DUMMY_COLOR", color.New(color.FgHiYellow, color.BgMagenta, color.Bold, color.Underline, color.BlinkSlow)},
-}
+var COLOR_MATRIX []LG_COL_OBJ // This is teh AD_HOC color matrix that the event system uses
 
 type EVENT_OBJ struct {
 	NAME     string
@@ -45,8 +42,10 @@ type EVENT_OBJ struct {
 	SHOW_ME bool                                                       // If FALSE, this event is hidden from the display
 	Handler func(GM *HAND_OBJ, event EVENT_OBJ, HIST *[]HAND_OBJ) bool `json:"-"` // Cant save this to JSON
 	// Color style for displaying the event
-	COLOR    *color.Color   `json:"-"` // Cant save this to JSON
-	LG_COLOR lipgloss.Style //`json:"-"` // Cant save this to JSON
+	COLOR    *color.Color   `json:"-"` // DONT  save this to JSON
+	LG_COLOR lipgloss.Style `json:"-"` // DONT  save this to JSON
+
+	COLOR_ID string // This is the LIPGLOSS, ID of the color in the COLOR_MATRIX
 }
 
 type META_OBJ struct {

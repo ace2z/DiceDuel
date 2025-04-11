@@ -1,7 +1,7 @@
-github.com/ace2z/GOGO/Gadgets v0.0.0-20250410235020-bfbe7a18055b h1:FeE2Jb3Gnsigwax9Za/EczSECUU0uPif0hc2EknkgLo=
-github.com/ace2z/GOGO/Gadgets v0.0.0-20250410235020-bfbe7a18055b/go.mod h1:tROpZeDcRVQYglDo6PyAxV5Mzw7I3lUbwr7ADssRSlI=
-github.com/ace2z/GOGO/Gadgets/FileOPS v0.0.0-20250410235020-bfbe7a18055b h1:4ORvwYJvLJaUMHrkeYzEtW/iLhGqmLOMFZkEJgjWVf0=
-github.com/ace2z/GOGO/Gadgets/FileOPS v0.0.0-20250410235020-bfbe7a18055b/go.mod h1:Tdoghr6OGoiE3x8wQGH2O93rjCAo8B8OkZneodQ4i9Y=
+github.com/ace2z/GOGO/Gadgets v0.0.0-20250411044630-823a1d67e410 h1:LW+siaGWt1GRuD3hvpZvEWEZUc1PcsoYNNx3Ukzztf4=
+github.com/ace2z/GOGO/Gadgets v0.0.0-20250411044630-823a1d67e410/go.mod h1:Z0FfxMD4lT4fNNR0cPyGiHHqjxcrYN1GnjwTc50N11Y=
+github.com/ace2z/GOGO/Gadgets/FileOPS v0.0.0-20250411044630-823a1d67e410 h1:rSJtD4vQf9Nv5uybeV1sctvNJnOPKOVtCSZrpNeLPqk=
+github.com/ace2z/GOGO/Gadgets/FileOPS v0.0.0-20250411044630-823a1d67e410/go.mod h1:Tdoghr6OGoiE3x8wQGH2O93rjCAo8B8OkZneodQ4i9Y=
 github.com/atotto/clipboard v0.1.4 h1:EH0zSVneZPSuFR11BlR9YppQTVDbh5+16AmcJi4g1z4=
 github.com/atotto/clipboard v0.1.4/go.mod h1:ZY9tmq7sm5xIbd9bOK4onWV4S6X0u6GY7Vn0Yu86PYI=
 github.com/aymanbagabas/go-osc52/v2 v2.0.1 h1:HwpRHbFMcZLEVr42D4p7XBqjyuxQH5SMiErDT4WkJ2k=

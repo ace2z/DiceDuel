@@ -3,8 +3,8 @@ module local
 go 1.24.2
 
 require (
-	github.com/ace2z/GOGO/Gadgets v0.0.0-20250410235020-bfbe7a18055b
-	github.com/ace2z/GOGO/Gadgets/FileOPS v0.0.0-20250410235020-bfbe7a18055b
+	github.com/ace2z/GOGO/Gadgets v0.0.0-20250411044630-823a1d67e410
+	github.com/ace2z/GOGO/Gadgets/FileOPS v0.0.0-20250411044630-823a1d67e410
 	github.com/charmbracelet/lipgloss v1.1.0
 	github.com/fatih/color v1.18.0
 )

@@ -96,6 +96,11 @@ func Load_Game_FromFile() {
 		tmp_files = append(tmp_files, file)
 	}
 
+	//3. RESET the current history
+	HISTORY = []HAND_OBJ{} // Clear the current history
+	WHITE_GREEN.Println("** History Cleared **")
+	W.Println("")
+
 	// Sort files alphabetically
 	sort.Strings(tmp_files)
 
@@ -112,35 +117,56 @@ func Load_Game_FromFile() {
 		ALL_FILES = append(ALL_FILES, fo)
 	}
 
-	// Ask the user to select a file
+	//4. PREHIST is where we PRELOAD the game history
+	// We will force all the itemns IN the history to go back through the game engine as if the user was playing
+	// This allows for us to maintain tthe ACTUAL hands... but load them into updated versions of the enginge
+	// Like when you ADD or MODIFY events
+	var PREHIST []HAND_OBJ
+
+	//4. Ask the user to select a file
 	C.Println("")
 	menu_num := Read_User_Input("Select a file to load: ", BOLD_MAGENTA, BOLD_YELLOW, 2, nil, "-digits", NOEOL)
 	mnum := STRING_to_INT(menu_num)
 
 	// Now Load the selection they specified
+	var loaded = false
 	for _, x := range ALL_FILES {
 
-		// If file is FOUND
-		if x.NUM == mnum {
-			// Load the game from the selected file
-			// This function should deserialize the game object from a file
-			// and return it
-
-			HISTORY = []HAND_OBJ{} // Clear the current history
-			W.Println("")
-
-			err := LOAD_Struct_from_FILE(x.FULLPATH, &HISTORY, false)
-			if err != nil {
-				M.Println(err)
-			}
-
-			return
+		// skip if no match user selected
+		if x.NUM != mnum {
+			continue
 		}
+		// OTHEWISE
+		// Load the game from the selected file
+		// This function should deserialize the game object from a file
+		// and return it
+
+		err := LOAD_Struct_from_FILE(x.FULLPATH, &PREHIST, false)
+		if err != nil {
+			M.Println(err)
+			break
+		}
+		loaded = true
+
+		// Always break regardless of success or failure
+		break
+
 	}
 
-	//3. Ifw e get this far, means we DIDNT find the users selection
-	M.Println("")
-	MW.Println("ERROR: Invalid Selection")
-	M.Println("")
+	//4b Error Hanlding
+	if loaded == false {
+
+		//3. Ifw e get this far, means we DIDNT find the users selection
+		M.Println("")
+		MW.Println("ERROR: Invalid Selection")
+		M.Println("")
+	}
+
+	//5. Otherwise, Now loop through the PREHIST and process each hand as if we are entering them manually
+	for _, hnd := range PREHIST {
+		var red = INT_to_STRING(hnd.RED_B) + INT_to_STRING(hnd.RED_A)
+		var blue = INT_to_STRING(hnd.BLUE_B) + INT_to_STRING(hnd.BLUE_A)
+		Dice_Engine_INIT(red, blue) // Processes the hand and updates teh History
+	}
 
 }

@@ -34,8 +34,8 @@ func populate_EVENTS_LIST() {
 
 	EVENT_LIST = []EVENT_OBJ{
 
-		// {RED_INC, 1, NULV, "", "", NULV, NULV, "", true, detect_INC_DROP, nil, LG_JUST_RED},
-		// {BLUE_INC, 1, NULV, "", "", NULV, NULV, "", true, detect_INC_DROP, nil, LG_JUST_BLUE},
+		{RED_INC, 1, NULV, "", "", NULV, NULV, "", true, detect_INC_DROP, nil, LG_JUST_RED, ""},
+		{BLUE_INC, 1, NULV, "", "", NULV, NULV, "", true, detect_INC_DROP, nil, LG_JUST_BLUE, ""},
 
 		{RED_FULL, 5, NULV, "", "", NULV, NULV, "", true, Detect_diceSIDE_Probabilities, nil, LG_RED_360, ""},
 		{BLUE_FULL, 5, NULV, "", "", NULV, NULV, "", true, Detect_diceSIDE_Probabilities, nil, LG_BLUE_360, ""},
@@ -43,10 +43,10 @@ func populate_EVENTS_LIST() {
 		{RED_1, 4, NULV, "", "", NULV, NULV, "", true, detect_HAVE_1, nil, LG_WHITE_RED_UNDY, ""},
 		{BLUE_1, 4, NULV, "", "", NULV, NULV, "", true, detect_HAVE_1, nil, LG_LIGHT_on_BLUE_UNDY, ""},
 
-		{RED_HINUM, 1, NULV, "", "", NULV, NULV, "", true, detect_HI_NUM, nil, LG_WHITE_ORANGE, ""},
-		{BLUE_HINUM, 1, NULV, "", "", NULV, NULV, "", true, detect_HI_NUM, nil, LG_WHITE_PURPLE, ""},
+		{RED_HINUM, 2, NULV, "", "", NULV, NULV, "", true, detect_HI_NUM, nil, LG_WHITE_ORANGE, ""},
+		{BLUE_HINUM, 2, NULV, "", "", NULV, NULV, "", true, detect_HI_NUM, nil, LG_WHITE_PURPLE, ""},
 
-		{COMMON_NUMS, 1, NULV, "", "", NULV, NULV, "", true, detect_COMMON_NUMS, nil, LG_COMMON_NUMS, ""},
+		{COMMON_NUMS, 6, NULV, "", "", NULV, NULV, "", true, detect_COMMON_NUMS, nil, LG_COMMON_NUMS, ""},
 
 		// {RED_by_ONE, 1, NULV, "", "", NULV, NULV, "", true, Detect_diceSIDE_Probabilities, nil, LG_WHITE_ORANGE},
 		// {BLUE_by_ONE, 1, NULV, "", "", NULV, NULV, "", true, Detect_diceSIDE_Probabilities, nil, LG_WHITE_PURPLE},

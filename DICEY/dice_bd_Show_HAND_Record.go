@@ -166,7 +166,7 @@ func show_RedBlue_DIFF(HND HAND_OBJ) {
 }
 
 var arrow_char = "➤"
-
+var arrow2 = "↩"
 var even_COLOR = color.New(color.FgHiRed, color.BgHiYellow)
 var odd_COLOR = color.New(color.FgHiBlack, color.BgHiWhite, color.Bold)
 
@@ -191,21 +191,21 @@ func Show_HAND(IND int, ACCENT_COLOR *color.Color) {
 
 	//3. Now determine if there is a FUTURE hand winner
 	// This shows FUTURE WINNER (of the hand following this one ..if it is avaiable)
-	if HND.NEXT_WINNER != "" {
-		//W.Print(" " + arrow_char + arrow_char)
-		show_winner(HND.NEXT_WINNER, true)
-	} else {
-		W.Print("      ")
-	}
+	// if HND.NEXT_WINNER != "" {
+
+	// 	show_winner(HND.NEXT_WINNER, true)
+	// } else {
+	// 	W.Print("      ")
+	// }
 
 	W.Print(" ")
-	M.Print(HND.RED_A)
-	G.Print(arrow_char)
 	M.Print(HND.RED_B)
+	G.Print(arrow2)
+	M.Print(HND.RED_A)
 	W.Print(",")
-	C.Print(HND.BLUE_A)
-	G.Print(arrow_char)
 	C.Print(HND.BLUE_B)
+	G.Print(arrow2)
+	C.Print(HND.BLUE_A)
 	W.Print(" | ")
 
 	//3. Iterate through the events. Show them with the colors specified

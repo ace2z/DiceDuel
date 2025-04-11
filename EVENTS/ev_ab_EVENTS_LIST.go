@@ -26,8 +26,8 @@ const (
 	RED_INC     string = "Red_INC"
 	BLUE_INC    string = "Blu_INC"
 
-	RED_HINUM  string = "reHI"
-	BLUE_HINUM string = "blHI"
+	RED_HINUM  string = "HIred"
+	BLUE_HINUM string = "HIblu"
 )
 
 func populate_EVENTS_LIST() {

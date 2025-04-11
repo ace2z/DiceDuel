@@ -2,40 +2,44 @@ package EVENTS
 
 import (
 	// "flag"
+	//"fmt"
 	. "local/CORE"
 	// . "github.com/ace2z/HP_COMMON"
 	//"encoding/json"
 	//. "github.com/ace2z/GOGO/Gadgets"
-	"github.com/fatih/color"
+	//	"github.com/fatih/color"
+	// "github.com/charmbracelet/lipgloss"
 )
 
-var red_by_ONE_color = color.New(color.FgHiYellow, color.BgMagenta, color.Bold, color.Underline, color.BlinkSlow)
-var blu_by_ONE_color = color.New(color.FgHiBlue, color.BgWhite, color.Bold, color.Underline, color.BlinkSlow)
+var EVENT_LIST []EVENT_OBJ
 
-var just_BLUE_1 = color.New(color.FgBlue, color.BgCyan)
-var just_RED_1 = color.New(color.FgYellow, color.BgMagenta, color.Bold) //color.New(color.FgHiRed, color.BgYellow)
+// Event Names.. to make them consistent across functions that show or consume them
+const (
+	RED_by_ONE  string = " RED*by*ONE "
+	BLUE_by_ONE string = " BLU*by*ONE "
+	RED_FULL    string = " RED_FULL "
+	BLUE_FULL   string = " BLU_FULL "
+	RED_1       string = " RED_1 "
+	BLUE_1      string = " BLU_1 "
+	RED_INC     string = "Red_INC"
+	BLUE_INC    string = "Blu_INC"
+)
 
-var red_hinum = color.New(color.FgYellow, color.BgMagenta, color.Bold)
-var blue_hinum = color.New(color.FgBlue, color.BgCyan)
+func populate_EVENTS_LIST() {
 
-var redside_col = color.New(color.FgBlue, color.BgHiMagenta)
-var blueside_col = color.New(color.FgYellow, color.BgHiBlue) //color.New(color.FgHiRed, color.BgYellow)
+	EVENT_LIST = []EVENT_OBJ{
 
-var EVENT_LIST = []EVENT_OBJ{
-	{"DiceFlip", 1, NULV, "", "", NULV, NULV, "", true, Detect_diceSIDE_Probabilities, nil},
+		{RED_INC, 1, NULV, "", "", NULV, NULV, "", true, detect_INC_DROP, nil, LG_JUST_RED},
+		{BLUE_INC, 1, NULV, "", "", NULV, NULV, "", true, detect_INC_DROP, nil, LG_JUST_BLUE},
 
-	// {"RED_INC++", 1, NULV, "", "", NULV, NULV, "", detect_INC_DROP, BOLD_MAGENTA},
-	// {"BLUE_INC++", 1, NULV, "", "", NULV, NULV, "", detect_INC_DROP, BOLD_CYAN},
+		{RED_by_ONE, 1, NULV, "", "", NULV, NULV, "", true, Detect_diceSIDE_Probabilities, nil, LG_WHITE_ORANGE},
+		{BLUE_by_ONE, 1, NULV, "", "", NULV, NULV, "", true, Detect_diceSIDE_Probabilities, nil, LG_WHITE_PURPLE},
 
-	// {" RED_1 ", 1, NULV, "", "", NULV, NULV, "", detect_HAVE_1, just_RED_1},
-	// {" BLUE_1 ", 1, NULV, "", "", NULV, NULV, "", detect_HAVE_1, just_BLUE_1},
+		{RED_FULL, 1, NULV, "", "", NULV, NULV, "", true, Detect_diceSIDE_Probabilities, nil, LG_RED_RED},
+		{BLUE_FULL, 1, NULV, "", "", NULV, NULV, "", true, Detect_diceSIDE_Probabilities, nil, LG_BLUE_BLUE},
 
-	// {" redB1 ", 1, NULV, "", "", NULV, NULV, "", detect_diceSIDES, redside_col},
-	// {" blueB1 ", 1, NULV, "", "", NULV, NULV, "", detect_diceSIDES, blueside_col},
+		{RED_1, 1, NULV, "", "", NULV, NULV, "", true, Detect_diceSIDE_Probabilities, nil, LG_WHITE_RED},
+		{BLUE_1, 1, NULV, "", "", NULV, NULV, "", true, Detect_diceSIDE_Probabilities, nil, LG_LIGHT_on_BLUE},
+	}
 
-	// {" RED_FULL ", 1, NULV, "", "", NULV, NULV, "", detect_diceSIDES, redside_col},
-	// {" BLUE_FULL ", 1, NULV, "", "", NULV, NULV, "", detect_diceSIDES, blueside_col},
-
-	// {" RED_HINUM ", 1, NULV, "", "", NULV, NULV, "", detect_HI_NUM, red_hinum},
-	// {" BLUE_HINUM ", 1, NULV, "", "", NULV, NULV, "", detect_HI_NUM, blue_hinum},
 }

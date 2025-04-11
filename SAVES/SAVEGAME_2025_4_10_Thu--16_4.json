@@ -1,0 +1,258 @@
+[
+	{
+		"RED_B": 4,
+		"RED_A": 5,
+		"BLUE_B": 3,
+		"BLUE_A": 2,
+		"META": {
+			"RB_DIFF": 1,
+			"PREV_RB_DIFF": 3
+		},
+		"EVENTS": [
+			{
+				"NAME": "BLUE_INC",
+				"PRIORITY": 1,
+				"LAST_SEEN": -999,
+				"LAST_SEEN_WINNER": "",
+				"LAST_SEEN_NEXTWINNER": "",
+				"VAL": -999,
+				"PREVVAL": -999,
+				"SIGNATURE": "",
+				"SHOW_ME": true
+			},
+			{
+				"NAME": " red*B1 ",
+				"PRIORITY": 1,
+				"LAST_SEEN": -999,
+				"LAST_SEEN_WINNER": "",
+				"LAST_SEEN_NEXTWINNER": "",
+				"VAL": -999,
+				"PREVVAL": -999,
+				"SIGNATURE": "",
+				"SHOW_ME": true
+			},
+			{
+				"NAME": " blue*B1 ",
+				"PRIORITY": 1,
+				"LAST_SEEN": -999,
+				"LAST_SEEN_WINNER": "",
+				"LAST_SEEN_NEXTWINNER": "",
+				"VAL": -999,
+				"PREVVAL": -999,
+				"SIGNATURE": "",
+				"SHOW_ME": true
+			}
+		],
+		"WINNER": "RED",
+		"NEXT_WINNER": "BLUE",
+		"GAME_SESSION": "8675309",
+		"HID": "1_Ra:5-Rb:4_Ba:2-Bb:3_SESS:8675309"
+	},
+	{
+		"RED_B": 4,
+		"RED_A": 2,
+		"BLUE_B": 5,
+		"BLUE_A": 6,
+		"META": {
+			"RB_DIFF": 1,
+			"PREV_RB_DIFF": 4
+		},
+		"EVENTS": [
+			{
+				"NAME": "RED_INC",
+				"PRIORITY": 1,
+				"LAST_SEEN": -999,
+				"LAST_SEEN_WINNER": "",
+				"LAST_SEEN_NEXTWINNER": "",
+				"VAL": -999,
+				"PREVVAL": -999,
+				"SIGNATURE": "",
+				"SHOW_ME": true
+			},
+			{
+				"NAME": " red*B1 ",
+				"PRIORITY": 1,
+				"LAST_SEEN": 1,
+				"LAST_SEEN_WINNER": "RED",
+				"LAST_SEEN_NEXTWINNER": "",
+				"VAL": -999,
+				"PREVVAL": -999,
+				"SIGNATURE": "",
+				"SHOW_ME": true
+			},
+			{
+				"NAME": " blue*B1 ",
+				"PRIORITY": 1,
+				"LAST_SEEN": 1,
+				"LAST_SEEN_WINNER": "RED",
+				"LAST_SEEN_NEXTWINNER": "",
+				"VAL": -999,
+				"PREVVAL": -999,
+				"SIGNATURE": "",
+				"SHOW_ME": true
+			}
+		],
+		"WINNER": "BLUE",
+		"NEXT_WINNER": "BLUE",
+		"GAME_SESSION": "8675309",
+		"HID": "2_Ra:2-Rb:4_Ba:6-Bb:5_SESS:8675309"
+	},
+	{
+		"RED_B": 5,
+		"RED_A": 1,
+		"BLUE_B": 6,
+		"BLUE_A": 4,
+		"META": {
+			"RB_DIFF": 1,
+			"PREV_RB_DIFF": 3
+		},
+		"EVENTS": [
+			{
+				"NAME": "RED_INC",
+				"PRIORITY": 1,
+				"LAST_SEEN": 1,
+				"LAST_SEEN_WINNER": "BLUE",
+				"LAST_SEEN_NEXTWINNER": "",
+				"VAL": -999,
+				"PREVVAL": -999,
+				"SIGNATURE": "",
+				"SHOW_ME": true
+			},
+			{
+				"NAME": "BLUE_INC",
+				"PRIORITY": 1,
+				"LAST_SEEN": 2,
+				"LAST_SEEN_WINNER": "RED",
+				"LAST_SEEN_NEXTWINNER": "",
+				"VAL": -999,
+				"PREVVAL": -999,
+				"SIGNATURE": "",
+				"SHOW_ME": true
+			},
+			{
+				"NAME": " red*B1 ",
+				"PRIORITY": 1,
+				"LAST_SEEN": 2,
+				"LAST_SEEN_WINNER": "RED",
+				"LAST_SEEN_NEXTWINNER": "",
+				"VAL": -999,
+				"PREVVAL": -999,
+				"SIGNATURE": "",
+				"SHOW_ME": true
+			},
+			{
+				"NAME": " blue*B1 ",
+				"PRIORITY": 1,
+				"LAST_SEEN": 2,
+				"LAST_SEEN_WINNER": "RED",
+				"LAST_SEEN_NEXTWINNER": "",
+				"VAL": -999,
+				"PREVVAL": -999,
+				"SIGNATURE": "",
+				"SHOW_ME": true
+			}
+		],
+		"WINNER": "BLUE",
+		"NEXT_WINNER": "BLUE",
+		"GAME_SESSION": "8675309",
+		"HID": "3_Ra:1-Rb:5_Ba:4-Bb:6_SESS:8675309"
+	},
+	{
+		"RED_B": 1,
+		"RED_A": 4,
+		"BLUE_B": 5,
+		"BLUE_A": 3,
+		"META": {
+			"RB_DIFF": 4,
+			"PREV_RB_DIFF": 1
+		},
+		"EVENTS": [
+			{
+				"NAME": "BLUE_INC",
+				"PRIORITY": 1,
+				"LAST_SEEN": 3,
+				"LAST_SEEN_WINNER": "RED",
+				"LAST_SEEN_NEXTWINNER": "BLUE",
+				"VAL": -999,
+				"PREVVAL": -999,
+				"SIGNATURE": "",
+				"SHOW_ME": true
+			},
+			{
+				"NAME": " red*B1 ",
+				"PRIORITY": 1,
+				"LAST_SEEN": 3,
+				"LAST_SEEN_WINNER": "RED",
+				"LAST_SEEN_NEXTWINNER": "BLUE",
+				"VAL": -999,
+				"PREVVAL": -999,
+				"SIGNATURE": "",
+				"SHOW_ME": true
+			},
+			{
+				"NAME": " blue*B1 ",
+				"PRIORITY": 1,
+				"LAST_SEEN": 3,
+				"LAST_SEEN_WINNER": "RED",
+				"LAST_SEEN_NEXTWINNER": "BLUE",
+				"VAL": -999,
+				"PREVVAL": -999,
+				"SIGNATURE": "",
+				"SHOW_ME": true
+			},
+			{
+				"NAME": " RED_1 ",
+				"PRIORITY": 1,
+				"LAST_SEEN": -999,
+				"LAST_SEEN_WINNER": "",
+				"LAST_SEEN_NEXTWINNER": "",
+				"VAL": -999,
+				"PREVVAL": -999,
+				"SIGNATURE": "",
+				"SHOW_ME": true
+			}
+		],
+		"WINNER": "BLUE",
+		"NEXT_WINNER": "RED",
+		"GAME_SESSION": "8675309",
+		"HID": "4_Ra:4-Rb:1_Ba:3-Bb:5_SESS:8675309"
+	},
+	{
+		"RED_B": 3,
+		"RED_A": 4,
+		"BLUE_B": 2,
+		"BLUE_A": 5,
+		"META": {
+			"RB_DIFF": 1,
+			"PREV_RB_DIFF": 1
+		},
+		"EVENTS": [
+			{
+				"NAME": " RED_FULL ",
+				"PRIORITY": 1,
+				"LAST_SEEN": -999,
+				"LAST_SEEN_WINNER": "",
+				"LAST_SEEN_NEXTWINNER": "",
+				"VAL": -999,
+				"PREVVAL": -999,
+				"SIGNATURE": "",
+				"SHOW_ME": true
+			},
+			{
+				"NAME": " BLUE_FULL ",
+				"PRIORITY": 1,
+				"LAST_SEEN": -999,
+				"LAST_SEEN_WINNER": "",
+				"LAST_SEEN_NEXTWINNER": "",
+				"VAL": -999,
+				"PREVVAL": -999,
+				"SIGNATURE": "",
+				"SHOW_ME": true
+			}
+		],
+		"WINNER": "RED",
+		"NEXT_WINNER": "",
+		"GAME_SESSION": "8675309",
+		"HID": "5_Ra:4-Rb:3_Ba:5-Bb:2_SESS:8675309"
+	}
+]

@@ -5,6 +5,7 @@ import (
 
 	. "local/CORE"
 	. "local/EVENTS"
+	. "local/META"
 
 	//	"bufio"
 	//"fmt"
@@ -96,7 +97,9 @@ func Dice_Engine_INIT(INPUT_RED_DICE string, INPUT_BLUE_DICE string) {
 		Y.Println("")
 		Y.Print(" Enter numeric dice values")
 		W.Print(" for LAST 2 Games ")
-		Y.Println("...do RED first ")
+		Y.Print("...do ")
+		M.Print("RED ")
+		Y.Println("first ")
 
 		tmp_red := Read_User_Input("      RED DICE: ", BOLD_MAGENTA, BOLD_YELLOW, 2, also_allowed, "-digits", NOEOL)
 		if tmp_red == "" || Extra_KEYS_Handle_Engine(tmp_red) {
@@ -130,14 +133,16 @@ func Dice_Engine_INIT(INPUT_RED_DICE string, INPUT_BLUE_DICE string) {
 	tmpid += "_SESS:" + TMP_GAME_SESS
 	HND.HID = tmpid
 
-	// 6. = = = = Evaluate this Hand/Game.. based on dice Values
-	// We have a seriues of custom EVENTS that we want to check for
+	// 6. Process all the META DATA for this HAND
+	MetaData_Generation_ENGINE(&HND, &HISTORY)
+
+	// 7. = = = = Evaluate for EVENTS. We have a seriues of custom EVENTS that we want to check for
 	DL_Events_Engine(&HND, &HISTORY)
 
-	//7. Now that we have all EVENTS... save game to HISTORY
+	//8. Now with everything checked generated and events checked for, we SAVE TO HISTORY
 	HISTORY = append(HISTORY, HND)
 
-	//8. ALSO!!! Update the "FUTURE_WININER" of the PREVIOUS hand in history
+	//9. ALSO!!! Update the "FUTURE_WININER" of the PREVIOUS hand in history
 	hlen := len(HISTORY)
 	if hlen >= 2 {
 		pind := hlen - 2 // PREVIOUS item... before last one we just added
@@ -147,8 +152,5 @@ func Dice_Engine_INIT(INPUT_RED_DICE string, INPUT_BLUE_DICE string) {
 		prev.NEXT_WINNER = HND.WINNER
 		HISTORY[pind] = prev
 	}
-
-	SHOW_STRUCT(HISTORY)
-	PressAny()
 
 } // end of DICEY

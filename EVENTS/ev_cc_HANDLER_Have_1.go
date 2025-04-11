@@ -3,15 +3,17 @@ package EVENTS
 import (
 	// "flag"
 	// . "local/_API_MBOUM"
-	// . "github.com/ace2z/HP_COMMON"
+	"strings"
+
 	. "github.com/ace2z/GOGO/Gadgets"
+	. "local/CORE"
 )
 
 func detect_HAVE_1(GM *HAND_OBJ, event EVENT_OBJ, GHIST *[]HAND_OBJ) bool {
 	PLACEHOLDER()
-	var name = event.NAME
-	var for_red = CONTAINS(name, "RED_1")
-	var for_blue = CONTAINS(name, "BLUE_1")
+	var name = strings.TrimSpace(event.NAME)
+	var for_red = CONTAINS(name, RED_1)
+	var for_blue = CONTAINS(name, BLUE_1)
 
 	if for_red && GM.RED_B == 1 {
 		return true

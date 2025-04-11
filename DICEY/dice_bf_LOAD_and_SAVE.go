@@ -18,7 +18,6 @@ import (
 )
 
 var FILE_PREFIX = "SAVEGAME_"
-var FILE_EXT = ".json"
 var DEST_PATH = "SAVES/"
 
 var SG_filename string
@@ -39,7 +38,7 @@ func Save_Game_ToFile() bool {
 
 		weekd = weekd[0:3]
 
-		SG_filename = FILE_PREFIX + year + "_" + month + "_" + day + "_" + weekd + "--" + hour + "_" + minute + FILE_EXT
+		SG_filename = FILE_PREFIX + year + "_" + month + "_" + day + "_" + weekd + "--" + hour + "_" + minute
 	}
 
 	SG_filename = DEST_PATH + SG_filename
@@ -69,15 +68,13 @@ type LOADFILE_OBJ struct {
 }
 
 func Load_Game_FromFile() {
-	var SGDIR = DEST_PATH + FILE_PREFIX + "*" + FILE_EXT
+	var SGDIR = DEST_PATH + FILE_PREFIX + "*"
 
 	W.Println("")
 	W.Println("")
 	G.Print("Load from Saved Games: ")
 	C.Println(SGDIR)
 	W.Println("")
-
-	C.Println("")
 
 	// Find all the files with SAVEGAME_ prefix
 	files, err := filepath.Glob(SGDIR)

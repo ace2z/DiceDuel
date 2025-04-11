@@ -6,11 +6,14 @@ import (
 	// . "github.com/ace2z/HP_COMMON"
 	//"encoding/json"
 	//. "github.com/ace2z/GOGO/Gadgets"
+	"github.com/charmbracelet/lipgloss"
 	"github.com/fatih/color"
 )
 
-const NULV = -999
-const NULLV = NULV
+const (
+	NULV  int = -999
+	NULLV int = NULV
+)
 
 var HISTORY []HAND_OBJ
 
@@ -39,11 +42,11 @@ type EVENT_OBJ struct {
 	SIGNATURE string // If applicable, this is a SIGNATURE of this event. Something that makes it searchable (not always unique)
 
 	// this is the HANDLER function that does the LOGIC for detecting this particular event
-	// Name must be lowercase or underscore
-	SHOW_ME bool // If FALSE, this event is hidden from the display
-	Handler func(GM *HAND_OBJ, event EVENT_OBJ, HIST *[]HAND_OBJ) bool
-	COLOR   *color.Color // Color style for displaying the event
-
+	SHOW_ME bool                                                       // If FALSE, this event is hidden from the display
+	Handler func(GM *HAND_OBJ, event EVENT_OBJ, HIST *[]HAND_OBJ) bool `json:"-"` // Cant save this to JSON
+	// Color style for displaying the event
+	COLOR    *color.Color   `json:"-"` // Cant save this to JSON
+	LG_COLOR lipgloss.Style //`json:"-"` // Cant save this to JSON
 }
 
 type META_OBJ struct {
@@ -58,8 +61,9 @@ type HAND_OBJ struct {
 	BLUE_B int // B is the most recent BLUE dice value
 	BLUE_A int // A is the previous BLUE dice value
 
+	META META_OBJ // This is the meta data for this hand. Extra data like the diff between B and A dice values
+
 	EVENTS []EVENT_OBJ
-	META   META_OBJ // This is the meta data for this hand
 
 	WINNER      string // This is the WINNER of this hand
 	NEXT_WINNER string // This is the FUTURE/ Following Winner of the NEXT hand (when we have it)

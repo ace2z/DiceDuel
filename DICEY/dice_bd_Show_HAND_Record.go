@@ -7,12 +7,15 @@ import (
 
 	. "local/EVENTS"
 
+	"fmt"
+
 	// "bufio"
 	// "os"
 
 	"strings"
 
 	. "github.com/ace2z/GOGO/Gadgets"
+	"github.com/charmbracelet/lipgloss"
 	//"github.com/rivo/tview" // https://github.com/rivo/tview/tree/master
 	// "strings"
 	// "time"
@@ -69,6 +72,45 @@ func find_EVENT_ColorStyle_and_PRINT(evt EVENT_OBJ) *color.Color {
 	return color.New(color.FgWhite)
 }
 
+// Shows the event in the color/style using LIP GLOSS
+func LG_showEvent(evt EVENT_OBJ) {
+	var COLOR lipgloss.Style
+	var event string
+	for _, me := range EVENT_LIST {
+
+		// Skip if not match
+		if CONTAINS(evt.NAME, me.NAME) == false {
+			continue
+		}
+
+		COLOR = me.LG_COLOR
+		event = me.NAME
+		break
+	}
+
+	if event != "" {
+		// Otherwise we have a match. Exit when done
+		fmt.Print(COLOR.Render(event))
+		W.Print(" ")
+		return
+	}
+
+	// // If we get this far.. means we did NOT find a color define din the EVENT_LIST
+	// // So now we need to search the COLOR_MATRIX
+	// for _, cm := range EVT_COLOR_MATRIX {
+	// 	// Skip if not match
+	// 	if CONTAINS(evt.NAME, cm.NAME) == false {
+	// 		continue
+	// 	}
+
+	// 	// Otherwise we have a match. Exit when done
+	// 	return cm.COLOR
+	// }
+
+	// // If no color is defined, return a default color
+	// return color.New(color.FgWhite)
+}
+
 var red_wins_COL = WHITE_RED
 var blue_wins_COL = WHITE_BLUE
 var tie_wins_COL = BLUE_GREEN
@@ -82,21 +124,19 @@ func show_winner(win_tmp string, use_arrows bool) {
 			BOLD_MAGENTA.Print(arrow_char + arrow_char)
 		}
 		WR.Print(" R ")
-		W.Print(" ")
 	} else if strings.Contains(win_tmp, "B") {
 		if use_arrows {
 			W.Print(" ")
 			BOLD_CYAN.Print(arrow_char + arrow_char)
 		}
 		blue_wins_COL.Print(" B ")
-		W.Print(" ")
+
 	} else if strings.Contains(win_tmp, "T") {
 		if use_arrows {
 			W.Print(" ")
 			BOLD_GREEN.Print(arrow_char + arrow_char)
 		}
 		tie_wins_COL.Print(" T ")
-		W.Print(" ")
 	}
 
 }
@@ -104,22 +144,8 @@ func show_winner(win_tmp string, use_arrows bool) {
 func show_RedBlue_DIFF(HND HAND_OBJ) {
 
 	// Search through the events for the RB_DIFF
-	var rbdiff = NULLV
-	var prev_diff = NULLV
-	for _, evt := range HND.EVENTS {
-		if CONTAINS(evt.NAME, "RB_DIFF") == false {
-			continue
-		}
-
-		// Otherwise we have a match. Exit when done
-		rbdiff = evt.VAL
-		prev_diff = evt.PREVVAL
-		break
-	}
-	//error handling
-	if rbdiff == NULLV {
-		return
-	}
+	var rbdiff = HND.META.RB_DIFF
+	var prev_diff = HND.META.PREV_RB_DIFF
 
 	W.Print(" ")
 	if IS_EVEN(rbdiff) {
@@ -165,9 +191,10 @@ func Show_HAND(IND int, ACCENT_COLOR *color.Color) {
 		//W.Print(" " + arrow_char + arrow_char)
 		show_winner(HND.NEXT_WINNER, true)
 	} else {
-		W.Print("       ")
+		W.Print("      ")
 	}
 
+	W.Print(" ")
 	M.Print(HND.RED_A)
 	G.Print(arrow_char)
 	M.Print(HND.RED_B)
@@ -185,17 +212,22 @@ func Show_HAND(IND int, ACCENT_COLOR *color.Color) {
 		}
 		// if this evnt name has spaces in it.. Usually means this is a reverse color type event
 		// We need to do an indent
-		if strings.Contains(evt.NAME, " ") {
-			W.Println(" ")
-		}
+		//		var need_indent = false
+		// if strings.Contains(evt.NAME, " ") {
+		// 	//			need_indent = true
+		// 	W.Print(" ")
+		// }
 
 		// Search through the EVENTS list, and find the one that matches the name
 		// This is a hack we need because of the behavior from LOAD from Disk and SAVE to DISK (via struct as JSON)
 		// We have to do it this way because coolors arent not saved to the struct (color.Color is NOT exportable)
 		// nor does it have a JSON representation
 		// So we have to use the EVENT_LIST or the EVT_COLOR_MATRIX....to find and print the right color/style
-		find_EVENT_ColorStyle_and_PRINT(evt).Print(evt.NAME)
-		BOLD_WHITE.Print(" ")
+		//find_EVENT_ColorStyle_and_PRINT(evt).Print(evt.NAME)
+
+		// Alt using LIP GLOSS
+		LG_showEvent(evt)
+
 	}
 
 	W.Println("")

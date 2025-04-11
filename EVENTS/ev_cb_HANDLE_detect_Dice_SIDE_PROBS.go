@@ -74,10 +74,10 @@ func check_flip_action(val int, preval int, mode string) bool {
 func Detect_diceSIDE_Probabilities(GM *HAND_OBJ, event EVENT_OBJ, GHIST *[]HAND_OBJ) bool {
 	PLACEHOLDER()
 	var name = event.NAME
-	var for_redby1 = CONTAINS(name, "redB1")
-	var for_red_full = CONTAINS(name, "RED_FULL")
-	var for_blueby1 = CONTAINS(name, "blueB1")
-	var for_blue_full = CONTAINS(name, "BLUE_FULL")
+	var for_redby1 = CONTAINS(name, RED_by_ONE)
+	var for_red_full = CONTAINS(name, RED_FULL)
+	var for_blueby1 = CONTAINS(name, BLUE_by_ONE)
+	var for_blue_full = CONTAINS(name, BLUE_FULL)
 
 	red_by_one := for_redby1 && check_flip_action(GM.RED_B, GM.RED_A, "by1")
 	blue_by_one := for_blueby1 && check_flip_action(GM.BLUE_B, GM.BLUE_A, "by1")

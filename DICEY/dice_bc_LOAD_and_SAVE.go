@@ -67,7 +67,7 @@ type LOADFILE_OBJ struct {
 	NUM      int
 }
 
-func Load_Game_FromFile() {
+func Load_Game_FromFile(load_file_num int) {
 	var SGDIR = DEST_PATH + FILE_PREFIX + "*"
 
 	W.Println("")
@@ -123,17 +123,23 @@ func Load_Game_FromFile() {
 	// Like when you ADD or MODIFY events
 	var PREHIST []HAND_OBJ
 
-	//4. Ask the user to select a file
-	C.Println("")
-	menu_num := Read_User_Input("Select a file to load: ", BOLD_MAGENTA, BOLD_YELLOW, 2, nil, "-digits", NOEOL)
-	mnum := STRING_to_INT(menu_num)
+	var auto_load = false
+	if load_file_num > 0 {
+		auto_load = true
+	}
+	//4b. If load_file_num is 0, we PROMPT the user. Ask the user to select a file
+	if auto_load == false {
+		C.Println("")
+		menu_num := Read_User_Input("Select a file to load: ", BOLD_MAGENTA, BOLD_YELLOW, 2, nil, "-digits", NOEOL)
+		load_file_num = STRING_to_INT(menu_num)
+	}
 
 	// Now Load the selection they specified
 	var loaded = false
 	for _, x := range ALL_FILES {
 
 		// skip if no match user selected
-		if x.NUM != mnum {
+		if x.NUM != load_file_num {
 			continue
 		}
 		// OTHEWISE
@@ -158,15 +164,21 @@ func Load_Game_FromFile() {
 
 		//3. Ifw e get this far, means we DIDNT find the users selection
 		M.Println("")
-		MW.Println("ERROR: Invalid Selection")
+		MW.Println("ERROR: Invalid Saved Game Selection!")
 		M.Println("")
+		return
 	}
 
 	//5. Otherwise, Now loop through the PREHIST and process each hand as if we are entering them manually
 	for _, hnd := range PREHIST {
 		var red = INT_to_STRING(hnd.RED_B) + INT_to_STRING(hnd.RED_A)
 		var blue = INT_to_STRING(hnd.BLUE_B) + INT_to_STRING(hnd.BLUE_A)
-		Dice_Engine_INIT(red, blue) // Processes the hand and updates teh History
+		Dice_Engine(red, blue) // Processes the hand and updates teh History
+	}
+
+	//6. If this was "auto loaded", lets also show the total history
+	if auto_load {
+		ShowDice_HISTORY(true)
 	}
 
 }

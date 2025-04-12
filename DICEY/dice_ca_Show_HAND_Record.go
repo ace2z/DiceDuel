@@ -40,38 +40,6 @@ arrows:
 ➤
 */
 
-// Gets the color associated with Event. Searches the master EVENTS LIST and
-// the COLOR_MATRIX (if applicable)
-// func find_EVENT_ColorStyle_and_PRINT(evt EVENT_OBJ) *color.Color {
-// 	for _, me := range EVENT_LIST {
-
-// 		// Skip if not match
-// 		if CONTAINS(evt.NAME, me.NAME) == false {
-// 			continue
-// 		}
-
-// 		// Otherwise we have a match. Exit when done
-
-// 		return me.COLOR
-
-// 	}
-
-// 	// If we get this far.. means we did NOT find a color define din the EVENT_LIST
-// 	// So now we need to search the COLOR_MATRIX
-// 	for _, cm := range EVT_COLOR_MATRIX {
-// 		// Skip if not match
-// 		if CONTAINS(evt.NAME, cm.NAME) == false {
-// 			continue
-// 		}
-
-// 		// Otherwise we have a match. Exit when done
-// 		return cm.COLOR
-// 	}
-
-// 	// If no color is defined, return a default color
-// 	return color.New(color.FgWhite)
-// }
-
 // Shows the event in the color/style using LIP GLOSS
 func LG_showEvent(evt EVENT_OBJ) {
 	var COLOR lipgloss.Style

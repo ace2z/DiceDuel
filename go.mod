@@ -3,10 +3,12 @@ module local
 go 1.24.2
 
 require (
-	github.com/ace2z/GOGO/Gadgets v0.0.0-20250411044630-823a1d67e410
-	github.com/ace2z/GOGO/Gadgets/FileOPS v0.0.0-20250411044630-823a1d67e410
+	github.com/ace2z/GOGO/Gadgets v0.0.0-20250412030901-3f3d9b149c89
+	github.com/ace2z/GOGO/Gadgets/FileOPS v0.0.0-20250412030901-3f3d9b149c89
 	github.com/charmbracelet/lipgloss v1.1.0
 	github.com/fatih/color v1.18.0
+	github.com/montanaflynn/stats v0.7.1
+	golang.org/x/term v0.31.0
 )
 
 require (
@@ -29,5 +31,4 @@ require (
 	github.com/rivo/uniseg v0.4.7 // indirect
 	github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e // indirect
 	golang.org/x/sys v0.32.0 // indirect
-	golang.org/x/term v0.31.0 // indirect
 )

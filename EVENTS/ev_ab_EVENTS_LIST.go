@@ -12,8 +12,6 @@ import (
 	// "github.com/charmbracelet/lipgloss"
 )
 
-var EVENT_LIST []EVENT_OBJ
-
 // Event Names.. to make them consistent across functions that show or consume them
 const (
 	// RED_by_ONE  string = "RE*1"
@@ -25,17 +23,21 @@ const (
 	BLUE_1      string = "BLU_1"
 	RED_INC     string = "Red_INC"
 	BLUE_INC    string = "Blu_INC"
+	RED_HINUM   string = "HIred"
+	BLUE_HINUM  string = "HIblu"
 
-	RED_HINUM  string = "HIred"
-	BLUE_HINUM string = "HIblu"
+	CONFLICT_Finder string = "**CONFLICT**"
 )
+
+var EVENT_LIST []EVENT_OBJ
 
 func populate_EVENTS_LIST() {
 
-	EVENT_LIST = []EVENT_OBJ{
+	// REMEMBER: Events are processed in the ORDER thery are shown here.
+	// Still, certain events can take PRIORITY over others. So adjust as necessary
 
-		{RED_INC, 1, NULV, "", "", NULV, NULV, "", true, detect_INC_DROP, nil, LG_JUST_RED, ""},
-		{BLUE_INC, 1, NULV, "", "", NULV, NULV, "", true, detect_INC_DROP, nil, LG_JUST_BLUE, ""},
+	EVENT_LIST = []EVENT_OBJ{
+		{COMMON_NUMS, 6, NULV, "", "", NULV, NULV, "", true, detect_COMMON_NUMS, nil, LG_COMMON_NUMS, ""},
 
 		{RED_FULL, 5, NULV, "", "", NULV, NULV, "", true, Detect_diceSIDE_Probabilities, nil, LG_RED_360, ""},
 		{BLUE_FULL, 5, NULV, "", "", NULV, NULV, "", true, Detect_diceSIDE_Probabilities, nil, LG_BLUE_360, ""},
@@ -46,11 +48,11 @@ func populate_EVENTS_LIST() {
 		{RED_HINUM, 2, NULV, "", "", NULV, NULV, "", true, detect_HI_NUM, nil, LG_WHITE_ORANGE, ""},
 		{BLUE_HINUM, 2, NULV, "", "", NULV, NULV, "", true, detect_HI_NUM, nil, LG_WHITE_PURPLE, ""},
 
-		{COMMON_NUMS, 6, NULV, "", "", NULV, NULV, "", true, detect_COMMON_NUMS, nil, LG_COMMON_NUMS, ""},
+		{RED_INC, 1, NULV, "", "", NULV, NULV, "", true, detect_INC_DROP, nil, LG_JUST_RED, ""},
+		{BLUE_INC, 1, NULV, "", "", NULV, NULV, "", true, detect_INC_DROP, nil, LG_JUST_BLUE, ""},
 
-		// {RED_by_ONE, 1, NULV, "", "", NULV, NULV, "", true, Detect_diceSIDE_Probabilities, nil, LG_WHITE_ORANGE},
-		// {BLUE_by_ONE, 1, NULV, "", "", NULV, NULV, "", true, Detect_diceSIDE_Probabilities, nil, LG_WHITE_PURPLE},
-
+		// Must look for conflicts last. But they take priority over the rest of the events
+		{CONFLICT_Finder, 7, NULV, "", "", NULV, NULV, "", true, detect_CONFLICTS, nil, LG_WHITE, ""},
 	}
 
 	// Now SORT the event list by priority

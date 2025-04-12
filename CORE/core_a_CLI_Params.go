@@ -8,6 +8,8 @@ import (
 
 var INPUT_RED_DICE, INPUT_BLUE_DICE string
 
+var LOAD_FILE_NUM = 0
+
 func CLI_PARAM_INIT() {
 
 	// flag.BoolVar(&REINIT_ALL, "reinit", REINIT_ALL, "  Reinit The Core (DB etc)")
@@ -21,6 +23,9 @@ func CLI_PARAM_INIT() {
 
 	flag.StringVar(&INPUT_RED_DICE, "red", INPUT_RED_DICE, " Value for RED dice (2 numbers from RIGHT to LEFT) ")
 	flag.StringVar(&INPUT_BLUE_DICE, "blue", INPUT_BLUE_DICE, " Value for BLUE dice (2 numbers from RIGHT to LEFT) ")
+
+	flag.IntVar(&LOAD_FILE_NUM, "load", LOAD_FILE_NUM, "  Automatically Loads the FILE at this number")
+
 	//flag.StringVar(&ONLY_TF, "tf", ONLY_TF, " Only process for THIS TimeFrame (ie 1min, HOURLY, DAILY)")
 	//  flag.IntVar(&DEFAULT_MAX_THREADS,  "threads", DEFAULT_MAX_THREADS,      "  Max THREADS to use at a time")
 

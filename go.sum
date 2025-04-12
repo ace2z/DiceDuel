@@ -1,7 +1,7 @@
-github.com/ace2z/GOGO/Gadgets v0.0.0-20250411044630-823a1d67e410 h1:LW+siaGWt1GRuD3hvpZvEWEZUc1PcsoYNNx3Ukzztf4=
-github.com/ace2z/GOGO/Gadgets v0.0.0-20250411044630-823a1d67e410/go.mod h1:Z0FfxMD4lT4fNNR0cPyGiHHqjxcrYN1GnjwTc50N11Y=
-github.com/ace2z/GOGO/Gadgets/FileOPS v0.0.0-20250411044630-823a1d67e410 h1:rSJtD4vQf9Nv5uybeV1sctvNJnOPKOVtCSZrpNeLPqk=
-github.com/ace2z/GOGO/Gadgets/FileOPS v0.0.0-20250411044630-823a1d67e410/go.mod h1:Tdoghr6OGoiE3x8wQGH2O93rjCAo8B8OkZneodQ4i9Y=
+github.com/ace2z/GOGO/Gadgets v0.0.0-20250412030901-3f3d9b149c89 h1:nYr5JeGSf2iAkhjcLNuaTFtrWgFdBhHKJPnuJkriAts=
+github.com/ace2z/GOGO/Gadgets v0.0.0-20250412030901-3f3d9b149c89/go.mod h1:Z0FfxMD4lT4fNNR0cPyGiHHqjxcrYN1GnjwTc50N11Y=
+github.com/ace2z/GOGO/Gadgets/FileOPS v0.0.0-20250412030901-3f3d9b149c89 h1:LMmmQ3EvstiiueRmJBoBBmXs1TuVOxBBs5jsbYIDR9A=
+github.com/ace2z/GOGO/Gadgets/FileOPS v0.0.0-20250412030901-3f3d9b149c89/go.mod h1:Tdoghr6OGoiE3x8wQGH2O93rjCAo8B8OkZneodQ4i9Y=
 github.com/atotto/clipboard v0.1.4 h1:EH0zSVneZPSuFR11BlR9YppQTVDbh5+16AmcJi4g1z4=
 github.com/atotto/clipboard v0.1.4/go.mod h1:ZY9tmq7sm5xIbd9bOK4onWV4S6X0u6GY7Vn0Yu86PYI=
 github.com/aymanbagabas/go-osc52/v2 v2.0.1 h1:HwpRHbFMcZLEVr42D4p7XBqjyuxQH5SMiErDT4WkJ2k=
@@ -39,6 +39,8 @@ github.com/mattn/go-isatty v0.0.20 h1:xfD0iDuEKnDkl03q4limB+vH+GxLEtL/jb4xVJSWWE
 github.com/mattn/go-isatty v0.0.20/go.mod h1:W+V8PltTTMOvKvAeJH7IuucS94S2C6jfK/D7dTCTo3Y=
 github.com/mattn/go-runewidth v0.0.16 h1:E5ScNMtiwvlvB5paMFdw9p4kSQzbXFikJ5SQO6TULQc=
 github.com/mattn/go-runewidth v0.0.16/go.mod h1:Jdepj2loyihRzMpdS35Xk/zdY8IAYHsh153qUoGf23w=
+github.com/montanaflynn/stats v0.7.1 h1:etflOAAHORrCC44V+aR6Ftzort912ZU+YLiSTuV8eaE=
+github.com/montanaflynn/stats v0.7.1/go.mod h1:etXPPgVO6n31NxCd9KQUMvCM+ve0ruNzt6R8Bnaayow=
 github.com/muesli/termenv v0.16.0 h1:S5AlUN9dENB57rsbnkPyfdGuWIlkmzJjbFf0Tf5FWUc=
 github.com/muesli/termenv v0.16.0/go.mod h1:ZRfOIKPFDYQoDFF4Olj7/QJbW60Ol/kL1pU3VfY/Cnk=
 github.com/rivo/uniseg v0.2.0/go.mod h1:J6wj4VEh+S6ZtnVlnTBMWIodfgj8LQOQFoIToxlJtxc=

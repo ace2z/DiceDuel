@@ -17,8 +17,7 @@ import (
 	//"github.com/fatih/color"
 )
 
-// VALUE string
-var LETTERS = []string{"e", "r", "d", "v", "h", "s", "l"}
+var allowed_LETTERS = []string{"e", "r", "d", "v", "h", "s", "l"}
 
 func Extra_KEYS_Handle_Engine(input string) bool {
 	var flg_remove_last = false
@@ -27,7 +26,7 @@ func Extra_KEYS_Handle_Engine(input string) bool {
 	var flg_save = false
 	var flg_load = false
 
-	for _, tmpl := range LETTERS {
+	for _, tmpl := range allowed_LETTERS {
 
 		if strings.Contains(input, tmpl) {
 
@@ -99,7 +98,7 @@ func Extra_KEYS_Handle_Engine(input string) bool {
 		// Implement the logic to load the game object from a file
 		// This function should deserialize the game object from a file
 		// and return it
-		Load_Game_FromFile()
+		Load_Game_FromFile(0)
 		return true
 	}
 

@@ -44,8 +44,7 @@ type EVENT_OBJ struct {
 	// Color style for displaying the event
 	COLOR    *color.Color   `json:"-"` // DONT  save this to JSON
 	LG_COLOR lipgloss.Style `json:"-"` // DONT  save this to JSON
-
-	COLOR_ID string // This is the LIPGLOSS, ID of the color in the COLOR_MATRIX
+	COLOR_ID string         // This is the LIPGLOSS, ID of the color in the COLOR_MATRIX
 }
 
 type META_OBJ struct {

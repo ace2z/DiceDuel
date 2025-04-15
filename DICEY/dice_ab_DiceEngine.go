@@ -41,12 +41,12 @@ func Dice_Engine(INPUT_RED_DICE string, INPUT_BLUE_DICE string) {
 		M.Print("RED ")
 		Y.Println("first ")
 
-		tmp_red := Read_User_Input("      RED DICE: ", BOLD_MAGENTA, BOLD_YELLOW, 2, also_allowed, "-digits", NOEOL)
+		tmp_red := Read_UserInput("      RED DICE: ", BOLD_MAGENTA, BOLD_YELLOW, 2, also_allowed, "-digits", NOEOL)
 		if tmp_red == "" || Extra_KEYS_Handle_Engine(tmp_red) {
 			W.Println("")
 			return
 		}
-		tmp_blue := Read_User_Input("     BLUE DICE: ", BOLD_CYAN, BOLD_WHITE, 2, also_allowed, "-digits")
+		tmp_blue := Read_UserInput("     BLUE DICE: ", BOLD_CYAN, BOLD_WHITE, 2, also_allowed, "-digits")
 		if tmp_blue == "" || Extra_KEYS_Handle_Engine(tmp_blue) {
 			W.Println("")
 			return

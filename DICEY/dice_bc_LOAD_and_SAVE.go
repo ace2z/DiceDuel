@@ -130,7 +130,7 @@ func Load_Game_FromFile(load_file_num int) {
 	//4b. If load_file_num is 0, we PROMPT the user. Ask the user to select a file
 	if auto_load == false {
 		C.Println("")
-		menu_num := Read_User_Input("Select a file to load: ", BOLD_MAGENTA, BOLD_YELLOW, 2, nil, "-digits", NOEOL)
+		menu_num := Read_UserInput("Select a file to load: ", BOLD_MAGENTA, BOLD_YELLOW, 2, nil, "-digits", NOEOL)
 		load_file_num = STRING_to_INT(menu_num)
 	}
 

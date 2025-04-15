@@ -6,11 +6,9 @@ import (
 	. "local/CORE"
 
 	. "github.com/ace2z/GOGO/Gadgets"
-	"github.com/fatih/color"
-
-	. "github.com/ace2z/GOGO/Gadgets/MDC"
 
 	"github.com/charmbracelet/lipgloss"
+	"github.com/fatih/color"
 )
 
 type EVTMP_OBJ struct {
@@ -55,31 +53,31 @@ func Test_Stuff() {
 
 	DO_EXIT()
 
-	EV := EVTMP_OBJ{}
-	EV.hiddenGUY = "I just cant get enough"
+	// EV := EVTMP_OBJ{}
+	// EV.hiddenGUY = "I just cant get enough"
 
-	myMap1 := make(map[string]interface{})
-	myMap1["name"] = "John Doe"
-	myMap1["age"] = 30
-	myMap1["city"] = "New York"
+	// myMap1 := make(map[string]interface{})
+	// myMap1["name"] = "John Doe"
+	// myMap1["age"] = 30
+	// myMap1["city"] = "New York"
 
-	SHOW_STRUCT(EV, "LG_COLOR", "HIDEME", "-hide")
-	SHOW_STRUCT(myMap1)
+	// SHOW_STRUCT(EV, "LG_COLOR", "HIDEME", "-hide")
+	// SHOW_STRUCT(myMap1)
 
-	C.Println("Testing new MDC method")
-	var num = 3.14159
-	test := MakeRound(num)
+	// C.Println("Testing new MDC method")
+	// var num = 3.14159
+	// test := MakeRound(num)
 
-	W.Println("\n", num)
-	C.Print("Rounded: ")
-	Y.Println(test)
+	// W.Println("\n", num)
+	// C.Print("Rounded: ")
+	// Y.Println(test)
 
-	var allowed_DICE = []string{"1", "2", "3", "4", "5", "6"}
-	rres := Read_UserInput("RED Dice: ", allowed_DICE, "-min|2", "-max|2", MAGENTA, NOEOL)
-	r2 := Read_UserInput("   BLUE Dice: ", allowed_DICE, "-min|2", "-max|2", CYAN)
-	Y.Print("\nRed Dice: ")
-	M.Println(rres)
-	Y.Print("\nBLUE Dice: ")
-	C.Println(r2)
+	// var allowed_DICE = []string{"1", "2", "3", "4", "5", "6"}
+	// rres := Read_UserInput("RED Dice: ", allowed_DICE, "-min|2", "-max|2", MAGENTA, NOEOL)
+	// r2 := Read_UserInput("   BLUE Dice: ", allowed_DICE, "-min|2", "-max|2", CYAN)
+	// Y.Print("\nRed Dice: ")
+	// M.Println(rres)
+	// Y.Print("\nBLUE Dice: ")
+	// C.Println(r2)
 
 } // end of main

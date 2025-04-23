@@ -1,0 +1,277 @@
+package main
+
+import (
+	// = = = = = Native Libraries
+	//. "github.com/ace2z/GOGO/REFGADS/BLOX"
+	//. "github.com/ace2z/GOGO/REFGADS/ColorOPS"
+	// // "os"
+	// // "path/filepath"
+	// //. "github.com/ace2z/GOGO/REFGADS/BLOX"
+	// //"github.com/fatih/color"
+	// //. "github.com/ace2z/GOGO/REFGADS/PRETTY"
+	//. "github.com/ace2z/GOGO/REFGADS/ColorOPS"
+	//"github.com/fatih/color"
+	// //"reflect"
+	// //"sort"
+
+	//"slices"
+	"strings"
+)
+
+// *************************** MAIN AREA ****************************
+
+// These are "known conflicts" ...or colors that dont work well together
+var CONFLICTS = map[string]string{
+	"red":        "bg_red",
+	"green":      "bg_green",
+	"yellow":     "bg_yellow",
+	"blue":       "bg_blue",
+	"magenta":    "bg_magenta",
+	"cyan":       "bg_cyan",
+	"white":      "bg_white",
+	"hi_red":     "bghi_red",
+	"hi_green":   "bghi_green",
+	"hi_yellow":  "bghi_yellow",
+	"hi_blue":    "bghi_blue",
+	"hi_magenta": "bghi_magenta",
+	"hi_cyan":    "bghi_cyan",
+	"hi_white":   "bghi_white",
+}
+
+func have_color_CONFLICT(fgcolor string, bgcolor string) bool {
+
+	W.Print("  Conflict CHECK: ", fgcolor, " vs ", bgcolor+": ")
+	value, exists := CONFLICTS[fgcolor]
+	if exists {
+		if value == bgcolor {			
+			M.Println("BAD!!")
+			return true
+		}
+	}
+
+	//W.Println("")
+	return false
+
+	// if slices.Contains(KNOWN_CONFLICTS, tmp_colorid) {
+	// 	return true
+	// }
+	// // Strip off the "bg_" and "hi_" prefixes
+	// tmp_fg := strings.Replace(fg, "hi_", "", -1)
+
+	// tmp_bg := strings.Replace(bg, "bg_hi_", "", -1)
+	// //	tmp_bg = strings.Replace(bg, "bg_", "", -1)
+	// tmp_conflict := tmp_fg + "_" + tmp_bg
+	// M.Println("    ", tmp_conflict)
+	// Y.Println("")
+	// if tmp_fg == tmp_bg {
+	// 	return true
+	// }
+
+	// for color, tmpBG_color := range CONFLICTS {
+	// 	if color == fg && tmpBG_color == bg {
+	// 		return true
+	// 	}
+	// }
+	//return false
+}
+
+var name_OVERRIDES = map[string]string{
+	"GREEN":   "GRN",
+	"YELLOW":  "YELL",
+	"MAGENTA": "MAGE",
+	"WHITE":   "WHI",
+	"BLUE":    "BLU",
+}
+
+func normalize_NAME_Override(input string) string {
+	tmp_input := input
+
+	for color, override := range name_OVERRIDES {
+		if strings.Contains(tmp_input, color) {
+			result := strings.ReplaceAll(tmp_input, color, override)
+			return result
+		}
+	}
+
+	// debug for right now.. This should never happen
+	//DO_EXIT("No available OVERRIDE for color: "+tmp_input, nil)
+
+	// If we get this far we return the original input..but upercase
+	return tmp_input
+}
+
+// Generate a COLOR_ID
+var prefix_patts = []string{
+	"hi_",
+	"bghi_",
+	"bg_",
+}
+var max_first_chars = 2
+
+func generate_COLOR_ID(input string) string {
+	input = strings.ToLower(input)
+
+	var found_patt = ""
+	for _, patt := range prefix_patts {
+		if strings.HasPrefix(input, patt) {
+			found_patt = patt
+			break
+		}
+	}
+
+	// If no pattern was found, we have a simple color...and can make a simple ID
+	// This will mostly apply to ForeGround colors
+	if found_patt == "" {
+		result := strings.ToUpper(input)
+		return result
+	}
+
+	//3. Otherwise we have a pattern that we need to adjust for
+	is_hi := strings.HasPrefix(input, "hi_")
+	is_BG := strings.HasPrefix(input, "bg_")
+	is_HIBG := strings.HasPrefix(input, "bghi_")
+
+	//3b strip the pattern from the input
+	tmp_id := strings.Replace(input, found_patt, "", -1)
+	// W.Print("  tmp_id: ", tmp_id, "| ")
+	// Y.Print("is_hi: ", is_hi, " | ")
+	// Y.Print("is_BG: ", is_BG, " | ")
+	// Y.Print("is_HIBG: ", is_HIBG, " | ")
+
+	// Get the first 2 chars of the input
+	//var first_X = input[0:max_first_chars]
+	// var first_X = ""
+	//input = strings.ToUpper(first_X)
+
+	if is_hi {
+		//tmp_id = normalize_NAME_Override(tmp_id)
+		tmp_id = "Hi" + strings.ToUpper(tmp_id)
+
+	} else if is_HIBG {
+		//tmp_id = normalize_NAME_Override(tmp_id)
+		tmp_id = "HBG_" + strings.ToUpper(tmp_id)
+		tmp_id = normalize_NAME_Override(tmp_id)
+
+	} else if is_BG {
+		//tmp_id = normalize_NAME_Override(tmp_id)
+		tmp_id = "BG_" + strings.ToUpper(tmp_id)
+
+	}
+
+	//4. We might need to override some names because they are too long
+	tmp_id = normalize_NAME_Override(tmp_id)
+
+	//4. Finally, we have our color ID
+	color_id := tmp_id
+	return color_id
+
+	// // Otherwise get first 3 of the name
+	// var first_X = ""
+	// var ilen = len(input)
+	// if ilen < max_first_chars {
+	// 	first_X = input
+	// } else {
+	// 	first_X = input[0:max_first_chars]
+	// }
+	// var code_id = first_X
+	// code_id = strings.ToUpper(code_id)
+	// //Safety fix for MAGENT (which losa the letter a)
+	// if strings.Contains(code_id, "MAGENT") {
+	// 	code_id = strings.ReplaceAll(code_id, "MAGENT", "MAGENTA")
+	// }
+
+	// return code_id
+}
+
+func is_BG_Color(input string) bool {
+	// Check if the input string starts with "bg_"
+	if strings.HasPrefix(input, "bg_") || strings.HasPrefix(input, "bghi_") {
+		return true
+	}
+	return false
+}
+func initial_Matrix_Load() {
+
+	var cache = []color_OBJ{}
+
+	for n, item := range COLOR_MATRIX {
+		var name = item.NAME
+		//have_BG_COLOR := strings.HasPrefix(name, "bg_") || strings.HasPrefix(name, "bghi_")
+		if is_BG_Color(name) == false {
+			continue
+		}
+
+		var bgname = item.NAME
+		if item.Color_ID == "" {
+			item.Color_ID = generate_COLOR_ID(bgname)
+			// W.Print(bgname, " ==CID=> ")
+			// Y.Println(item.Color_ID)
+			COLOR_MATRIX[n] = item
+
+		}
+
+		//C.Println("  BG Color: ", item.NAME, " ID: ", item.Color_ID)
+
+		// if this is a background color, we will generate a COMBINATION color with it
+
+		// Secondary loop for need_COMBINE
+		for p, fg := range COLOR_MATRIX {
+			var fgname = fg.NAME
+			// ignroe the same item
+			if p == n {
+				continue
+			}
+			if is_BG_Color(fg.NAME) {
+				continue
+			}
+
+			//3. Get the folor id for this FOREGROUND color
+
+			if fg.Color_ID == "" {
+				fg.Color_ID = generate_COLOR_ID(fgname)
+				// C.Print("    ", fgname, " ==CID=> ")
+				// G.Println(fg.Color_ID)
+				COLOR_MATRIX[p] = fg //updates this FG item in the matrix
+			}
+			//3b. Checkf or a color conflict
+			if have_color_CONFLICT(fgname, bgname) {
+				continue
+			}
+
+			// = = = = ==
+			//4. Now we want to do a COMBINATION of the two colors
+			// Make sure we dont have a CONFLICT
+
+			tmp_BACK := item.Color_ID
+
+			// Further normalization
+			if strings.Contains(tmp_BACK, "HBG_") {
+				tmp_BACK = strings.ReplaceAll(tmp_BACK, "HBG_", "Hi")
+			} else if strings.Contains(tmp_BACK, "BG_") {
+				tmp_BACK = strings.ReplaceAll(tmp_BACK, "BG_", "")
+			}
+
+			NEW_COLOR_ID := fg.Color_ID + "_on_" + tmp_BACK
+			NEW_COLOR_ID = normalize_NAME_Override(NEW_COLOR_ID)
+
+			//4b. Generate a color object from the attribs
+			//var newColorOBJ = color.New(fg.ATTRIB, item.ATTRIB)
+
+			//5. Finally make a new entry into the matrix
+			var COMBI = color_OBJ{
+				NAME:           NEW_COLOR_ID,
+				Color_ID:       NEW_COLOR_ID,
+				ATTRIB:         fg.ATTRIB,
+				BG_ATTR:        item.ATTRIB,
+				IS_Combination: true,
+			}
+			//6. Add to the cache. Weill add these items later to the matrix
+
+			cache = append(cache, COMBI)
+		} //end of FOR
+	}
+
+	//8. FINALLY... Now add anythign in NEW items to the COLOR_MATRIX
+	COLOR_MATRIX = append(COLOR_MATRIX, cache...)
+
+}

@@ -1,0 +1,273 @@
+package main
+
+import (
+	// = = = = = Native Libraries
+	. "github.com/ace2z/GOGO/REFGADS/BLOX"
+	//. "github.com/ace2z/GOGO/REFGADS/ColorOPS"
+	// // "os"
+	// // "path/filepath"
+	// //. "github.com/ace2z/GOGO/REFGADS/BLOX"
+	// //"github.com/fatih/color"
+	// //. "github.com/ace2z/GOGO/REFGADS/PRETTY"
+	. "github.com/ace2z/GOGO/REFGADS/ColorOPS"
+	//"github.com/fatih/color"
+	// //"reflect"
+	"sort"
+
+	//"slices"
+	"strings"
+)
+
+// if slices.Contains(KNOWN_CONFLICTS, tmp_colorid) {
+// 	return true
+// }
+// tmp_fg := strings.Replace(fg, "hi_", "", -1)
+
+// *************************** MAIN AREA ****************************
+
+// These are "known conflicts" ...or colors that dont work well together
+var CONFLICTS = map[string]string{
+	"red":        "bg_red",
+	"green":      "bg_green",
+	"yellow":     "bg_yellow",
+	"blue":       "bg_blue",
+	"magenta":    "bg_magenta",
+	"cyan":       "bg_cyan",
+	"white":      "bg_white",
+	"hi_red":     "bghi_red",
+	"hi_green":   "bghi_green",
+	"hi_yellow":  "bghi_yellow",
+	"hi_blue":    "bghi_blue",
+	"hi_magenta": "bghi_magenta",
+	"hi_cyan":    "bghi_cyan",
+	"hi_white":   "bghi_white",
+}
+
+func have_color_CONFLICT(fgcolor string, bgcolor string) bool {
+
+	value, exists := CONFLICTS[fgcolor]
+	//W.Print("  Conflict CHECK: ", fgcolor, " vs ", bgcolor+": ")
+	if exists {
+		if value == bgcolor {
+
+			//		M.Println("BAD!!")
+			return true
+		}
+	}
+
+	//	W.Println("")
+	return false
+}
+
+var name_OVERRIDES = map[string]string{
+	"GREEN":   "GRN",
+	"YELLOW":  "YELL",
+	"MAGENTA": "MAGE",
+	"WHITE":   "WHI",
+	"BLUE":    "BLU",
+}
+
+func normalize_NAME_Override(input string) string {
+	tmp_input := input
+
+	for color, override := range name_OVERRIDES {
+		if strings.Contains(tmp_input, color) {
+			result := strings.ReplaceAll(tmp_input, color, override)
+			return result
+		}
+	}
+	return tmp_input
+}
+
+// Generate a COLOR_ID
+var prefix_patts = []string{
+	"hi_",
+	"bghi_",
+	"bg_",
+}
+var max_first_chars = 2
+
+func generate_COLOR_ID(input string) string {
+	input = strings.ToLower(input)
+
+	var found_patt = ""
+	for _, patt := range prefix_patts {
+		if strings.HasPrefix(input, patt) {
+			found_patt = patt
+			break
+		}
+	}
+
+	// If no pattern was found, we have a simple color...and can make a simple ID
+	// This will mostly apply to ForeGround colors
+	if found_patt == "" {
+		result := strings.ToUpper(input)
+		return result
+	}
+
+	//3. Otherwise we have a pattern that we need to adjust for
+	is_hi := strings.HasPrefix(input, "hi_")
+	is_BG := strings.HasPrefix(input, "bg_")
+	is_HIBG := strings.HasPrefix(input, "bghi_")
+
+	//3b strip the pattern from the input
+	tmp_id := strings.Replace(input, found_patt, "", -1)
+
+	if is_hi {
+		//tmp_id = normalize_NAME_Override(tmp_id)
+		tmp_id = "Hi" + strings.ToUpper(tmp_id)
+
+	} else if is_HIBG {
+		//tmp_id = normalize_NAME_Override(tmp_id)
+		tmp_id = "HBG_" + strings.ToUpper(tmp_id)
+		tmp_id = normalize_NAME_Override(tmp_id)
+
+	} else if is_BG {
+		//tmp_id = normalize_NAME_Override(tmp_id)
+		tmp_id = "BG_" + strings.ToUpper(tmp_id)
+
+	}
+
+	//4. We might need to override some names because they are too long
+	tmp_id = normalize_NAME_Override(tmp_id)
+
+	//4. Finally, we have our color ID
+	color_id := tmp_id
+	return color_id
+
+}
+
+func is_BG_Color(input string) bool {
+	// Check if the input string starts with "bg_"
+	if strings.HasPrefix(input, "bg_") || strings.HasPrefix(input, "bghi_") {
+		return true
+	}
+	return false
+}
+
+func save_Item(newcol color_OBJ, SEARCH *[]color_OBJ) {
+	// See if it already exists
+	for _, item := range *SEARCH {
+		if item.NAME == newcol.NAME {
+			return
+		}
+	}
+
+	// Otherwise we SAVE it
+	(*SEARCH) = append(*SEARCH, newcol)
+
+}
+
+// = = = = Initial Load
+func initial_Matrix_Load() {
+
+	//var cache = []color_OBJ{}
+
+	var cache_FG = []color_OBJ{}
+	var cache_BG = []color_OBJ{}
+	var cache_COMBI = []color_OBJ{}
+
+	for _, item := range COLOR_MATRIX {
+
+		item.COLOR_ID = generate_COLOR_ID(item.NAME)
+		// If backgroudn color
+		if is_BG_Color(item.NAME) {
+			cache_BG = append(cache_BG, item)
+
+			// Otherwise this is a FORE color
+		} else {
+			cache_FG = append(cache_FG, item)
+		}
+	} //end of for
+
+	for _, item := range cache_FG {
+		Y.Print(" FORE: ")
+		W.Print(item.NAME, " ")
+		C.Println(item.COLOR_ID)
+	}
+	W.Println("")
+
+	for _, item := range cache_BG {
+		M.Print(" BACK: ")
+		W.Print(item.NAME, " ")
+		M.Println(item.COLOR_ID)
+	}
+
+	W.Println("")
+	// Now generate the combinations
+	for _, bg := range cache_BG {
+
+		bgname := bg.NAME
+		C.Println("  BACK: ", bgname)
+		for _, fg := range cache_FG {
+
+			var fgname = fg.NAME
+			if have_color_CONFLICT(fgname, bgname) {
+				continue
+			}
+
+			// Get the Color ID for this new Combination
+			NEW_COLOR_ID := fg.COLOR_ID + "_" + bg.COLOR_ID
+			if strings.Contains(NEW_COLOR_ID, "HBG_") {
+				NEW_COLOR_ID = strings.ReplaceAll(NEW_COLOR_ID, "HBG_", "Hi")
+			} else if strings.Contains(NEW_COLOR_ID, "BG_") {
+				NEW_COLOR_ID = strings.ReplaceAll(NEW_COLOR_ID, "BG_", "")
+			}
+
+			newcomb := color_OBJ{
+				NAME:        NEW_COLOR_ID,
+				COLOR_ID:    NEW_COLOR_ID,
+				ATTRIB:      fg.ATTRIB,
+				BG_ATTR:     bg.ATTRIB,
+				IS_Compound: true,
+			}
+			C.Print("      COMBI: -> ")
+			G.Println(newcomb.COLOR_ID)
+
+			// save the combination (if it doesnt already)
+			//func save_Item(newcol color_OBJ, SEARCH *[]color_OBJ) {
+			save_Item(newcomb, &cache_COMBI)
+
+		}
+	} // end of four
+
+	C.Println(" Total FORE: ", len(cache_FG))
+	Y.Println(" Total BACK: ", len(cache_BG))
+	W.Println(" Total COMBI: ", len(cache_COMBI))
+
+	// Sort each of these lists
+	sort.Slice(cache_FG, func(i, j int) bool {
+		return cache_FG[i].NAME < cache_FG[j].NAME
+	})
+	sort.Slice(cache_BG, func(i, j int) bool {
+		return cache_BG[i].NAME < cache_BG[j].NAME
+	})
+	sort.Slice(cache_COMBI, func(i, j int) bool {
+		return cache_COMBI[i].NAME < cache_COMBI[j].NAME
+	})
+	// Purge the matrix. Then re-add all of these items
+	COLOR_MATRIX = []color_OBJ{}
+	COLOR_MATRIX = append(COLOR_MATRIX, cache_FG...)
+	COLOR_MATRIX = append(COLOR_MATRIX, cache_BG...)
+	COLOR_MATRIX = append(COLOR_MATRIX, cache_COMBI...)
+
+	// hack sort by attrib
+	sort.Slice(COLOR_MATRIX, func(i, j int) bool {
+		return COLOR_MATRIX[i].ATTRIB < COLOR_MATRIX[j].ATTRIB
+	})
+	PressAny()
+
+	for _, item := range COLOR_MATRIX {
+		W.Print(item.NAME)
+		C.Print(item.ATTRIB)
+		W.Print(",")
+		Y.Print(item.BG_ATTR)
+		C.Print(" ===> ")
+		Y.Println(item.COLOR_ID)
+	}
+	PressAny()
+	//W.Print("  Conflict CHECK: ", item.NAME, " vs ", item.BG_ATTR+": ")
+
+	SHOW_STRUCT(COLOR_MATRIX)
+
+}

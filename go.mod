@@ -3,7 +3,7 @@ module local
 go 1.24.2
 
 require (
-	github.com/ace2z/GOGO/Gadgets v0.0.0-20250421055439-8224f0a6e0fd
+	github.com/ace2z/GOGO/Gadgets v0.0.0-20250423233436-3bc91ff9a229
 	github.com/charmbracelet/lipgloss v1.1.0
 	github.com/fatih/color v1.18.0
 )
